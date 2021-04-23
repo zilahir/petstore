@@ -1,9 +1,16 @@
 {
 	"private": true,
 	"name": "@zilahir/petstore",
-	"workspaces": [
-		"./packages/"
-	],
+	"workspaces": {
+		"packages": ["./packages/*"],
+		"nohoist": [
+			"**/@typescript-eslint",
+			"**/@typescript-eslint/**",
+			"**/eslint*",
+			"**/eslint*/**"
+		]
+	},
+
 	"scripts": {},
 	"dependencies": {
 		"concurrently": "^6.0.2"

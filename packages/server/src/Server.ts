@@ -1,63 +1,59 @@
-import cookieParser from 'cookie-parser';
-import morgan from 'morgan';
-import path from 'path';
-import helmet from 'helmet';
+import express from "express";
+import serverless from 'serverless-http'
+import dotenv from 'dotenv'
 
-import express, { NextFunction, Request, Response } from 'express';
-import StatusCodes from 'http-status-codes';
-import 'express-async-errors';
-
-import BaseRouter from './routes';
-import logger from '@shared/Logger';
+import connectDB from "../config/database";
+import auth from "./routes/api/auth";
+import user from "./routes/api/user";
+import profile from "./routes/api/profile";
+import file from './routes/api/upload'
 
 const app = express();
-const { BAD_REQUEST } = StatusCodes;
 
+app.use(function (req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Credentials', 'true');
+  res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
+  res.header('Access-Control-Expose-Headers', 'Content-Length');
+  res.header('Access-Control-Allow-Headers', 'Accept, Authorization, Content-Type, X-Requested-With, Range');
+  if (req.method === 'OPTIONS') {
+      return res.send(200);
+  } else {
+      return next();
+  }
+});
 
+// Connect to MongoDB
+connectDB();
 
-/************************************************************************************
- *                              Set basic express settings
- ***********************************************************************************/
-
+// Express configuration
+app.set("port", process.env.PORT || 5000);
 app.use(express.json());
-app.use(express.urlencoded({extended: true}));
-app.use(cookieParser());
+app.use(express.urlencoded({ extended: false, limit: '50mb', parameterLimit: 100000 }));
 
-// Show routes called in console during development
-if (process.env.NODE_ENV === 'development') {
-    app.use(morgan('dev'));
-}
-
-// Security
-if (process.env.NODE_ENV === 'production') {
-    app.use(helmet());
-}
-
-// Add APIs
-app.use('/api', BaseRouter);
-
-// Print API errors
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
-    logger.err(err, true);
-    return res.status(BAD_REQUEST).json({
-        error: err.message,
-    });
+// @route   GET /
+// @desc    Test Base API
+// @access  Public
+app.get("/", (_req, res) => {
+  res.send({
+    prod: false,
+    running: true,
+    ver: 0.1,
+  });
 });
 
+app.use("/api/auth", auth);
+app.use("/api/user", user);
+app.use("/api/profile", profile);
+app.use('/api/file', file)
+
+const port = app.get("port");
+
+const server = app.listen(port, () =>
+  console.log(`Server started on port ${port}`)
+); 
+
+export default server;
 
 
-/************************************************************************************
- *                              Serve front-end content
- ***********************************************************************************/
-
-const viewsDir = path.join(__dirname, 'views');
-app.set('views', viewsDir);
-const staticDir = path.join(__dirname, 'public');
-app.use(express.static(staticDir));
-app.get('*', (req: Request, res: Response) => {
-    res.sendFile('index.html', {root: viewsDir});
-});
-
-// Export express instance
-export default app;
+module.exports.handler = serverless(app);

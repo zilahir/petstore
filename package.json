@@ -1,6 +1,11 @@
 {
 	"private": true,
 	"name": "@zilahir/petstore",
-	"workspaces": ["./packages/"],
-	"scripts": {}
+	"workspaces": [
+		"./packages/"
+	],
+	"scripts": {},
+	"dependencies": {
+		"concurrently": "^6.0.2"
+	}
 }

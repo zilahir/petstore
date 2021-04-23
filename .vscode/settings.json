@@ -3,5 +3,10 @@
 		"typescript",
 		"typescriptreact"
 	],
-	"eslint.workingDirectories": ["../packages/client"]
+	"eslint.workingDirectories": [
+		{
+			"directory": "../packages/client",
+			"!cwd": true
+		}
+	]
 }

@@ -3,6 +3,7 @@
 			"browser": true,
 			"es2021": true
 	},
+	"ignorePatterns": ["*test*", "*env*", "*report*"],
 	"extends": [
 			"plugin:@typescript-eslint/recommended",
 			"plugin:react/recommended",
@@ -32,6 +33,10 @@
 			"allowExpressions": true
 			}
 		],
+		"no-tabs": 0,
+		"indent": ["error", "tab"],
+		"react/jsx-indent": ["error", "tab"],
+		"react/jsx-indent-props": ["error", "tab"],
 		"react/jsx-filename-extension": [1, { "extensions": [".tsx", ".ts"] }],
 		"tsdoc/syntax": "warn",
 		"semi": [2, "never"],

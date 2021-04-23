@@ -13,13 +13,13 @@ This is a _monorepo_ that sovles the coding task I was given by Varjo.
 - [x] Setup ESLint for Backend
 - [x] Setup ESLint for Frontend
 - [x] Setup Prettier for Frontend
-- [ ] Setup StyleLint for Frontend
+- [x] Setup StyleLint for Frontend
 - [ ] Setup JSDoc for Backend
 - [ ] Setup JSDoc for Frontend
 - [ ] Setup testing for Backend
 - [ ] Setup testing for Frontend
-- [ ] Setup OAuth
-- [x] Create Docker
+- [x] Setup OAuth
+- [x] Create Docker for MongoDB
 - [x] Setup GIT
 - [ ] Setup Semantic Release
 - [ ] Setup Database

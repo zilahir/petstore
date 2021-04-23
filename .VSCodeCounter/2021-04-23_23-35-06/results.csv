@@ -1,0 +1,68 @@
+"filename", "language", "TypeScript", "TypeScript React", "XML", "CSS", "YAML", "JSON", "Markdown", "HTML", "SCSS", "JavaScript", "comment", "blank", "total"
+"/Users/richardzilahi/zilahir/petstore/.prettierrc.json", "JSON", 0, 0, 0, 0, 0, 9, 0, 0, 0, 0, 0, 1, 10
+"/Users/richardzilahi/zilahir/petstore/README.md", "Markdown", 0, 0, 0, 0, 0, 0, 31, 0, 0, 0, 0, 7, 38
+"/Users/richardzilahi/zilahir/petstore/docker-compose.yml", "YAML", 0, 0, 0, 0, 12, 0, 0, 0, 0, 0, 0, 0, 12
+"/Users/richardzilahi/zilahir/petstore/package.json", "JSON", 0, 0, 0, 0, 0, 15, 0, 0, 0, 0, 28, 1, 44
+"/Users/richardzilahi/zilahir/petstore/packages/client/.eslintrc.json", "JSON", 0, 0, 0, 0, 0, 63, 0, 0, 0, 0, 0, 1, 64
+"/Users/richardzilahi/zilahir/petstore/packages/client/.storybook/main.js", "JavaScript", 0, 0, 0, 0, 0, 0, 0, 0, 0, 31, 3, 0, 34
+"/Users/richardzilahi/zilahir/petstore/packages/client/.storybook/preview.js", "JavaScript", 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 0, 1, 10
+"/Users/richardzilahi/zilahir/petstore/packages/client/.stylelintrc.json", "JSON", 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 17, 0, 20
+"/Users/richardzilahi/zilahir/petstore/packages/client/README.md", "Markdown", 0, 0, 0, 0, 0, 0, 26, 0, 0, 0, 0, 21, 47
+"/Users/richardzilahi/zilahir/petstore/packages/client/package.json", "JSON", 0, 0, 0, 0, 0, 73, 0, 0, 0, 0, 9, 0, 82
+"/Users/richardzilahi/zilahir/petstore/packages/client/public/index.html", "HTML", 0, 0, 0, 0, 0, 0, 0, 20, 0, 0, 23, 1, 44
+"/Users/richardzilahi/zilahir/petstore/packages/client/public/manifest.json", "JSON", 0, 0, 0, 0, 0, 25, 0, 0, 0, 0, 0, 1, 26
+"/Users/richardzilahi/zilahir/petstore/packages/client/src/api/apiEndpoints.ts", "TypeScript", 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 6
+"/Users/richardzilahi/zilahir/petstore/packages/client/src/app.tsx", "TypeScript React", 0, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 12
+"/Users/richardzilahi/zilahir/petstore/packages/client/src/components/Header/Header.module.scss", "SCSS", 0, 0, 0, 0, 0, 0, 0, 0, 31, 0, 0, 8, 39
+"/Users/richardzilahi/zilahir/petstore/packages/client/src/components/Header/components/NavLink/NavLink.module.scss", "SCSS", 0, 0, 0, 0, 0, 0, 0, 0, 23, 0, 0, 5, 28
+"/Users/richardzilahi/zilahir/petstore/packages/client/src/components/Header/components/NavLink/index.tsx", "TypeScript React", 0, 18, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 23
+"/Users/richardzilahi/zilahir/petstore/packages/client/src/components/Header/index.tsx", "TypeScript React", 0, 20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 24
+"/Users/richardzilahi/zilahir/petstore/packages/client/src/components/common/Button/index.tsx", "TypeScript React", 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 6
+"/Users/richardzilahi/zilahir/petstore/packages/client/src/components/common/Layout/Layout.module.scss", "SCSS", 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 2, 7
+"/Users/richardzilahi/zilahir/petstore/packages/client/src/components/common/Layout/index.tsx", "TypeScript React", 0, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 14
+"/Users/richardzilahi/zilahir/petstore/packages/client/src/index.tsx", "TypeScript React", 0, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 14
+"/Users/richardzilahi/zilahir/petstore/packages/client/src/pages/Home/index.tsx", "TypeScript React", 0, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 12
+"/Users/richardzilahi/zilahir/petstore/packages/client/src/react-app-env.d.ts", "TypeScript", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 2
+"/Users/richardzilahi/zilahir/petstore/packages/client/src/reportWebVitals.ts", "TypeScript", 13, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 16
+"/Users/richardzilahi/zilahir/petstore/packages/client/src/setupTests.ts", "TypeScript", 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 1, 6
+"/Users/richardzilahi/zilahir/petstore/packages/client/src/stories/Button.stories.tsx", "TypeScript React", 0, 30, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 38
+"/Users/richardzilahi/zilahir/petstore/packages/client/src/stories/Button.tsx", "TypeScript React", 0, 28, 0, 0, 0, 0, 0, 0, 0, 0, 18, 3, 49
+"/Users/richardzilahi/zilahir/petstore/packages/client/src/stories/assets/code-brackets.svg", "XML", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
+"/Users/richardzilahi/zilahir/petstore/packages/client/src/stories/assets/colors.svg", "XML", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
+"/Users/richardzilahi/zilahir/petstore/packages/client/src/stories/assets/comments.svg", "XML", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
+"/Users/richardzilahi/zilahir/petstore/packages/client/src/stories/assets/direction.svg", "XML", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
+"/Users/richardzilahi/zilahir/petstore/packages/client/src/stories/assets/flow.svg", "XML", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
+"/Users/richardzilahi/zilahir/petstore/packages/client/src/stories/assets/plugin.svg", "XML", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
+"/Users/richardzilahi/zilahir/petstore/packages/client/src/stories/assets/repo.svg", "XML", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
+"/Users/richardzilahi/zilahir/petstore/packages/client/src/stories/assets/stackalt.svg", "XML", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
+"/Users/richardzilahi/zilahir/petstore/packages/client/src/stories/button.css", "CSS", 0, 0, 0, 30, 0, 0, 0, 0, 0, 0, 0, 1, 31
+"/Users/richardzilahi/zilahir/petstore/packages/client/src/styles/misc/_fonts.scss", "SCSS", 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 2
+"/Users/richardzilahi/zilahir/petstore/packages/client/src/styles/misc/_reset.scss", "SCSS", 0, 0, 0, 0, 0, 0, 0, 0, 130, 0, 5, 10, 145
+"/Users/richardzilahi/zilahir/petstore/packages/client/src/styles/mixins/_box-shadow.scss", "SCSS", 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 1, 4
+"/Users/richardzilahi/zilahir/petstore/packages/client/src/styles/mixins/_typography.scss", "SCSS", 0, 0, 0, 0, 0, 0, 0, 0, 8, 0, 0, 2, 10
+"/Users/richardzilahi/zilahir/petstore/packages/client/src/tests/App.test.tsx", "TypeScript React", 0, 8, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 11
+"/Users/richardzilahi/zilahir/petstore/packages/client/tsconfig.json", "JSON", 0, 0, 0, 0, 0, 26, 0, 0, 0, 0, 0, 1, 27
+"/Users/richardzilahi/zilahir/petstore/packages/server/.eslintrc.json", "JSON", 0, 0, 0, 0, 0, 6, 0, 0, 0, 0, 0, 1, 7
+"/Users/richardzilahi/zilahir/petstore/packages/server/README.md", "Markdown", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1
+"/Users/richardzilahi/zilahir/petstore/packages/server/config/database.ts", "TypeScript", 19, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 3, 24
+"/Users/richardzilahi/zilahir/petstore/packages/server/config/default.json", "JSON", 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 1, 4
+"/Users/richardzilahi/zilahir/petstore/packages/server/docker-compose.yml", "YAML", 0, 0, 0, 0, 12, 0, 0, 0, 0, 0, 0, 0, 12
+"/Users/richardzilahi/zilahir/petstore/packages/server/package.json", "JSON", 0, 0, 0, 0, 0, 51, 0, 0, 0, 0, 0, 1, 52
+"/Users/richardzilahi/zilahir/petstore/packages/server/serverless.yml", "YAML", 0, 0, 0, 0, 28, 0, 0, 0, 0, 0, 0, 1, 29
+"/Users/richardzilahi/zilahir/petstore/packages/server/src/file/controllers/file.controller.ts", "TypeScript", 14, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 18
+"/Users/richardzilahi/zilahir/petstore/packages/server/src/file/models/file.model.ts", "TypeScript", 67, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 14, 81
+"/Users/richardzilahi/zilahir/petstore/packages/server/src/middleware/auth.ts", "TypeScript", 23, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 4, 30
+"/Users/richardzilahi/zilahir/petstore/packages/server/src/models/Profile.ts", "TypeScript", 33, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 5, 45
+"/Users/richardzilahi/zilahir/petstore/packages/server/src/models/User.ts", "TypeScript", 26, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 5, 37
+"/Users/richardzilahi/zilahir/petstore/packages/server/src/routes/api/auth.ts", "TypeScript", 74, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 12, 92
+"/Users/richardzilahi/zilahir/petstore/packages/server/src/routes/api/profile.ts", "TypeScript", 119, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20, 22, 161
+"/Users/richardzilahi/zilahir/petstore/packages/server/src/routes/api/upload.ts", "TypeScript", 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 12
+"/Users/richardzilahi/zilahir/petstore/packages/server/src/routes/api/user.ts", "TypeScript", 73, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 15, 92
+"/Users/richardzilahi/zilahir/petstore/packages/server/src/server.ts", "TypeScript", 65, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 15, 85
+"/Users/richardzilahi/zilahir/petstore/packages/server/src/types/Payload.ts", "TypeScript", 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 2, 8
+"/Users/richardzilahi/zilahir/petstore/packages/server/src/types/Request.ts", "TypeScript", 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 3, 11
+"/Users/richardzilahi/zilahir/petstore/packages/server/src/utils/cleanIsbn.ts", "TypeScript", 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
+"/Users/richardzilahi/zilahir/petstore/packages/server/tsconfig.json", "JSON", 0, 0, 0, 0, 0, 14, 0, 0, 0, 0, 2, 1, 17
+"/Users/richardzilahi/zilahir/petstore/packages/server/tslint.json", "JSON", 0, 0, 0, 0, 0, 42, 0, 0, 0, 0, 0, 1, 43
+"/Users/richardzilahi/zilahir/petstore/swagger.json", "JSON", 0, 0, 0, 0, 0, 897, 0, 0, 0, 0, 0, 1, 898
+"Total", "-", 547, 146, 8, 30, 52, 1227, 57, 20, 201, 40, 172, 225, 2725

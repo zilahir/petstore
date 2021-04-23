@@ -1,3 +1,4 @@
+@import '../../styles/variables';
 @import '../../styles/mixins/box-shadow';
 @import '../../styles/mixins/typography';
 
@@ -6,20 +7,38 @@ $header-height: 70px;
 .headerRoot {
 	@include box-shadow(3px, 3px, 40px, rgba($color: #000000, $alpha: 0.5));
 	height: $header-height;
-	border-bottom: 2px solid #444;
 	display: flex;
 	align-items: center;
 	padding: 0 20px;
+	background: rgba($color: #d9bb29, $alpha: 1);
+
+	.navContainer {
+		display: flex;
+		align-items: center;
+
+		nav {
+			height: 100%;
+			display: flex;
+		}
+	}
 
 	.logo {
+		display: flex;
+		flex: 1;
+
+		a {
+			text-decoration: none;
+		}
+
 		h1 {
 			@include heading {
 				font-size: 2rem;
 				font-weight: 700;
+				color: $brown;
+			}
 
-				span {
-					margin: 0 20px;
-				}
+			span {
+				margin: 0 20px;
 			}
 		}
 	}

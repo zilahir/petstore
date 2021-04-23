@@ -1,6 +1,6 @@
 {
 	"private": true,
 	"name": "@zilahir/petstore",
-	"workspaces": ["client"],
+	"workspaces": ["client", "server"],
 	"scripts": {}
 }

@@ -27,6 +27,8 @@
 	},
 	"plugins": ["react", "jest", "@typescript-eslint", "eslint-plugin-tsdoc"],
 	"rules": {
+		"indent": "off",
+		"@typescript-eslint/indent": ["error", "tab"],
 		"arrow-body-style": ["error", "as-needed"],
 		"no-use-before-define": "off",
 		"@typescript-eslint/no-use-before-define": ["error"],
@@ -37,7 +39,6 @@
 			}
 		],
 		"no-tabs": 0,
-		"indent": ["error", "tab"],
 		"react/jsx-indent": ["error", "tab"],
 		"react/jsx-indent-props": ["error", "tab"],
 		"react/jsx-filename-extension": [1, { "extensions": [".tsx", ".ts"] }],

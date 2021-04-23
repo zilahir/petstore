@@ -19,7 +19,7 @@ This is a _monorepo_ that sovles the coding task I was given by Varjo.
 - [ ] Setup testing for Frontend
 - [ ] Setup Backend
 - [ ] Create Docker
-- [ ] Setup GIT
+- [X] Setup GIT
 - [ ] Setup Semantic Release
 - [ ] Setup Database
 - [ ] Setup Production Environment

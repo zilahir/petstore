@@ -6,12 +6,12 @@ This is a _monorepo_ that sovles the coding task I was given by Varjo.
 
 ### Global
 
-- [ ] Setup Monorepo
+- [X] Setup Monorepo
 - [ ] Setup Backend
-- [ ] Setup Frontend
+- [X] Setup Frontend
 - [ ] Setup StoryBook
 - [ ] Setup ESLint for Backend
-- [ ] Setup ESLint for Frontend
+- [X] Setup ESLint for Frontend
 - [ ] Setup StyleLint for Backend
 - [ ] Setup JSDoc for Backend
 - [ ] Setup JSDoc for Frontend

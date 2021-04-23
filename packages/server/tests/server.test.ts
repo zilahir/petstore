@@ -1,16 +1,40 @@
-import supertest from 'supertest'
-import connectDB, { closeDbConnection } from '../config/database'
+// import supertest from 'supertest'
 
-import app from '../src/server'
+import faker from 'faker'
+import mongoose from 'mongoose'
+import dotenv from 'dotenv'
+import { forEach } from 'lodash'
 
-beforeEach(() => {
-	connectDB().then(done => {
-		console.log('Mongo setup OK', done)
+dotenv.config()
+
+import Tag from '../src/models/tag'
+// import app from '../src/server'
+
+beforeEach(done => {
+	mongoose
+		.connect(process.env.MONGOURL, {
+			useNewUrlParser: true,
+			useCreateIndex: true,
+			useFindAndModify: false,
+			useUnifiedTopology: true,
+		})
+		.then(() => {
+			done()
+		})
+})
+
+afterEach(done => {
+	mongoose.connection.close().then(() => {
+		done()
 	})
 })
 
-afterEach(() => {
-	closeDbConnection().then(done => {
-		console.log('Mongo closed OK', done)
-	})
+test('POST /api/tag', async () => {
+	const tags: Array<string> = faker.random.words(10).split(' ')
+	console.debug('tags', tags)
+	await Promise.all(
+		tags.map(async (tag: string) => {
+			await Tag.create({ name: tag })
+		}),
+	)
 })

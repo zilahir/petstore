@@ -5,10 +5,10 @@ import styles from './Header.module.scss'
 const Header = (): ReactElement => (
 	<header className={styles.headerRoot}>
 		<div className={styles.logo}>
-			<p role="img" aria-label="dog">
+			<h1 role="img" aria-label="dog">
 				🐶
 				<span>PetStore</span>
-			</p>
+			</h1>
 		</div>
 	</header>
 )

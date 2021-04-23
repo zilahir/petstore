@@ -1,0 +1,9 @@
+@mixin paragraph {
+	font-family: 'Raleway', sans-serif;
+	@content;
+}
+
+@mixin heading {
+	font-family: 'Roboto', sans-serif;
+	@content;
+}

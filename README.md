@@ -8,10 +8,14 @@ This is a _monorepo_ that sovles the coding task I was given by Varjo.
 - [ ] Setup Backend
 - [ ] Setup Frontend
 - [ ] Setup StoryBook
-- [ ] Setup ESLint from Backend
-- [ ] Setup ESLint from Fronten
-- [ ] Setup testing for frontend
-- [ ] Setup backend
+- [ ] Setup ESLint for Backend
+- [ ] Setup ESLint for Frontend
+- [ ] Setup StyleLint for Backend
+- [ ] Setup JSDoc for Backend
+- [ ] Setup JSDoc for Frontend
+- [ ] Setup testing for Backend
+- [ ] Setup testing for Frontend
+- [ ] Setup Backend
 - [ ] Setup GIT
 - [ ] Setup Semantic Release
 - [ ] Setup Database

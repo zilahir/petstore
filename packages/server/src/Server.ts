@@ -8,6 +8,7 @@ import authorization from './routes/api/auth'
 import user from './routes/api/user'
 import profile from './routes/api/profile'
 import file from './routes/api/upload'
+import category from './routes/api/category'
 
 dotenv.config()
 
@@ -72,6 +73,7 @@ app.use('/api/auth', authorization)
 app.use('/api/user', user)
 app.use('/api/profile', profile)
 app.use('/api/file', file)
+app.use('/category', category)
 
 const port = app.get('port')
 
@@ -79,6 +81,8 @@ const server = app.listen(port, () =>
 	console.log(`Server started on port ${port}`),
 )
 
+module.exports = app
+
 export default server
 
-module.exports.handler = serverless(app)
+// module.exports.handler = serverless(app)

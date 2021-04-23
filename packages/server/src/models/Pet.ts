@@ -1,5 +1,5 @@
 import { Document, Model, model, Schema } from 'mongoose'
-import { ICategory } from './Category'
+import { ICategory } from './category'
 
 export enum Status {
 	available,

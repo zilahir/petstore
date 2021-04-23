@@ -6,7 +6,6 @@
 	"extends": [
 			"plugin:react/recommended",
 			"airbnb",
-			"react-app/jest",
 			"plugin:react-hooks/recommended",
 			"plugin:unicorn/recommended",
 			"plugin:markdown/recommended"
@@ -21,6 +20,7 @@
 	},
 	"plugins": [
 			"react",
+			"jest",
 			"@typescript-eslint",
 			"eslint-plugin-tsdoc"
 	],

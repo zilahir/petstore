@@ -4,6 +4,8 @@ This is a _monorepo_ that sovles the coding task I was given by Varjo.
 
 ## TODOs
 
+### Global
+
 - [ ] Setup Monorepo
 - [ ] Setup Backend
 - [ ] Setup Frontend
@@ -24,3 +26,9 @@ This is a _monorepo_ that sovles the coding task I was given by Varjo.
 - [ ] Implement the frontend
 - [ ] Create testcases for frontend components
 - [ ] Setup CI/CD Pipelines
+
+### Frontend
+
+- [ ] fix initial ESLint errors
+- [ ] setup project structure
+- [ ] setup redux store

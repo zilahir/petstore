@@ -1,6 +1,6 @@
 import { Router } from 'express'
 
-import { insertNewCategory } from '../../controllers/Category'
+import { insertNewCategory } from '../../controllers/category'
 
 const router: Router = Router()
 

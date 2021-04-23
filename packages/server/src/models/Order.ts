@@ -1,5 +1,5 @@
 import { Document, Model, model, Schema } from 'mongoose'
-import { IPet } from './Pet'
+import { IPet } from './pet'
 
 export enum Status {
 	placed,

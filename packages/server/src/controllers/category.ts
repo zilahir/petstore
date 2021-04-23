@@ -1,16 +1,15 @@
 import { Request, Response } from 'express'
 import HttpStatusCodes from 'http-status-codes'
 
-import { insert, ICategory } from '../models/category'
+import { insert, Category, ICategory } from '../models/category'
 
-type NewCateGoryRequest = Request & ICategory
+type NewCateGoryRequest = Request & Category
 
 export function insertNewCategory(
 	request: NewCateGoryRequest,
 	response: Response,
 ): void {
 	const { name } = request.body
-	console.debug('name', name)
 	insert({
 		name,
 	}).then((result: ICategory) => {

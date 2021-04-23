@@ -1,8 +1,10 @@
 import { Document, Model, model, Schema } from 'mongoose'
 
-export interface ITag extends Document {
+export interface Tag {
 	name: string
 }
+
+export interface ITag extends Document, Tag {}
 
 const tagSchema: Schema = new Schema({
 	name: {
@@ -12,5 +14,10 @@ const tagSchema: Schema = new Schema({
 })
 
 const Tag: Model<ITag> = model('Tag', tagSchema)
+
+export const insert = (tag: Tag): Promise<ITag> => {
+	const newTag = new Tag(tag)
+	return newTag.save()
+}
 
 export default Tag

@@ -1,6 +1,6 @@
 import express from 'express'
 import serverless from 'serverless-http'
-import { auth } from 'express-openid-connect'
+import { auth, requiresAuth, OpenidRequest } from 'express-openid-connect'
 import dotenv from 'dotenv'
 
 import connectDB from '../config/database'
@@ -15,7 +15,7 @@ const config = {
 	authRequired: false,
 	auth0Logout: true,
 	secret: process.env.OAUTH_SECRET,
-	baseURL: 'http://localhost:3000',
+	baseURL: 'http://localhost:5000',
 	clientID: 'AYzTQQMGYe87U7NxgNRHG84SJZf5Anzd',
 	issuerBaseURL: 'https://dev-zilahir.eu.auth0.com',
 }
@@ -62,6 +62,10 @@ app.get('/', (_req, res) => {
 		running: true,
 		ver: 0.1,
 	})
+})
+
+app.get('/profile', requiresAuth(), (req: OpenidRequest, res) => {
+	res.send(JSON.stringify(req.oidc.user))
 })
 
 app.use('/api/auth', authorization)

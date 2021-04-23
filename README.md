@@ -32,3 +32,4 @@ This is a _monorepo_ that sovles the coding task I was given by Varjo.
 - [ ] fix initial ESLint errors
 - [ ] setup project structure
 - [ ] setup redux store
+- [ ] implement routing

@@ -41,10 +41,13 @@
 				"case": "camelCase"
 			}
 		],
-		"import/extensions": ["error","ignorePackages", {
-				"ts": "never",
-				"tsx": "never"
-			}
-		]
+		"import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "ts": "never",
+        "tsx": "never"
+      }
+   ]
 	}
 }

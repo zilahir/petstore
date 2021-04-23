@@ -25,6 +25,7 @@
 			"eslint-plugin-tsdoc"
 	],
 	"rules": {
+		"tsdoc/syntax": "warn",
 		"semi": [2, "never"],
 		"arrow-parens": [1, "as-needed"],
 		"unicorn/filename-case": [

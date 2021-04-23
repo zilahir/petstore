@@ -1,0 +1,19 @@
+{
+  "version": "1.0.0",
+  "configurations": [
+    {
+      "type": "chrome",
+      "request": "launch",
+      "name": "Launch xenon against localhost",
+      "url": "http://localhost:3000",
+      "webRoot": "${workspaceFolder}"
+    },
+    {
+      "type": "chrome",
+      "request": "launch",
+      "name": "Launch Storybook against localhost",
+      "url": "http://localhost:9000",
+      "webRoot": "${workspaceFolder}"
+    }
+  ]
+}

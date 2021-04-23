@@ -1,6 +1,6 @@
 {
 	"private": true,
 	"name": "@zilahir/petstore",
-	"workspaces": ["client", "server"],
+	"workspaces": ["./packages/"],
 	"scripts": {}
 }

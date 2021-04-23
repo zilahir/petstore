@@ -2,22 +2,42 @@
 	"private": true,
 	"name": "@zilahir/petstore",
 	"workspaces": {
-		"packages": ["./packages/*"],
+		"packages": [
+			"./packages/*"
+		],
 		"nohoist": [
-			"**/@typescript-eslint",
-			"**/@typescript-eslint/**",
-			"**/eslint*",
-			"**/eslint*/**"
+			"*"
 		]
 	},
-
 	"scripts": {
 		"start:client": "yarn workspace client start",
 		"start:docker": "docker-compose up",
 		"start:server": "yarn workspace server server:dev",
-		"start:dev": "concurrently -k -n  CLIENT,SERVER,DOCKER -c red,yellow,black \"yarn start:client\" \"yarn start:server\" \"yarn start:docker\""
+		"storybook": "start-storybook -p 6006 -c ./packages/client/.storybook",
+		"build-storybook": "build-storybook",
+		"start:dev": "concurrently -k -n  CLIENT,SERVER,DOCKER,STORYBOOK -c red,yellow,black,green \"yarn start:client\" \"yarn start:server\" \"yarn start:docker\" \"yarn storybook\""
 	},
 	"dependencies": {
 		"concurrently": "^6.0.2"
+	},
+	"devDependencies": {
+		"@storybook/addon-actions": "^6.2.9",
+		"@storybook/addon-essentials": "^6.2.9",
+		"@storybook/addon-links": "^6.2.9",
+		"@storybook/node-logger": "^6.2.9",
+		"@storybook/preset-create-react-app": "^3.1.7",
+		"@storybook/react": "^6.2.9"
+	},
+	"eslintConfig": {
+		"overrides": [
+			{
+				"files": [
+					"**/*.stories.*"
+				],
+				"rules": {
+					"import/no-anonymous-default-export": "off"
+				}
+			}
+		]
 	}
 }

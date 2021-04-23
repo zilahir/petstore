@@ -7,18 +7,18 @@ This is a _monorepo_ that sovles the coding task I was given by Varjo.
 ### Global
 
 - [x] Setup Monorepo
-- [ ] Setup Backend
+- [x] Setup Backend
 - [x] Setup Frontend
-- [ ] Setup StoryBook
-- [ ] Setup ESLint for Backend
+- [x] Setup StoryBook
+- [x] Setup ESLint for Backend
 - [x] Setup ESLint for Frontend
 - [x] Setup Prettier for Frontend
-- [ ] Setup StyleLint for Backend
+- [ ] Setup StyleLint for Frontend
 - [ ] Setup JSDoc for Backend
 - [ ] Setup JSDoc for Frontend
 - [ ] Setup testing for Backend
 - [ ] Setup testing for Frontend
-- [ ] Setup Backend
+- [ ] Setup OAuth
 - [x] Create Docker
 - [x] Setup GIT
 - [ ] Setup Semantic Release

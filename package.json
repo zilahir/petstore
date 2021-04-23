@@ -1,6 +1,6 @@
 {
 	"private": true,
-	"name": "example-monorepo",
-	"workspaces": [],
+	"name": "@zilahir/petstore",
+	"workspaces": ["client"],
 	"scripts": {}
 }

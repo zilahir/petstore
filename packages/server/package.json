@@ -1,5 +1,5 @@
 {
-  "name": "mongoose-express-ts",
+  "name": "server",
   "version": "1.0.0",
   "description": "Mongoose Node.js Express TypeScript application boilerplate with best practices for API development.",
   "author": "Paul Cham",
@@ -9,8 +9,8 @@
     "watch-tsc": "tsc -w",
     "deploy": "node dist/src/server.js",
     "watch-deploy": "nodemon dist/src/server.js",
-    "server": "concurrently \"npm run watch-tsc\" \"npm run watch-deploy\"",
-    "start_": "npm run deploy"
+    "server:dev": "concurrently \"npm run watch-tsc\" \"npm run watch-deploy\"",
+    "start": "npm run deploy"
   },
   "dependencies": {
     "aws-sdk": "^2.879.0",

@@ -11,7 +11,12 @@
 		]
 	},
 
-	"scripts": {},
+	"scripts": {
+		"start:client": "yarn workspace client start",
+		"start:docker": "docker-compose up",
+		"start:server": "yarn workspace server server:dev",
+		"start:dev": "concurrently -k -n  CLIENT,SERVER,DOCKER -c red,yellow,black \"yarn start:client\" \"yarn start:server\" \"yarn start:docker\""
+	},
 	"dependencies": {
 		"concurrently": "^6.0.2"
 	}

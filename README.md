@@ -2,7 +2,7 @@
 
 This is a _monorepo_ that sovles the coding task I was given by Varjo.
 
-## TODOs 
+## TODOs
 
 - [ ] Setup Monorepo
 - [ ] Setup Backend

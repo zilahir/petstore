@@ -1,6 +1,6 @@
 import { ConnectionOptions, connect, connection } from 'mongoose'
 
-const connectDB = async () => {
+const connectDB = async (): Promise<void> => {
 	try {
 		const mongoURI: string = process.env.MONGOURL
 		const options: ConnectionOptions = {
@@ -12,19 +12,15 @@ const connectDB = async () => {
 		await connect(mongoURI, options)
 		console.log('MongoDB Connected...')
 	} catch (err) {
-		console.error(err.message)
-		// Exit process with failure
-		process.exit(1)
+		throw new Error(`Something bad happened! ${err.message}`)
 	}
 }
 
-export const closeDbConnection = async () => {
+export const closeDbConnection = async (): Promise<void> => {
 	try {
 		await connection.close()
 	} catch (err) {
-		console.error(err.message)
-		// Exit process with failure
-		process.exit(1)
+		throw new Error(`Something bad happened! ${err.message}`)
 	}
 }
 

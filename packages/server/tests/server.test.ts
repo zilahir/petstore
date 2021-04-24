@@ -11,6 +11,7 @@ import Category from '../src/models/category'
 // import app from '../src/server'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
+// TODO: fix this once DefinitelyTyped is updated
 const fakerApi: Faker.FakerStatic & any = faker
 
 beforeEach(done => {

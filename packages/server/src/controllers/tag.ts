@@ -5,6 +5,13 @@ import { ITag, Tag, insert } from '../models/tag'
 
 type NewTagCategoryReqest = Request & Tag
 
+/**
+ *
+ *
+ * @description creates a new tag
+ * @param {NewCateGoryRequest} request express request
+ * @param {Response} response express response
+ */
 export function insertNewTag(
 	request: NewTagCategoryReqest,
 	response: Response,

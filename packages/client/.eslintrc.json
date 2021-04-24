@@ -10,7 +10,8 @@
 		"airbnb",
 		"plugin:react-hooks/recommended",
 		"plugin:unicorn/recommended",
-		"plugin:markdown/recommended"
+		"plugin:markdown/recommended",
+		"prettier"
 	],
 	"settings": {
 		"import/resolver": {
@@ -25,8 +26,15 @@
 		"ecmaVersion": 12,
 		"sourceType": "module"
 	},
-	"plugins": ["react", "jest", "@typescript-eslint", "eslint-plugin-tsdoc"],
+	"plugins": [
+		"react",
+		"jest",
+		"@typescript-eslint",
+		"eslint-plugin-tsdoc",
+		"prettier"
+	],
 	"rules": {
+		"prettier/prettier": "error",
 		"indent": "off",
 		"@typescript-eslint/indent": ["error", "tab"],
 		"arrow-body-style": ["error", "as-needed"],

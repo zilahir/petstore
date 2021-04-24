@@ -1,9 +1,10 @@
 import { Request, Response } from 'express'
 import HttpStatusCodes from 'http-status-codes'
 
-import { Pet, insert, IPet, getAll } from '../models/pet'
+import { Pet, insert, IPet, getAll, Status, findByStatus } from '../models/pet'
 
 type NewPetRequest = Request & Pet
+type FindPetByStausRequest = Request & Status
 
 /**
  *
@@ -39,6 +40,29 @@ export function insertNewPet(request: NewPetRequest, response: Response): void {
  */
 export function getAllPets(request: Request, response: Response): void {
 	getAll()
+		.then(pets => {
+			response.status(HttpStatusCodes.OK).send(pets)
+			return
+		})
+		.catch(error => {
+			response.status(HttpStatusCodes.INTERNAL_SERVER_ERROR).send(error)
+		})
+}
+
+/**
+ *
+ *
+ * @description finds pet by status
+ * @param {FindPetByStausRequest} request express request
+ * @param {Response} response express response
+ */
+export function findPetsByStatus(
+	request: FindPetByStausRequest,
+	response: Response,
+): void {
+	const { status } = request.query
+	const chosenStatus = (status as unknown) as Status
+	findByStatus(chosenStatus)
 		.then(pets => {
 			response.status(HttpStatusCodes.OK).send(pets)
 			return

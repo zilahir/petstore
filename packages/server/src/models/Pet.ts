@@ -31,6 +31,8 @@ const petSchema: Schema = new Schema({
 	],
 	status: {
 		type: String,
+		enum: Object.values(Status),
+		default: Status.available,
 		required: true,
 	},
 	category: {
@@ -54,6 +56,12 @@ export const insert = (pet: Pet): Promise<IPet> => {
 
 export const getAll = (): Promise<Array<IPet>> => {
 	return Pet.find({}).exec()
+}
+
+export const findByStatus = (status: Status): Promise<Array<IPet>> => {
+	return Pet.find({
+		status,
+	}).exec()
 }
 
 export default Pet

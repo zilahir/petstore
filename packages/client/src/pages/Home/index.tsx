@@ -1,10 +1,11 @@
 import React, { ReactElement } from 'react'
 import Layout from '../../components/common/Layout'
-import Header from '../../components/Header'
+
+import PetGrid from '../../components/PetGrid'
 
 const Home = (): ReactElement => (
 	<Layout>
-		<Header />
+		<PetGrid />
 	</Layout>
 )
 

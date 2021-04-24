@@ -10,6 +10,31 @@ import profile from './routes/api/profile'
 import file from './routes/api/upload'
 import category from './routes/api/category'
 import tag from './routes/api/tag'
+import expressJSDocSwagger, { Options } from 'express-jsdoc-swagger'
+
+const swaggerSettings: Options = {
+	info: {
+		version: '1.0.0',
+		title: 'PetStore',
+		license: {
+			name: 'MIT',
+		},
+	},
+	security: {
+		BasicAuth: {
+			type: 'http',
+			scheme: 'basic',
+		},
+	},
+	baseDir: __dirname,
+	filesPattern: ['./routes/**/*.*', '*.*'],
+	swaggerUIPath: '/api-docs',
+	exposeSwaggerUI: true,
+	exposeApiDocs: false,
+	apiDocsPath: '/v3/api-docs',
+	notRequiredAsNullable: false,
+	swaggerUiOptions: {},
+}
 
 dotenv.config()
 
@@ -23,6 +48,7 @@ const config = {
 }
 
 const app = express()
+expressJSDocSwagger(app)(swaggerSettings)
 app.use(auth(config))
 
 app.use(function (req, res, next) {
@@ -55,9 +81,12 @@ app.use(
 	}),
 )
 
-// @route   GET /
-// @desc    Test Base API
-// @access  Public
+/**
+ * GET /
+ *
+ * @summary Root endpoint
+ * @returns {object} 200 - success response
+ */
 app.get('/', (_req, res) => {
 	res.send({
 		prod: false,
@@ -66,6 +95,14 @@ app.get('/', (_req, res) => {
 	})
 })
 
+/**
+ * GET /profile
+ *
+ * @summary Returns the user's profile
+ * @returns {object} 200 - success response
+ * @requires auth
+ * @example response - 200 - success response example
+ */
 app.get('/profile', requiresAuth(), (req: OpenidRequest, res) => {
 	res.send(JSON.stringify(req.oidc.user))
 })
@@ -77,16 +114,13 @@ app.use('/api/file', file)
 app.use('/category', category)
 app.use('/tag', tag)
 
-/* const port = app.get('port')
+const port = app.get('port')
 
 const server = app.listen(port, () =>
-	console.log(`Server started on port ${port}`),
+	console.log(`Server started on port ${port}, diename: ${__dirname}`),
 )
 
-// export default server
-
-*/
-
+export default server
 module.exports = app
 
 // module.exports.handler = serverless(app)

@@ -5,6 +5,13 @@ import { insert, Category, ICategory } from '../models/category'
 
 type NewCateGoryRequest = Request & Category
 
+/**
+ *
+ *
+ * @description creates a new category
+ * @param {NewCateGoryRequest} request express request
+ * @param {Response} response express response
+ */
 export function insertNewCategory(
 	request: NewCateGoryRequest,
 	response: Response,

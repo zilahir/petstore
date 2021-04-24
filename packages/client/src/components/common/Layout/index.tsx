@@ -1,10 +1,10 @@
-import React, { ReactChild, ReactChildren, ReactElement } from 'react'
+import React, { ReactChild, ReactElement } from 'react'
 
 import Header from '../../Header'
 import styles from './Layout.module.scss'
 
 interface ILayout {
-	children: ReactChild | ReactChildren
+	children: ReactChild | ReactChild[]
 }
 
 const Layout = ({ children }: ILayout): ReactElement => (

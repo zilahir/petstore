@@ -24,9 +24,7 @@ const cloudFunctionRequest = ({
 			}),
 	)
 
-export const get = (
-	requestOptions: AxiosRequestConfig,
-): Promise<AxiosResponse> =>
+export const get = (requestOptions: AxiosRequestConfig): any =>
 	cloudFunctionRequest({ ...requestOptions, method: 'get' })
 
 export default API

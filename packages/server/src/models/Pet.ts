@@ -1,5 +1,6 @@
 import { Document, Model, model, Schema } from 'mongoose'
 import { ICategory } from './category'
+import { ITag } from './tag'
 
 export enum Status {
 	available,
@@ -11,8 +12,8 @@ export interface Pet {
 	name: string
 	photoUrls: Array<string>
 	status: Status
-	category: ICategory['_id']
-	tags: Array<ICategory['_id']>
+	category: Array<ICategory['_id']>
+	tags: Array<ITag['_id']>
 }
 
 export interface IPet extends Document, Pet {}
@@ -32,10 +33,12 @@ const petSchema: Schema = new Schema({
 		type: Boolean,
 		required: true,
 	},
-	category: {
-		type: Schema.Types.ObjectId,
-		ref: 'Category',
-	},
+	category: [
+		{
+			type: Schema.Types.ObjectId,
+			ref: 'Category',
+		},
+	],
 	tags: [
 		{
 			type: Schema.Types.ObjectId,

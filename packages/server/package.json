@@ -30,6 +30,7 @@
 		"moment-timezone": "^0.5.33",
 		"mongoose": "^5.12.3",
 		"node-isbn": "^1.6.1",
+		"random": "^3.0.6",
 		"request": "^2.88.0",
 		"serverless-http": "^2.7.0",
 		"serverless-offline": "^6.9.0",

@@ -1,13 +1,14 @@
 // import supertest from 'supertest'
-
+import random from 'random'
 import faker from 'faker'
-import mongoose from 'mongoose'
+import mongoose, { connection, Model, Query } from 'mongoose'
 import dotenv from 'dotenv'
 
 dotenv.config()
 
 import Tag from '../src/models/tag'
 import Category from '../src/models/category'
+import Pet, { Pet as PetInterface, Status } from '../src/models/pet'
 // import app from '../src/server'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -49,4 +50,24 @@ test('POST /api/tag', async () => {
 			await Category.create({ name: tag })
 		}),
 	)
+})
+
+test('/POST /api/pet', async done => {
+	const tags = await Tag.find({})
+	const categories = await Category.find({})
+	const numOfTag = random.int(1, tags.length)
+	const numOfCategory = random.int(1, categories.length)
+	const tagsForThisPet = tags.slice(0, numOfTag)
+	const categoiesForThisPet = categories.slice(0, numOfCategory)
+	const randomDogImage = faker.image.animals(500, 500)
+	const newPet: PetInterface = {
+		name: faker.lorem.word(5),
+		status: Status.available,
+		category: categoiesForThisPet,
+		tags: tagsForThisPet,
+		photoUrls: [randomDogImage],
+	}
+	Pet.create(newPet).then(() => {
+		done()
+	})
 })

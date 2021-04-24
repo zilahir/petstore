@@ -12,7 +12,7 @@ export interface Pet {
 	name: string
 	photoUrls: Array<string>
 	status: Status
-	category: Array<ICategory['_id']>
+	category: ICategory['_id']
 	tags: Array<ITag['_id']>
 }
 
@@ -33,12 +33,10 @@ const petSchema: Schema = new Schema({
 		type: String,
 		required: true,
 	},
-	category: [
-		{
-			type: Schema.Types.ObjectId,
-			ref: 'Category',
-		},
-	],
+	category: {
+		type: Schema.Types.ObjectId,
+		ref: 'Category',
+	},
 	tags: [
 		{
 			type: Schema.Types.ObjectId,

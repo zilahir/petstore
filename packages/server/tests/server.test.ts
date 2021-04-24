@@ -58,7 +58,7 @@ test('/POST /api/pet', async done => {
 	const numOfTag = random.int(1, tags.length)
 	const numOfCategory = random.int(1, categories.length)
 	const tagsForThisPet = tags.slice(0, numOfTag)
-	const categoiesForThisPet = categories.slice(0, numOfCategory)
+	const categoiesForThisPet = categories[numOfCategory]
 	const randomDogImage = faker.image.animals(500, 500)
 	const newPet: PetInterface = {
 		name: faker.lorem.word(5),

@@ -1,6 +1,5 @@
 import React, { ReactElement } from 'react'
 import { useQuery } from 'react-query'
-import random from 'random'
 import { AnimatePresence, motion } from 'framer-motion'
 
 import { apiEndPoints } from '../../api/apiEndpoints'
@@ -8,6 +7,7 @@ import { get } from '../../api/cloudFunctions'
 import styles from './PetGrid.module.scss'
 
 import { Pet } from '../../../../server/src/models/pet'
+import OnePet from './Pet'
 
 const variants = {
 	hidden: {
@@ -49,33 +49,26 @@ const PetGrid = (): ReactElement | null => {
 	return data && data.length > 0 ? (
 		<div className={styles.grid}>
 			<AnimatePresence key={data.length}>
-				{data.map(({ name, photoUrls }, petIndex: number) => (
-					<motion.div
-						key={name}
-						className={styles.onePet}
-						variants={variants}
-						custom={petIndex}
-						initial="hidden"
-						animate="visible"
-						exit="exit"
-					>
-						<div className={styles.petImages}>
-							{photoUrls.map((photo: string, index: number) => (
-								<img
-									key={photo}
-									alt={`${photo}-${index + 1}`}
-									src={`https://picsum.photos/${random.int(
-										600,
-										1000,
-									)}/${random.int(700, 1300)}`}
-								/>
-							))}
-						</div>
-						<div className={styles.metaContainer}>
-							<p>{name}</p>
-						</div>
-					</motion.div>
-				))}
+				{data.map(
+					({ name, photoUrls, status, category, tags }, petIndex: number) => (
+						<motion.div
+							key={name}
+							variants={variants}
+							custom={petIndex}
+							initial="hidden"
+							animate="visible"
+							exit="exit"
+						>
+							<OnePet
+								status={status}
+								category={category}
+								tags={tags}
+								name={name}
+								photoUrls={photoUrls}
+							/>
+						</motion.div>
+					),
+				)}
 			</AnimatePresence>
 		</div>
 	) : null

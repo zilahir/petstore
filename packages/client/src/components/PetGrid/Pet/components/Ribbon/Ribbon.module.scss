@@ -1,0 +1,29 @@
+@import '../../../../../styles/mixins/typography';
+@import '../../../../../styles/variables';
+
+.ribbonContainer {
+	width: 150px;
+	height: 150px;
+	overflow: hidden;
+	position: absolute;
+	top: 0;
+	right: 0;
+
+	span {
+		@include paragraph {
+			font-size: 16px;
+		}
+		position: absolute;
+		display: block;
+		width: 225px;
+		padding: 15px 0;
+		background-color: $pink;
+		color: #ffffff;
+		font: 700 18px/1 'Lato', sans-serif;
+		text-transform: uppercase;
+		text-align: center;
+		left: -25px;
+		top: 30px;
+		transform: rotate(45deg);
+	}
+}

@@ -7,13 +7,15 @@ export enum Status {
 	sold,
 }
 
-export interface IPet extends Document {
+export interface Pet {
 	name: string
 	photoUrls: Array<string>
 	status: Status
 	category: ICategory['_id']
 	tags: Array<ICategory['_id']>
 }
+
+export interface IPet extends Document, Pet {}
 
 const petSchema: Schema = new Schema({
 	name: {
@@ -43,5 +45,10 @@ const petSchema: Schema = new Schema({
 })
 
 const Pet: Model<IPet> = model('Pet', petSchema)
+
+export const insert = (pet: Pet): Promise<IPet> => {
+	const newPet = new Pet(pet)
+	return newPet.save()
+}
 
 export default Pet

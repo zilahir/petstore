@@ -12,7 +12,11 @@ export function insertNewCategory(
 	const { name } = request.body
 	insert({
 		name,
-	}).then((result: ICategory) => {
-		response.status(HttpStatusCodes.OK).send(result)
 	})
+		.then((result: ICategory) => {
+			return response.status(HttpStatusCodes.OK).send(result)
+		})
+		.catch(error => {
+			response.status(HttpStatusCodes.INTERNAL_SERVER_ERROR).send(error)
+		})
 }

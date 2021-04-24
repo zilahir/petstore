@@ -12,7 +12,11 @@ export function insertNewTag(
 	const { name } = request.body
 	insert({
 		name,
-	}).then((result: ITag) => {
-		response.status(HttpStatusCodes.OK).send(result)
 	})
+		.then((result: ITag) => {
+			return response.status(HttpStatusCodes.OK).send(result)
+		})
+		.catch(error => {
+			response.status(HttpStatusCodes.INTERNAL_SERVER_ERROR).send(error)
+		})
 }

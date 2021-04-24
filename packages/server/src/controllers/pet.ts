@@ -13,7 +13,11 @@ export function insetNewPet(request: NewPetRequest, response: Response): void {
 		status,
 		category,
 		tags,
-	}).then((result: IPet) => {
-		response.send(HttpStatusCodes.OK).send(result)
 	})
+		.then((result: IPet) => {
+			return response.send(HttpStatusCodes.OK).send(result)
+		})
+		.catch(error => {
+			response.status(HttpStatusCodes.INTERNAL_SERVER_ERROR).send(error)
+		})
 }

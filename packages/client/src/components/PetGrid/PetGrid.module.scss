@@ -8,4 +8,10 @@
 	gap: 30px;
 	row-gap: 30px;
 	padding: 2rem;
+
+	p,
+	span {
+		margin: 0;
+		padding: 0;
+	}
 }

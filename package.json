@@ -13,7 +13,7 @@
 		"start:client": "yarn workspace client start",
 		"start:docker": "docker-compose up",
 		"start:server": "yarn workspace server server:dev",
-		"storybook": "start-storybook -p 6006 -c ./packages/client/.storybook",
+		"storybook": "yarn workspace client storybook",
 		"build-storybook": "build-storybook",
 		"start:dev": "concurrently -k -n  CLIENT,SERVER,DOCKER,STORYBOOK -c red,yellow,black,green \"yarn start:client\" \"yarn start:server\" \"yarn start:docker\" \"yarn storybook\""
 	},

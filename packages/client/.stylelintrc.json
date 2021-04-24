@@ -1,6 +1,6 @@
 {
 	"extends": "@zilahir/stylelint-config",
-	"ignoreFiles": ["**/*.js", "**/*.jsx", "**/*.md"],
+	"ignoreFiles": ["**/*.js", "**/*.jsx", "**/*.md", "**/*.tsx", "**/*.css"],
 	"rules": {
 		"selector-class-pattern": "[a-z]+((\\d)|([A-Z0-9][a-z0-9]+))*([A-Z])?",
 		"scss/percent-placeholder-pattern": "[a-z]+((\\d)|([A-Z0-9][a-z0-9]+))*([A-Z])?",

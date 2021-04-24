@@ -2,11 +2,12 @@
 
 .onePet {
 	margin: 0;
-
 	grid-template-rows: 1fr auto;
 	margin-bottom: 30px;
 	break-inside: avoid;
 	position: relative;
+	overflow: hidden;
+	border-radius: 20px;
 
 	.metaContainer {
 		position: absolute;
@@ -19,7 +20,7 @@
 
 	img {
 		display: block;
-		max-width: 100%;
+		width: 100%;
 		grid-row: 1 / -1;
 		grid-column: 1;
 	}

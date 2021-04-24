@@ -3,7 +3,8 @@
 	"extends": [
 		"plugin:@typescript-eslint/recommended",
 		"plugin:node/recommended",
-		"plugin:promise/recommended"
+		"plugin:promise/recommended",
+		"plugin:jsdoc/recommended"
 	],
 	"parserOptions": {
 		"ecmaVersion": 2020,

@@ -22,7 +22,7 @@ const petSchema: Schema = new Schema({
 	name: {
 		type: String,
 		required: true,
-		unique: true,
+		unique: false,
 	},
 	photoUrls: [
 		{
@@ -30,7 +30,7 @@ const petSchema: Schema = new Schema({
 		},
 	],
 	status: {
-		type: Boolean,
+		type: String,
 		required: true,
 	},
 	category: [

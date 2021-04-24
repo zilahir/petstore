@@ -10,6 +10,7 @@ import profile from './routes/api/profile'
 import file from './routes/api/upload'
 import category from './routes/api/category'
 import tag from './routes/api/tag'
+import pet from './routes/api/pet'
 import expressJSDocSwagger, { Options } from 'express-jsdoc-swagger'
 
 const swaggerSettings: Options = {
@@ -112,6 +113,7 @@ app.use('/api/user', user)
 app.use('/api/profile', profile)
 app.use('/api/file', file)
 app.use('/category', category)
+app.use('/pet', pet)
 app.use('/tag', tag)
 
 const port = app.get('port')

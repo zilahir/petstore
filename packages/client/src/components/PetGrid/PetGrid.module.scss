@@ -9,6 +9,17 @@
 		grid-template-rows: 1fr auto;
 		margin-bottom: 10px;
 		break-inside: avoid;
+		position: relative;
+		transition: all 0.5s ease-in-out;
+
+		.metaContainer {
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			width: 100%;
+			background: rgba($color: #ffffff, $alpha: 0.55);
+			padding: 20px 10px;
+		}
 
 		img {
 			display: block;

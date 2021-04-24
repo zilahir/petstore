@@ -19,7 +19,7 @@ const variants = {
 		opacity: 1,
 		transition: {
 			staggerChildren: 0.4,
-			delay: custom * 0.05,
+			delay: custom * 0.15,
 			when: 'beforeChildren',
 		},
 	}),
@@ -35,7 +35,7 @@ const variants = {
 }
 
 const PetGrid = (): ReactElement | null => {
-	const { data } = useQuery(
+	const { data, isFetched } = useQuery(
 		'pets',
 		() =>
 			(get({
@@ -46,32 +46,34 @@ const PetGrid = (): ReactElement | null => {
 			}) as unknown) as Array<Pet>,
 	)
 
-	return data && data.length > 0 ? (
+	return (
 		<div className={styles.grid}>
-			<AnimatePresence key={data.length}>
-				{data.map(
-					({ name, photoUrls, status, category, tags }, petIndex: number) => (
-						<motion.div
-							key={name}
-							variants={variants}
-							custom={petIndex}
-							initial="hidden"
-							animate="visible"
-							exit="exit"
-						>
-							<OnePet
-								status={status}
-								category={category}
-								tags={tags}
-								name={name}
-								photoUrls={photoUrls}
-							/>
-						</motion.div>
-					),
-				)}
-			</AnimatePresence>
+			{isFetched && data && data.length > 0 ? (
+				<AnimatePresence key={data.length}>
+					{data.map(
+						({ name, photoUrls, status, category, tags }, petIndex: number) => (
+							<motion.div
+								key={name}
+								variants={variants}
+								custom={petIndex}
+								initial="hidden"
+								animate="visible"
+								exit="exit"
+							>
+								<OnePet
+									status={status}
+									category={category}
+									tags={tags}
+									name={name}
+									photoUrls={photoUrls}
+								/>
+							</motion.div>
+						),
+					)}
+				</AnimatePresence>
+			) : null}
 		</div>
-	) : null
+	)
 }
 
 export default PetGrid

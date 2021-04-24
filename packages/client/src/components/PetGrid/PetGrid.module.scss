@@ -1,5 +1,11 @@
+@import '../../styles/misc/media-queries';
+
 .grid {
+	@include sm-max {
+		column-count: 1;
+	}
 	column-count: 4;
-	column-gap: 10px;
+	gap: 30px;
+	row-gap: 30px;
 	padding: 2rem;
 }

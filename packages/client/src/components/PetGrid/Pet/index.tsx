@@ -19,9 +19,9 @@ const OnePet = ({
 				<img
 					key={photo}
 					alt={`${photo}-${index + 1}`}
-					src={`https://picsum.photos/${random.int(600, 1000)}/${random.int(
-						700,
-						1300,
+					src={`https://picsum.photos/${random.int(300, 600)}/${random.int(
+						300,
+						500,
 					)}`}
 				/>
 			))}

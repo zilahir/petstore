@@ -16,13 +16,13 @@ This is a _monorepo_ that sovles the coding task I was given by Varjo.
 - [x] Setup StyleLint for Frontend
 - [ ] Setup JSDoc for Backend
 - [ ] Setup JSDoc for Frontend
-- [ ] Setup testing for Backend
+- [x] Setup testing for Backend
 - [ ] Setup testing for Frontend
 - [x] Setup OAuth
 - [x] Create Docker for MongoDB
 - [x] Setup GIT
 - [ ] Setup Semantic Release
-- [ ] Setup Database
+- [x] Setup Database(s)
 - [ ] Setup Production Environment
 - [ ] Implement the controllers / models for Backend
 - [ ] Implement the frontend
@@ -31,7 +31,7 @@ This is a _monorepo_ that sovles the coding task I was given by Varjo.
 
 ### Frontend
 
-- [ ] fix initial ESLint errors
-- [ ] setup project structure
+- [x] fix initial ESLint errors
+- [x] setup project structure
 - [ ] setup redux store
 - [ ] implement routing

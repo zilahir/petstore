@@ -52,4 +52,8 @@ export const insert = (pet: Pet): Promise<IPet> => {
 	return newPet.save()
 }
 
+export const getAll = (): Promise<Array<IPet>> => {
+	return Pet.find({}).exec()
+}
+
 export default Pet

@@ -3,6 +3,7 @@ import serverless from 'serverless-http'
 import { auth, requiresAuth, OpenidRequest } from 'express-openid-connect'
 import dotenv from 'dotenv'
 
+import oldSwagger from '../swagger.json'
 import connectDB from '../config/database'
 import authorization from './routes/api/auth'
 import user from './routes/api/user'
@@ -15,7 +16,7 @@ import expressJSDocSwagger, { Options } from 'express-jsdoc-swagger'
 
 const swaggerSettings: Options = {
 	info: {
-		version: '1.0.0',
+		version: '2.0.0',
 		title: 'PetStore',
 		license: {
 			name: 'MIT',
@@ -49,7 +50,7 @@ const config = {
 }
 
 const app = express()
-expressJSDocSwagger(app)(swaggerSettings)
+expressJSDocSwagger(app)(swaggerSettings, oldSwagger)
 app.use(auth(config))
 
 app.use(function (req, res, next) {

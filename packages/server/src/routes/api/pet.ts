@@ -1,6 +1,6 @@
 import { Router } from 'express'
 
-import { insertNewPet } from '../../controllers/pet'
+import { insertNewPet, getAllPets } from '../../controllers/pet'
 
 const router: Router = Router()
 
@@ -29,5 +29,7 @@ const router: Router = Router()
   }
  */
 router.post('/', [insertNewPet])
+
+router.get('/', [getAllPets])
 
 export default router

@@ -15,7 +15,7 @@
 		"node/no-unpublished-import": [
 			"error",
 			{
-				"allowModules": ["faker"]
+				"allowModules": ["faker", "swagger.json"]
 			}
 		],
 		"node/no-missing-import": [

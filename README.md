@@ -14,7 +14,7 @@ This is a _monorepo_ that sovles the coding task I was given by Varjo.
 - [x] Setup ESLint for Frontend
 - [x] Setup Prettier for Frontend
 - [x] Setup StyleLint for Frontend
-- [ ] Setup JSDoc for Backend
+- [x] Setup JSDoc for Backend
 - [ ] Setup JSDoc for Frontend
 - [x] Setup testing for Backend
 - [ ] Setup testing for Frontend

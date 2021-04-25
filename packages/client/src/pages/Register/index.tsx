@@ -4,6 +4,7 @@ import Layout from '../../components/common/Layout'
 import dogImage from '../../assets/images/pet.svg'
 import styles from './Register.module.scss'
 import Input from '../../components/common/Input'
+import Button from '../../components/common/Button'
 
 const Register = (): ReactElement => {
 	const [userName, setUserName] = useState('')
@@ -38,6 +39,9 @@ const Register = (): ReactElement => {
 							onChange={event => setPasswordConfirm(event.target.value)}
 							value={passwordConfirm}
 						/>
+						<div className={styles.btnContainer}>
+							<Button label="Sign up" onClick={() => alert('pressed')} />
+						</div>
 					</div>
 				</div>
 				<div className={styles.graphicContainer}>

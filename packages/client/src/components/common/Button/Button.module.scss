@@ -1,0 +1,28 @@
+@import '../../../styles/variables';
+@import '../../../styles/mixins/typography';
+
+.buttonContainer {
+	display: flex;
+	align-items: center;
+
+	button {
+		@include paragraph {
+			font-size: 16px;
+		}
+		border: 0;
+		padding: 12px 18px;
+		background: rgba($blue, 1);
+		color: #ffffff;
+		border-radius: 10px;
+		transition: all 0.2s ease-in-out;
+
+		&:hover {
+			background: rgba($dark-blue, 1);
+			cursor: pointer;
+		}
+
+		&:focus {
+			outline: none;
+		}
+	}
+}

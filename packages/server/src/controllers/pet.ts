@@ -83,8 +83,11 @@ export function findPetsByStatus(
 }
 
 /**
- * @param request
- * @param response
+ *
+ *
+ * @description modifies an existing pet
+ * @param {FindPetByStausRequest} request express request
+ * @param {Response} response express response
  */
 export function patchPet(request: FindPetById, response: Response): void {
 	const { petId } = request.query
@@ -100,8 +103,11 @@ export function patchPet(request: FindPetById, response: Response): void {
 }
 
 /**
- * @param request
- * @param response
+ *
+ *
+ * @description finds pet by petId
+ * @param {FindPetByStausRequest} request express request
+ * @param {Response} response express response
  */
 export function getPetById(request: FindPetById, response: Response): void {
 	const { petId } = request.query

@@ -52,6 +52,7 @@ const Register = (): ReactElement => {
 			url: apiEndPoints.registerNewUser,
 			data: {
 				...data,
+				username: userName,
 			},
 		})
 			.then(() => {
@@ -170,6 +171,9 @@ const Register = (): ReactElement => {
 								</form>
 							</div>
 						</div>
+					)}
+					{isRegSuccess && (
+						<div className={styles.successContainer}>Yay! 👋 Welcome!</div>
 					)}
 				</AnimatePresence>
 				<div className={styles.graphicContainer}>

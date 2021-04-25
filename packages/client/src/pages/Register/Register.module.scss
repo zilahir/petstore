@@ -15,6 +15,18 @@
 		padding: 50px;
 		border-radius: 20px;
 
+		.loginInner {
+			.group {
+				display: flex;
+				justify-content: space-between;
+				gap: 20px;
+
+				div {
+					flex: 1;
+				}
+			}
+		}
+
 		h1 {
 			@include heading {
 				font-size: 48px;

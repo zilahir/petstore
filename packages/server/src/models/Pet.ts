@@ -50,18 +50,32 @@ const petSchema: Schema = new Schema({
 const Pet: Model<IPet> = model('Pet', petSchema)
 
 /**
- * @param pet
+ *
+ *
+ * @description finds pet by petId
+ * @param {object} pet an object representtion of the new Pet
+ * @returns {Pet} the new Pet
  */
 export function insert(pet: Pet): Promise<IPet> {
 	const newPet = new Pet(pet)
 	return newPet.save()
 }
 
+/**
+ *
+ *
+ * @description finds pet by petId
+ * @returns {Promise} the find Pets in a Promise
+ */
 export const getAll = (): Promise<Array<IPet>> => {
 	return Pet.find({}).exec()
 }
 
-export const findByStatus = (status: Status): Promise<Array<IPet>> => {
+/**
+ * @param {string} status the desired stauts of Pets
+ * @returns {Promise} the found Pets in a Promise
+ */
+export function findByStatus(status: Status): Promise<Array<IPet>> {
 	return Pet.find({
 		status,
 	})
@@ -71,8 +85,9 @@ export const findByStatus = (status: Status): Promise<Array<IPet>> => {
 }
 
 /**
- * @param petId
- * @param payload
+ * @param {string} petId the Id of the Pet
+ * @param {object} payload Object representatino of the Pet
+ * @returns {Promise} the Pet in a Promise
  */
 export function patchById(petId: string, payload: Pet): Promise<IPet> {
 	return new Promise((resolve, reject) => {
@@ -94,7 +109,8 @@ export function patchById(petId: string, payload: Pet): Promise<IPet> {
 }
 
 /**
- * @param petId
+ * @param {string} petId the Id of the Pet
+ * @returns {Promise} the found Pet in a Promise
  */
 export function FindPetById(petId: string): Promise<IPet> {
 	return Pet.findOne({ id: petId }).populate('tags').populate('category').exec()

@@ -8,7 +8,7 @@ interface IInput {
 	onChange: React.ChangeEventHandler<HTMLInputElement>
 	className?: string
 	placeHolder?: string
-	type?: string
+	type?: 'text' | 'password'
 	ref?: React.RefObject<any>
 	value: string
 	register?: any

@@ -111,11 +111,13 @@ const Register = (): ReactElement => {
 											register={register}
 											required
 											id="password"
+											type="password"
 											error={
 												errors && errors.password && errors.password.message
 											}
 										/>
 										<Input
+											type="password"
 											label="Confirm Password"
 											onChange={event => setPasswordConfirm(event.target.value)}
 											value={passwordConfirm}

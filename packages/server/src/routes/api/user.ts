@@ -1,5 +1,4 @@
 import bcrypt from 'bcryptjs'
-import config from 'config'
 import { Router, Response } from 'express'
 import { check, validationResult } from 'express-validator/check'
 import HttpStatusCodes from 'http-status-codes'
@@ -72,7 +71,7 @@ router.post(
 				{ expiresIn: process.env.JWT_EXP },
 				(err, token) => {
 					if (err) throw err
-					res.json({ token })
+					res.json({ token, ...userFields })
 				},
 			)
 		} catch (err) {

@@ -46,14 +46,6 @@ router.post(
 				})
 			}
 
-			const options: gravatar.Options = {
-				s: '200',
-				r: 'pg',
-				d: 'mm',
-			}
-
-			const avatar = gravatar.url(email, options)
-
 			const salt = await bcrypt.genSalt(10)
 			const hashed = await bcrypt.hash(password, salt)
 
@@ -61,7 +53,6 @@ router.post(
 			const userFields = {
 				email,
 				password: hashed,
-				avatar,
 			}
 
 			user = new User(userFields)

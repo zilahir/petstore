@@ -3,9 +3,9 @@ import { check, validationResult } from 'express-validator/check'
 import HttpStatusCodes from 'http-status-codes'
 
 import auth from '../../middleware/auth'
-import Profile, { IProfile } from '../../models/Profile'
+import Profile, { IProfile } from '../../models/profile'
 import Request from '../../types/Request'
-import User, { IUser } from '../../models/User'
+import User, { IUser } from '../../models/user'
 
 const router: Router = Router()
 

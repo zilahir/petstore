@@ -14,6 +14,7 @@
 		@include box-shadow(3px, 3px, 40px, rgba($color: #000000, $alpha: 0.5));
 		padding: 50px;
 		border-radius: 20px;
+		position: relative;
 
 		.errorContainer {
 			.oneError {
@@ -89,4 +90,15 @@
 			max-width: 100%;
 		}
 	}
+}
+
+.loadingContainer {
+	position: absolute;
+	left: 0;
+	top: 50px;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }

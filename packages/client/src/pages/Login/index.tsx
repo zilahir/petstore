@@ -12,11 +12,13 @@ import styles from '../Register/Register.module.scss'
 import { post } from '../../api/cloudFunctions'
 import { apiEndPoints } from '../../api/apiEndpoints'
 import { AuthError } from '../../types/types'
-import genericAnimaion from '../../utils/animations'
+import genericAnimaion, { loadingVariants } from '../../utils/animations'
+import Spinner from '../../components/common/Spinner'
 
 const Login = (): ReactElement => {
 	const [username, setUsername] = useState<string>('')
 	const [password, setPassword] = useState<string>('')
+	const [isLoading, toggleLoading] = useState<boolean>(false)
 	const [requestErrors, setRequestErrors] = useState([])
 
 	interface ILogin {
@@ -34,6 +36,7 @@ const Login = (): ReactElement => {
 	})
 
 	function onSubmit(): void {
+		toggleLoading(true)
 		setRequestErrors([])
 		post({
 			url: apiEndPoints.loginUser,
@@ -48,6 +51,9 @@ const Login = (): ReactElement => {
 			})
 			.catch((error: any) => {
 				setRequestErrors(error.errors)
+			})
+			.finally(() => {
+				// toggleLoading(false)
 			})
 	}
 
@@ -74,7 +80,12 @@ const Login = (): ReactElement => {
 						)}
 					</AnimatePresence>
 					<h1>Sign in</h1>
-					<div className={styles.loginInner}>
+					<motion.div
+						className={styles.loginInner}
+						variants={loadingVariants}
+						animate={isLoading ? 'isLoading' : 'notLoading'}
+						initial={false}
+					>
 						<div className={styles.group}>
 							<form onSubmit={handleSubmit(onSubmit)}>
 								<Input
@@ -98,7 +109,23 @@ const Login = (): ReactElement => {
 								</div>
 							</form>
 						</div>
-					</div>
+					</motion.div>
+					<AnimatePresence>
+						{isLoading && (
+							<motion.div
+								layout
+								className={styles.loadingContainer}
+								variants={loadingVariants}
+								animate="notLoading"
+								initial={false}
+								transition={{
+									delay: 0.5,
+								}}
+							>
+								<Spinner />
+							</motion.div>
+						)}
+					</AnimatePresence>
 				</div>
 				<div className={styles.graphicContainer}>
 					<img src={doggy} alt="pet" />

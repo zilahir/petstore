@@ -13,4 +13,13 @@ const genericAnimaion = {
 	},
 }
 
+export const loadingVariants = {
+	isLoading: {
+		opacity: 0,
+	},
+	notLoading: {
+		opacity: 1,
+	},
+}
+
 export default genericAnimaion

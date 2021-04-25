@@ -9,7 +9,7 @@ type NewTagCategoryReqest = Request & Tag
  *
  *
  * @description creates a new tag
- * @param {NewCateGoryRequest} request express request
+ * @param {NewTagCategoryReqest} request express request
  * @param {Response} response express response
  */
 export function insertNewTag(

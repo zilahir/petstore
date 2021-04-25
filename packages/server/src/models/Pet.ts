@@ -42,7 +42,7 @@ const petSchema: Schema = new Schema({
 	tags: [
 		{
 			type: Schema.Types.ObjectId,
-			ref: 'Tags',
+			ref: 'Tag',
 		},
 	],
 })
@@ -61,7 +61,9 @@ export const getAll = (): Promise<Array<IPet>> => {
 export const findByStatus = (status: Status): Promise<Array<IPet>> => {
 	return Pet.find({
 		status,
-	}).exec()
+	})
+		.populate('tags')
+		.exec()
 }
 
 export default Pet

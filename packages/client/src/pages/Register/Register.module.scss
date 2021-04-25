@@ -15,6 +15,27 @@
 		padding: 50px;
 		border-radius: 20px;
 
+		.errorContainer {
+			.oneError {
+				padding: 14px 10px;
+				border-radius: 10px;
+				background: rgba($error-red, 1);
+				display: flex;
+				align-items: center;
+
+				svg {
+					margin-right: 10px;
+				}
+
+				p {
+					@include paragraph {
+						font-size: 18px;
+					}
+					color: #ffffff;
+				}
+			}
+		}
+
 		.loginInner {
 			.group {
 				display: flex;

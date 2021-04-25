@@ -37,7 +37,8 @@ This is a _monorepo_ that sovles the coding task I was given by Varjo.
 - [ ] implement routing
 - [x] implement registration form
 - [ ] implement login form
-- [x] implemen Home Paage
+- [x] implement Home Paage
+- [x] implement protected routes
 
 ### Backend
 

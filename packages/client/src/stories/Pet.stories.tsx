@@ -3,10 +3,14 @@ import { Meta } from '@storybook/react'
 
 import OnePet from '../components/PetGrid/Pet'
 import { Status } from '../../../server/src/models/pet'
+import PetDocs from './markdowns/Pet.md'
 
 export default {
 	title: 'Pet',
 	component: OnePet,
+	parameters: {
+		notes: [PetDocs],
+	},
 	argTypes: {
 		backgroundColor: { control: 'color' },
 	},

@@ -28,7 +28,7 @@ export const Input = () => {
 				margin: '0 auto',
 			}}
 		>
-			{Array.from(new Array(10)).map((_, index) => (
+			{Array.from(new Array(2)).map((_, index) => (
 				<CustomInput
 					label={`demo input ${index + 1}`}
 					placeHolder="Type someting here"

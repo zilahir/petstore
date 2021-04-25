@@ -11,10 +11,7 @@ import styles from './Register.module.scss'
 import Input from '../../components/common/Input'
 import { post } from '../../api/cloudFunctions'
 import { apiEndPoints } from '../../api/apiEndpoints'
-
-interface RegError {
-	msg: string
-}
+import { AuthError } from '../../types/types'
 
 const schema = yup.object().shape({
 	userName: yup.string().required().min(5),
@@ -29,14 +26,14 @@ const schema = yup.object().shape({
 })
 
 const Register = (): ReactElement => {
-	const [email, setEmail] = useState('')
-	const [password, setPassword] = useState('')
-	const [passwordConfirm, setPasswordConfirm] = useState('')
-	const [userName, setUserName] = useState('')
-	const [firstName, setFirstName] = useState('')
-	const [lastName, setLastName] = useState('')
-	const [phone, setPhone] = useState('')
-	const [isRegSuccess, toggleIsRegSuccess] = useState(false)
+	const [email, setEmail] = useState<string>('')
+	const [password, setPassword] = useState<string>('')
+	const [passwordConfirm, setPasswordConfirm] = useState<string>('')
+	const [userName, setUserName] = useState<string>('')
+	const [firstName, setFirstName] = useState<string>('')
+	const [lastName, setLastName] = useState<string>('')
+	const [phone, setPhone] = useState<string>('')
+	const [isRegSuccess, toggleIsRegSuccess] = useState<boolean>(false)
 	const [requestErrors, setRequestErrors] = useState([])
 
 	const {
@@ -47,7 +44,7 @@ const Register = (): ReactElement => {
 		resolver: yupResolver(schema),
 	})
 
-	const onSubmit = (data: any): any =>
+	const onSubmit = (data: any): void =>
 		post({
 			url: apiEndPoints.registerNewUser,
 			data: {
@@ -71,7 +68,7 @@ const Register = (): ReactElement => {
 							<AnimatePresence>
 								{requestErrors.length > 0 && (
 									<div className={styles.errorContainer}>
-										{requestErrors.map((error: RegError) => (
+										{requestErrors.map((error: AuthError) => (
 											<div className={styles.oneError}>
 												<WarningIcon htmlColor="#ffffff" />
 												<p>{error.msg}</p>

@@ -4,7 +4,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import WarningIcon from '@material-ui/icons/Warning'
 
-import { AnimatePresence } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 import Input from '../../components/common/Input'
 import Layout from '../../components/common/Layout'
 import doggy from '../../assets/images/doggy.svg'
@@ -12,6 +12,7 @@ import styles from '../Register/Register.module.scss'
 import { post } from '../../api/cloudFunctions'
 import { apiEndPoints } from '../../api/apiEndpoints'
 import { AuthError } from '../../types/types'
+import genericAnimaion from '../../utils/animations'
 
 const Login = (): ReactElement => {
 	const [username, setUsername] = useState<string>('')
@@ -24,7 +25,7 @@ const Login = (): ReactElement => {
 	}
 
 	const schema = yup.object().shape({
-		username: yup.string().required().min(5),
+		username: yup.string().required().min(1),
 		password: yup.string().required(),
 	})
 
@@ -32,7 +33,8 @@ const Login = (): ReactElement => {
 		resolver: yupResolver(schema),
 	})
 
-	const onSubmit = (): void =>
+	function onSubmit(): void {
+		setRequestErrors([])
 		post({
 			url: apiEndPoints.loginUser,
 			data: {
@@ -47,6 +49,7 @@ const Login = (): ReactElement => {
 			.catch((error: any) => {
 				setRequestErrors(error.errors)
 			})
+	}
 
 	return (
 		<Layout hasHeader={false}>
@@ -54,14 +57,20 @@ const Login = (): ReactElement => {
 				<div className={styles.loginContainer}>
 					<AnimatePresence>
 						{requestErrors.length > 0 && (
-							<div className={styles.errorContainer}>
+							<motion.div
+								className={styles.errorContainer}
+								variants={genericAnimaion}
+								animate="visible"
+								exit="exit"
+								initial="hidden"
+							>
 								{requestErrors.map((error: AuthError) => (
 									<div className={styles.oneError}>
 										<WarningIcon htmlColor="#ffffff" />
 										<p>{error.msg}</p>
 									</div>
 								))}
-							</div>
+							</motion.div>
 						)}
 					</AnimatePresence>
 					<h1>Sign in</h1>

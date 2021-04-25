@@ -109,7 +109,7 @@ app.get('/profile', requiresAuth(), (req: OpenidRequest, res) => {
 	res.send(JSON.stringify(req.oidc.user))
 })
 
-app.use('/api/auth', authorization)
+app.use('/user', authorization)
 app.use('/api/user', user)
 app.use('/api/profile', profile)
 app.use('/api/file', file)

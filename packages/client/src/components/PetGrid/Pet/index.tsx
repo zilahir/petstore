@@ -38,7 +38,7 @@ const OnePet = ({
 				<p>{name}</p>
 			</div>
 			<div className={styles.tags}>
-				<p>{category}</p>
+				<p>{category.name}</p>
 				<ul>
 					{tags.map((tag: Tag) => (
 						<li key={tag.name}>{tag.name}</li>

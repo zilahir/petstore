@@ -1,10 +1,10 @@
 @import '../../../styles/variables';
-@import '../../../styles/mixins/box-shadow';
 @import '../../../styles/mixins/typography';
 
 .inputContainer {
 	display: flex;
 	flex-direction: column;
+	margin-bottom: 20px;
 
 	label {
 		@include paragraph {
@@ -15,7 +15,6 @@
 	}
 
 	.input {
-		@include box-shadow(3px, 3px, 40px, rgba($color: #000000, $alpha: 0.5));
 		@include paragraph {
 			font-size: 14px;
 		}
@@ -25,10 +24,12 @@
 		border-radius: 10px;
 		padding-left: 10px;
 		width: calc(100% - 10px);
-		border: 2px solid transparent;
+		border: 2px solid rgba($blue, 0.35);
+		transition: all 0.2s ease-in-out;
 
 		&:focus {
-			border: 2px solid $blue;
+			outline: none;
+			border: 2px solid $dark-blue;
 		}
 	}
 }

@@ -7,6 +7,9 @@ import Input from '../../components/common/Input'
 
 const Register = (): ReactElement => {
 	const [userName, setUserName] = useState('')
+	const [email, setEmail] = useState('')
+	const [password, setPassword] = useState('')
+	const [passwordConfirm, setPasswordConfirm] = useState('')
 	return (
 		<Layout hasHeader={false}>
 			<div className={styles.rootContainer}>
@@ -17,6 +20,22 @@ const Register = (): ReactElement => {
 							placeHolder="Username"
 							onChange={event => setUserName(event.target.value)}
 							value={userName}
+						/>
+						<Input
+							label="Email"
+							placeHolder="Email"
+							onChange={event => setEmail(event.target.value)}
+							value={email}
+						/>
+						<Input
+							label="Password"
+							onChange={event => setPassword(event.target.value)}
+							value={password}
+						/>
+						<Input
+							label="Confirm Password"
+							onChange={event => setPasswordConfirm(event.target.value)}
+							value={passwordConfirm}
 						/>
 					</div>
 				</div>

@@ -109,13 +109,13 @@ app.get('/profile', requiresAuth(), (req: OpenidRequest, res) => {
 	res.send(JSON.stringify(req.oidc.user))
 })
 
-app.use('/api/auth', authorization)
+// app.use('/user', authorization)
 app.use('/api/profile', profile)
 app.use('/api/file', file)
 app.use('/category', category)
 app.use('/pet', pet)
 app.use('/tag', tag)
-app.use('/user', user)
+app.use('/user', [authorization, user])
 
 const port = app.get('port')
 

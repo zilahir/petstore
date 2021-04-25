@@ -29,9 +29,9 @@ router.get('/', auth, async (req: Request, res: Response) => {
 // @desc    Login user and get token
 // @access  Public
 router.post(
-	'/',
+	'/login',
 	[
-		check('email', 'Please include a valid email').isEmail(),
+		check('username', 'Please include a valid email').exists(),
 		check('password', 'Password is required').exists(),
 	],
 	async (req: Request, res: Response) => {
@@ -42,9 +42,9 @@ router.post(
 				.json({ errors: errors.array() })
 		}
 
-		const { email, password } = req.body
+		const { usename, password } = req.body
 		try {
-			const user: IUser = await User.findOne({ email })
+			const user: IUser = await User.findOne({ usename })
 
 			if (!user) {
 				return res.status(HttpStatusCodes.BAD_REQUEST).json({
@@ -78,7 +78,7 @@ router.post(
 				{ expiresIn: process.env.JWT_EXP },
 				(err, token) => {
 					if (err) throw err
-					res.json({ token })
+					res.json({ token, user })
 				},
 			)
 		} catch (err) {

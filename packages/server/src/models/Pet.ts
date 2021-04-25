@@ -49,7 +49,10 @@ const petSchema: Schema = new Schema({
 
 const Pet: Model<IPet> = model('Pet', petSchema)
 
-export const insert = (pet: Pet): Promise<IPet> => {
+/**
+ * @param pet
+ */
+export function insert(pet: Pet): Promise<IPet> {
 	const newPet = new Pet(pet)
 	return newPet.save()
 }
@@ -67,7 +70,11 @@ export const findByStatus = (status: Status): Promise<Array<IPet>> => {
 		.exec()
 }
 
-export const patchById = (petId: string, payload: Pet): Promise<IPet> => {
+/**
+ * @param petId
+ * @param payload
+ */
+export function patchById(petId: string, payload: Pet): Promise<IPet> {
 	return new Promise((resolve, reject) => {
 		Pet.findOne({ id: petId }, function (err: NativeError, pet: IPet) {
 			if (err) reject(err)
@@ -84,6 +91,13 @@ export const patchById = (petId: string, payload: Pet): Promise<IPet> => {
 			})
 		})
 	})
+}
+
+/**
+ * @param petId
+ */
+export function FindPetById(petId: string): Promise<IPet> {
+	return Pet.findOne({ id: petId }).populate('tags').populate('category').exec()
 }
 
 export default Pet

@@ -6,6 +6,7 @@ import {
 	getAllPets,
 	findPetsByStatus,
 	patchPet,
+	getPetById,
 } from '../../controllers/pet'
 
 const router: Router = Router()
@@ -39,6 +40,8 @@ router.post('/', [insertNewPet])
 router.get('/', [getAllPets])
 
 router.patch('/:petId', [patchPet])
+
+router.get('/:petId', [getPetById])
 
 router.get('/findByStatus', [findPetsByStatus])
 

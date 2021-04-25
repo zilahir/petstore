@@ -9,6 +9,7 @@ import {
 	Status,
 	findByStatus,
 	patchById,
+	FindPetById,
 } from '../models/pet'
 
 type NewPetRequest = Request & Pet
@@ -89,6 +90,23 @@ export function patchPet(request: FindPetById, response: Response): void {
 	const { petId } = request.query
 	const thisPet = petId as string
 	patchById(thisPet, request.body)
+		.then(pets => {
+			response.status(HttpStatusCodes.OK).send(pets)
+			return
+		})
+		.catch(error => {
+			response.status(HttpStatusCodes.INTERNAL_SERVER_ERROR).send(error)
+		})
+}
+
+/**
+ * @param request
+ * @param response
+ */
+export function getPetById(request: FindPetById, response: Response): void {
+	const { petId } = request.query
+	const thisPet = petId as string
+	FindPetById(thisPet)
 		.then(pets => {
 			response.status(HttpStatusCodes.OK).send(pets)
 			return

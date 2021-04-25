@@ -39,6 +39,7 @@ This is a _monorepo_ that sovles the coding task I was given by Varjo.
 - [ ] implement login form
 - [x] implement Home Paage
 - [x] implement protected routes
+- [ ] add interceptors to axios instamce
 
 ### Backend
 

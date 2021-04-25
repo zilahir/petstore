@@ -63,6 +63,7 @@ export const findByStatus = (status: Status): Promise<Array<IPet>> => {
 		status,
 	})
 		.populate('tags')
+		.populate('category')
 		.exec()
 }
 

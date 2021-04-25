@@ -9,6 +9,12 @@
 	overflow: hidden;
 	border-radius: 20px;
 
+	p,
+	span {
+		margin: 0;
+		padding: 0;
+	}
+
 	.metaContainer {
 		position: absolute;
 		bottom: 0;
@@ -16,6 +22,21 @@
 		width: 100%;
 		background: rgba($color: #ffffff, $alpha: 0.55);
 		padding: 20px 10px;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+
+		.name {
+			p {
+				@include paragraph {
+					font-size: 26px;
+				}
+			}
+		}
+
+		.tags {
+			display: flex;
+		}
 	}
 
 	img {

@@ -6,6 +6,11 @@ import { Pet } from '../../../../../server/src/models/pet'
 import styles from './Pet.module.scss'
 import Ribbon from './components/Ribbon'
 
+interface Tag {
+	_id: string
+	name: string
+}
+
 const OnePet = ({
 	name,
 	photoUrls,
@@ -29,12 +34,14 @@ const OnePet = ({
 			))}
 		</div>
 		<div className={styles.metaContainer}>
-			<div>{name}</div>
-			<div>
+			<div className={styles.name}>
+				<p>{name}</p>
+			</div>
+			<div className={styles.tags}>
 				<p>{category}</p>
 				<ul>
-					{tags.map((tag: string) => (
-						<li>{tag}</li>
+					{tags.map((tag: Tag) => (
+						<li key={tag.name}>{tag.name}</li>
 					))}
 				</ul>
 			</div>

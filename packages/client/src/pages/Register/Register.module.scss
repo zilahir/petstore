@@ -1,5 +1,6 @@
 @import '../../styles/variables';
 @import '../../styles/mixins/box-shadow';
+@import '../../styles/mixins/typography';
 
 .rootContainer {
 	display: grid;
@@ -13,6 +14,14 @@
 		@include box-shadow(3px, 3px, 40px, rgba($color: #000000, $alpha: 0.5));
 		padding: 50px;
 		border-radius: 20px;
+
+		h1 {
+			@include heading {
+				font-size: 48px;
+				margin-top: 20px;
+				margin-bottom: 40px;
+			}
+		}
 	}
 
 	.graphicContainer {

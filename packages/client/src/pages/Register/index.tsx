@@ -14,6 +14,7 @@ const Register = (): ReactElement => {
 		<Layout hasHeader={false}>
 			<div className={styles.rootContainer}>
 				<div className={styles.loginContainer}>
+					<h1>Sign Up</h1>
 					<div className={styles.loginInner}>
 						<Input
 							label="Username"

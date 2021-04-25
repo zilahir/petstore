@@ -11,7 +11,6 @@ import styles from './Register.module.scss'
 import Input from '../../components/common/Input'
 import { post } from '../../api/cloudFunctions'
 import { apiEndPoints } from '../../api/apiEndpoints'
-// import Button from '../../components/common/Button'
 
 interface RegError {
 	msg: string
@@ -166,7 +165,7 @@ const Register = (): ReactElement => {
 										error={errors && errors.phone && errors.phone.message}
 									/>
 									<div className={styles.btnContainer}>
-										<input type="submit" />
+										<input className={styles.submitBtn} type="submit" />
 									</div>
 								</form>
 							</div>

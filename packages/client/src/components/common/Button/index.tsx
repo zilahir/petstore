@@ -8,13 +8,14 @@ interface IButton {
 	label: string
 	disabled?: boolean
 	className?: string
-	onClick: React.MouseEventHandler<HTMLButtonElement>
+	onClick?: React.MouseEventHandler<HTMLButtonElement>
 	type: 'button' | 'submit'
 }
 
 const defaultProps = {
 	className: '',
 	disabled: false,
+	onClick: undefined,
 }
 
 const Button = ({
@@ -28,7 +29,7 @@ const Button = ({
 		<motion.button
 			whileHover={{ scale: 1.05 }}
 			type={type}
-			onClick={onClick}
+			onClick={onClick && onClick}
 			disabled={disabled}
 		>
 			{label}

@@ -1,3 +1,4 @@
+@import '../../../styles/variables';
 @import '../../../styles/mixins/typography';
 
 .onePet {
@@ -19,23 +20,62 @@
 		position: absolute;
 		bottom: 0;
 		left: 0;
-		width: 100%;
+		width: calc(100% - 20px);
 		background: rgba($color: #ffffff, $alpha: 0.55);
-		padding: 20px 10px;
+		padding: 10px;
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
+		flex-direction: column;
+		flex: 1;
 
-		.name {
-			p {
-				@include paragraph {
-					font-size: 26px;
+		div {
+			display: flex;
+			flex: 1;
+			width: 100%;
+
+			.name,
+			.category {
+				p {
+					@include paragraph {
+						font-size: 26px;
+					}
 				}
 			}
 		}
 
 		.tags {
 			display: flex;
+			margin-top: 10px;
+
+			ul {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 4px;
+
+				li {
+					@include paragraph {
+						font-size: 12px;
+					}
+					padding: 4px 8px;
+					border-radius: 4px;
+					display: flex;
+					align-items: center;
+					background: rgba($color: $pink, $alpha: 1);
+					color: #ffffff;
+
+					svg {
+						font-size: 16px;
+						margin-right: 4px;
+					}
+				}
+			}
+
+			p {
+				@include paragraph {
+					font-size: 20px;
+				}
+			}
 		}
 	}
 

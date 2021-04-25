@@ -1,5 +1,6 @@
 import React, { ReactElement } from 'react'
 import random from 'random'
+import LocalOfferIcon from '@material-ui/icons/LocalOffer'
 
 import { motion } from 'framer-motion'
 import { Pet } from '../../../../../server/src/models/pet'
@@ -34,14 +35,21 @@ const OnePet = ({
 			))}
 		</div>
 		<div className={styles.metaContainer}>
-			<div className={styles.name}>
-				<p>{name}</p>
+			<div>
+				<div className={styles.name}>
+					<p>{name}</p>
+				</div>
+				<div className={styles.category}>
+					<p>{category.name}</p>
+				</div>
 			</div>
 			<div className={styles.tags}>
-				<p>{category.name}</p>
 				<ul>
 					{tags.map((tag: Tag) => (
-						<li key={tag.name}>{tag.name}</li>
+						<li className={styles.oneTag} key={tag.name}>
+							<LocalOfferIcon htmlColor="#fff" />
+							{tag.name}
+						</li>
 					))}
 				</ul>
 			</div>

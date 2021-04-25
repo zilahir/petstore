@@ -35,3 +35,16 @@ This is a _monorepo_ that sovles the coding task I was given by Varjo.
 - [x] setup project structure
 - [ ] setup redux store
 - [ ] implement routing
+- [x] implement registration form
+- [ ] implement login form
+- [x] implemen Home Paage
+
+### Backend
+
+- [X] implement models
+
+- [x] implement POST function for models
+- [x] imnplement auth roues
+- [] implement PATCH functions for models
+- [] implement DELETE functions for models
+- [] implement store

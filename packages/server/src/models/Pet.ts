@@ -1,4 +1,4 @@
-import { Document, Model, model, Schema } from 'mongoose'
+import { Document, Model, model, NativeError, Schema } from 'mongoose'
 import { ICategory } from './category'
 import { ITag } from './tag'
 
@@ -65,6 +65,25 @@ export const findByStatus = (status: Status): Promise<Array<IPet>> => {
 		.populate('tags')
 		.populate('category')
 		.exec()
+}
+
+export const patchById = (petId: string, payload: Pet): Promise<IPet> => {
+	return new Promise((resolve, reject) => {
+		Pet.findOne({ id: petId }, function (err: NativeError, pet: IPet) {
+			if (err) reject(err)
+
+			console.debug('pet', pet)
+
+			Object.keys(payload).map((key: keyof Pet) => {
+				pet[key] = payload[key]
+			})
+
+			pet.save(function (err, updatedPet) {
+				if (err) return reject(err)
+				resolve(updatedPet)
+			})
+		})
+	})
 }
 
 export default Pet

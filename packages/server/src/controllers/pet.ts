@@ -1,9 +1,18 @@
 import { Request, Response } from 'express'
 import HttpStatusCodes from 'http-status-codes'
 
-import { Pet, insert, IPet, getAll, Status, findByStatus } from '../models/pet'
+import {
+	Pet,
+	insert,
+	IPet,
+	getAll,
+	Status,
+	findByStatus,
+	patchById,
+} from '../models/pet'
 
 type NewPetRequest = Request & Pet
+type FindPetById = Request & { _id: string }
 type FindPetByStausRequest = Request & Status
 
 /**
@@ -63,6 +72,23 @@ export function findPetsByStatus(
 	const { status } = request.query
 	const chosenStatus = (status as unknown) as Status
 	findByStatus(chosenStatus)
+		.then(pets => {
+			response.status(HttpStatusCodes.OK).send(pets)
+			return
+		})
+		.catch(error => {
+			response.status(HttpStatusCodes.INTERNAL_SERVER_ERROR).send(error)
+		})
+}
+
+/**
+ * @param request
+ * @param response
+ */
+export function patchPet(request: FindPetById, response: Response): void {
+	const { petId } = request.query
+	const thisPet = petId as string
+	patchById(thisPet, request.body)
 		.then(pets => {
 			response.status(HttpStatusCodes.OK).send(pets)
 			return

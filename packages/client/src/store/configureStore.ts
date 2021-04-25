@@ -20,6 +20,7 @@ export interface IUSer {
 	lastName: string
 	phone: string
 	userStatus: string
+	token: string
 }
 
 interface Test {

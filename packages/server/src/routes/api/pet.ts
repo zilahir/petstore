@@ -1,9 +1,11 @@
 import { Router } from 'express'
+import auth from '../../middleware/auth'
 
 import {
 	insertNewPet,
 	getAllPets,
 	findPetsByStatus,
+	patchPet,
 } from '../../controllers/pet'
 
 const router: Router = Router()
@@ -35,6 +37,8 @@ const router: Router = Router()
 router.post('/', [insertNewPet])
 
 router.get('/', [getAllPets])
+
+router.patch('/:petId', [patchPet])
 
 router.get('/findByStatus', [findPetsByStatus])
 

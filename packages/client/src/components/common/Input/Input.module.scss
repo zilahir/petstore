@@ -6,6 +6,16 @@
 	flex-direction: column;
 	margin-bottom: 20px;
 
+	&.error {
+		label {
+			color: $error-red;
+
+			input {
+				border: 2px solid rgba($error-red, 0.35);
+			}
+		}
+	}
+
 	label {
 		@include paragraph {
 			font-size: 14px;

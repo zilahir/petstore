@@ -11,6 +11,10 @@ interface IInput {
 	type?: string
 	ref?: React.RefObject<any>
 	value: string
+	register?: any
+	required?: boolean
+	error?: string
+	id?: string
 }
 
 const defaultProps = {
@@ -18,6 +22,10 @@ const defaultProps = {
 	placeHolder: '',
 	type: 'text',
 	ref: null,
+	register: null,
+	required: false,
+	error: null,
+	id: '',
 }
 
 const Input = ({
@@ -28,18 +36,37 @@ const Input = ({
 	type,
 	ref,
 	value,
+	register,
+	required,
+	error,
+	id,
 }: IInput): ReactElement => (
-	<div className={styles.inputContainer}>
+	<div className={classnames(styles.inputContainer, error ? styles.error : '')}>
 		<label>
 			{label}
-			<input
-				value={value}
-				ref={ref}
-				className={classnames(styles.input, className)}
-				onChange={onChange}
-				placeholder={placeHolder}
-				type={type}
-			/>
+			{error && <span className={styles.error}>{error}</span>}
+			{register ? (
+				<input
+					{...register(id, { required })}
+					value={value}
+					ref={ref}
+					className={classnames(styles.input, className)}
+					onChange={onChange}
+					placeholder={placeHolder}
+					type={type}
+					required={required}
+				/>
+			) : (
+				<input
+					value={value}
+					ref={ref}
+					className={classnames(styles.input, className)}
+					onChange={onChange}
+					placeholder={placeHolder}
+					type={type}
+					required={required}
+				/>
+			)}
 		</label>
 	</div>
 )

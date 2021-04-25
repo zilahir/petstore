@@ -34,6 +34,12 @@
 		"prettier"
 	],
 	"rules": {
+		"react/jsx-props-no-spreading": [
+			"error",
+			{
+				"html": "ignore"
+			}
+		],
 		"jsx-a11y/label-has-associated-control": 0,
 		"unicorn/no-null": 0,
 		"prettier/prettier": "error",

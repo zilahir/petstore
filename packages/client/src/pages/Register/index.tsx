@@ -4,7 +4,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import WarningIcon from '@material-ui/icons/Warning'
 
-import { AnimatePresence } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 import Layout from '../../components/common/Layout'
 import dogImage from '../../assets/images/pet.svg'
 import styles from './Register.module.scss'
@@ -12,6 +12,8 @@ import Input from '../../components/common/Input'
 import { post } from '../../api/cloudFunctions'
 import { apiEndPoints } from '../../api/apiEndpoints'
 import { AuthError } from '../../types/types'
+import { loadingVariants } from '../../utils/animations'
+import Spinner from '../../components/common/Spinner'
 
 const schema = yup.object().shape({
 	userName: yup.string().required().min(5),
@@ -35,6 +37,7 @@ const Register = (): ReactElement => {
 	const [phone, setPhone] = useState<string>('')
 	const [isRegSuccess, toggleIsRegSuccess] = useState<boolean>(false)
 	const [requestErrors, setRequestErrors] = useState([])
+	const [isLoading, toggleLoading] = useState<boolean>(false)
 
 	const {
 		register,
@@ -44,7 +47,9 @@ const Register = (): ReactElement => {
 		resolver: yupResolver(schema),
 	})
 
-	const onSubmit = (data: any): void =>
+	function onSubmit(data: any): void {
+		setRequestErrors([])
+		toggleLoading(true)
 		post({
 			url: apiEndPoints.registerNewUser,
 			data: {
@@ -58,6 +63,10 @@ const Register = (): ReactElement => {
 			.catch((error: any) => {
 				setRequestErrors(error.errors)
 			})
+			.finally(() => {
+				toggleLoading(false)
+			})
+	}
 
 	return (
 		<Layout hasHeader={false}>
@@ -78,7 +87,12 @@ const Register = (): ReactElement => {
 								)}
 							</AnimatePresence>
 							<h1>Sign Up</h1>
-							<div className={styles.loginInner}>
+							<motion.div
+								className={styles.loginInner}
+								variants={loadingVariants}
+								animate={isLoading ? 'isLoading' : 'notLoading'}
+								initial={false}
+							>
 								<form onSubmit={handleSubmit(onSubmit)}>
 									<Input
 										label="Username"
@@ -168,7 +182,23 @@ const Register = (): ReactElement => {
 										<input className={styles.submitBtn} type="submit" />
 									</div>
 								</form>
-							</div>
+							</motion.div>
+							<AnimatePresence>
+								{isLoading && (
+									<motion.div
+										layout
+										className={styles.loadingContainer}
+										variants={loadingVariants}
+										animate="notLoading"
+										initial={false}
+										transition={{
+											delay: 0.5,
+										}}
+									>
+										<Spinner />
+									</motion.div>
+								)}
+							</AnimatePresence>
 						</div>
 					)}
 					{isRegSuccess && (

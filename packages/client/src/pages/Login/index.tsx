@@ -53,7 +53,7 @@ const Login = (): ReactElement => {
 				setRequestErrors(error.errors)
 			})
 			.finally(() => {
-				// toggleLoading(false)
+				toggleLoading(false)
 			})
 	}
 

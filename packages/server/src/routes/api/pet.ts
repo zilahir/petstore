@@ -7,7 +7,7 @@ import {
 	findPetsByStatus,
 	patchPet,
 	getPetById,
-	deletePetByID,
+	deletePetById,
 } from '../../controllers/pet'
 
 const router: Router = Router()
@@ -42,10 +42,10 @@ router.get('/', [getAllPets])
 
 router.patch('/:petId', [patchPet])
 
-router.get('/:petId', [getPetById])
-
 router.get('/findByStatus', [findPetsByStatus])
 
-router.delete('/:petId', [deletePetByID])
+router.delete('/:petId', [deletePetById])
+
+router.get('/:id', [getPetById])
 
 export default router

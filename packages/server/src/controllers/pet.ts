@@ -9,12 +9,12 @@ import {
 	Status,
 	findByStatus,
 	patchById,
-	FindPetById,
+	findPetById,
 	deletePet,
 } from '../models/pet'
 
 type NewPetRequest = Request & Pet
-type FindPetById = Request & { _id: string }
+type FindPetByIdReuest = Request & { _id: string }
 type FindPetByStausRequest = Request & Status
 
 /**
@@ -75,6 +75,7 @@ export function findPetsByStatus(
 	const chosenStatus = (status as unknown) as Status
 	findByStatus(chosenStatus)
 		.then(pets => {
+			console.debug('pets', pets)
 			response.status(HttpStatusCodes.OK).send(pets)
 			return
 		})
@@ -90,7 +91,7 @@ export function findPetsByStatus(
  * @param {FindPetByStausRequest} request express request
  * @param {Response} response express response
  */
-export function patchPet(request: FindPetById, response: Response): void {
+export function patchPet(request: FindPetByIdReuest, response: Response): void {
 	const { petId } = request.query
 	const thisPet = petId as string
 	patchById(thisPet, request.body)
@@ -110,10 +111,13 @@ export function patchPet(request: FindPetById, response: Response): void {
  * @param {FindPetByStausRequest} request express request
  * @param {Response} response express response
  */
-export function getPetById(request: FindPetById, response: Response): void {
-	const { petId } = request.params
-	const thisPet = petId as string
-	FindPetById(thisPet)
+export function getPetById(
+	request: FindPetByIdReuest,
+	response: Response,
+): void {
+	const { id } = request.params
+	const thisPet = id as string
+	findPetById(thisPet)
 		.then(pets => {
 			response.status(HttpStatusCodes.OK).send(pets)
 			return
@@ -130,7 +134,10 @@ export function getPetById(request: FindPetById, response: Response): void {
  * @param {FindPetByStausRequest} request express request
  * @param {Response} response express response
  */
-export function deletePetByID(request: FindPetById, response: Response): void {
+export function deletePetById(
+	request: FindPetByIdReuest,
+	response: Response,
+): void {
 	const { petId } = request.query
 	const thisPet = petId as string
 	deletePet(thisPet)

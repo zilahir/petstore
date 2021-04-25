@@ -75,7 +75,7 @@ export const getAll = (): Promise<Array<IPet>> => {
  * @param {string} status the desired stauts of Pets
  * @returns {Promise} the found Pets in a Promise
  */
-export function findByStatus(status: Status): Promise<Array<IPet>> {
+export const findByStatus = (status: Status): Promise<Array<IPet>> => {
 	return Pet.find({
 		status,
 	})
@@ -89,13 +89,10 @@ export function findByStatus(status: Status): Promise<Array<IPet>> {
  * @param {object} payload Object representatino of the Pet
  * @returns {Promise} the Pet in a Promise
  */
-export function patchById(petId: string, payload: Pet): Promise<IPet> {
+export function patchById(petId: string, payload: Pet): Promise<IPet | null> {
 	return new Promise((resolve, reject) => {
-		Pet.findOne({ id: petId }, function (err: NativeError, pet: IPet) {
+		Pet.findOne({ _id: petId }, function (err: NativeError, pet: IPet) {
 			if (err) reject(err)
-
-			console.debug('pet', pet)
-
 			Object.keys(payload).map((key: keyof Pet) => {
 				pet[key] = payload[key]
 			})
@@ -112,7 +109,7 @@ export function patchById(petId: string, payload: Pet): Promise<IPet> {
  * @param {string} petId the Id of the Pet
  * @returns {Promise} the found Pet in a Promise
  */
-export function FindPetById(petId: string): Promise<IPet> {
+export function findPetById(petId: string): Promise<IPet | null> {
 	return Pet.findOne({ _id: petId })
 		.populate('tags')
 		.populate('category')
@@ -123,8 +120,8 @@ export function FindPetById(petId: string): Promise<IPet> {
  * @param {string} petId the Id of the Pet
  * @returns {Promise} the found Pet in a Promise
  */
-export function deletePet(petId: string): Promise<IPet> {
-	return Pet.findOneAndDelete({ id: petId }).exec()
+export function deletePet(petId: string): Promise<IPet | null> {
+	return Pet.findOneAndDelete({ _id: petId }).exec()
 }
 
 export default Pet

@@ -10,8 +10,9 @@ import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 
 import test from './reducers/test'
+import user from './reducers/user'
 
-interface IUSer {
+export interface IUSer {
 	email: string
 	password: string
 	username: string
@@ -21,12 +22,17 @@ interface IUSer {
 	userStatus: string
 }
 
+interface Test {
+	test: string
+}
+
 export interface TopLevelState {
 	user: IUSer
+	test: Test
 }
 
 const persistConfig = {
-	key: 'root',
+	key: 'petstore:root',
 	storage,
 	version: 1,
 	blacklist: [],
@@ -34,6 +40,7 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
 	test,
+	user,
 })
 
 const composeEnhancers =

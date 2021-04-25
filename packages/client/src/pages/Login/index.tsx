@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import WarningIcon from '@material-ui/icons/Warning'
+import { useDispatch } from 'react-redux'
 
 import { AnimatePresence, motion } from 'framer-motion'
 import Input from '../../components/common/Input'
@@ -14,12 +15,15 @@ import { apiEndPoints } from '../../api/apiEndpoints'
 import { AuthError } from '../../types/types'
 import genericAnimaion, { loadingVariants } from '../../utils/animations'
 import Spinner from '../../components/common/Spinner'
+import { IUSer } from '../../store/configureStore'
+import { authUser } from '../../store/actions/user'
 
 const Login = (): ReactElement => {
 	const [username, setUsername] = useState<string>('')
 	const [password, setPassword] = useState<string>('')
 	const [isLoading, toggleLoading] = useState<boolean>(false)
 	const [requestErrors, setRequestErrors] = useState([])
+	const dispatch = useDispatch()
 
 	interface ILogin {
 		username: string
@@ -45,9 +49,8 @@ const Login = (): ReactElement => {
 				password,
 			},
 		})
-			.then((result: any) => {
-				console.debug('result', result)
-				// TODO log the user in
+			.then((result: IUSer) => {
+				dispatch(authUser(result))
 			})
 			.catch((error: any) => {
 				setRequestErrors(error.errors)

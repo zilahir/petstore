@@ -77,7 +77,7 @@ router.post(
 				{ expiresIn: process.env.JWT_EXP },
 				(err, token) => {
 					if (err) throw err
-					res.json({ token, user })
+					res.json({ token, ...user.toObject() })
 				},
 			)
 		} catch (err) {

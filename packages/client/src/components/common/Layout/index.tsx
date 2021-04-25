@@ -4,14 +4,21 @@ import Header from '../../Header'
 import styles from './Layout.module.scss'
 
 interface ILayout {
+	hasHeader?: boolean
 	children: ReactChild | ReactChild[]
 }
 
-const Layout = ({ children }: ILayout): ReactElement => (
+const defaultProps = {
+	hasHeader: true,
+}
+
+const Layout = ({ children, hasHeader }: ILayout): ReactElement => (
 	<div className={styles.layout}>
-		<Header />
+		{hasHeader && <Header />}
 		{children}
 	</div>
 )
+
+Layout.defaultProps = defaultProps
 
 export default Layout

@@ -16,7 +16,8 @@ const Header = (): ReactElement => (
 		</div>
 		<div className={styles.navContainer}>
 			<nav>
-				<NavLink isActive={false} target="/loign" label="Login" />
+				<NavLink isActive={false} target="/login" label="Login" />
+				<NavLink isActive={false} target="/register" label="Register" />
 			</nav>
 		</div>
 	</header>

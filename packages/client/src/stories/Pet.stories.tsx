@@ -1,5 +1,5 @@
 import React from 'react'
-import { Story, Meta } from '@storybook/react'
+import { Meta } from '@storybook/react'
 
 import OnePet from '../components/PetGrid/Pet'
 import { Status } from '../../../server/src/models/pet'

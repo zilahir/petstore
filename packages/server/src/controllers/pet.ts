@@ -10,6 +10,7 @@ import {
 	findByStatus,
 	patchById,
 	FindPetById,
+	deletePet,
 } from '../models/pet'
 
 type NewPetRequest = Request & Pet
@@ -105,14 +106,34 @@ export function patchPet(request: FindPetById, response: Response): void {
 /**
  *
  *
- * @description finds pet by petId
+ * @description finds Pet by petId
  * @param {FindPetByStausRequest} request express request
  * @param {Response} response express response
  */
 export function getPetById(request: FindPetById, response: Response): void {
-	const { petId } = request.query
+	const { petId } = request.params
 	const thisPet = petId as string
 	FindPetById(thisPet)
+		.then(pets => {
+			response.status(HttpStatusCodes.OK).send(pets)
+			return
+		})
+		.catch(error => {
+			response.status(HttpStatusCodes.INTERNAL_SERVER_ERROR).send(error)
+		})
+}
+
+/**
+ *
+ *
+ * @description removed a Pet by petId
+ * @param {FindPetByStausRequest} request express request
+ * @param {Response} response express response
+ */
+export function deletePetByID(request: FindPetById, response: Response): void {
+	const { petId } = request.query
+	const thisPet = petId as string
+	deletePet(thisPet)
 		.then(pets => {
 			response.status(HttpStatusCodes.OK).send(pets)
 			return

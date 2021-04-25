@@ -113,7 +113,18 @@ export function patchById(petId: string, payload: Pet): Promise<IPet> {
  * @returns {Promise} the found Pet in a Promise
  */
 export function FindPetById(petId: string): Promise<IPet> {
-	return Pet.findOne({ id: petId }).populate('tags').populate('category').exec()
+	return Pet.findOne({ _id: petId })
+		.populate('tags')
+		.populate('category')
+		.exec()
+}
+
+/**
+ * @param {string} petId the Id of the Pet
+ * @returns {Promise} the found Pet in a Promise
+ */
+export function deletePet(petId: string): Promise<IPet> {
+	return Pet.findOneAndDelete({ id: petId }).exec()
 }
 
 export default Pet

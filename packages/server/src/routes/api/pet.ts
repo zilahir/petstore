@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import auth from '../../middleware/auth'
+// import auth from '../../middleware/auth'
 
 import {
 	insertNewPet,
@@ -7,6 +7,7 @@ import {
 	findPetsByStatus,
 	patchPet,
 	getPetById,
+	deletePetByID,
 } from '../../controllers/pet'
 
 const router: Router = Router()
@@ -44,5 +45,7 @@ router.patch('/:petId', [patchPet])
 router.get('/:petId', [getPetById])
 
 router.get('/findByStatus', [findPetsByStatus])
+
+router.delete('/:petId', [deletePetByID])
 
 export default router

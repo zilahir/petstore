@@ -2,7 +2,6 @@ import bcrypt from 'bcryptjs'
 import config from 'config'
 import { Router, Response } from 'express'
 import { check, validationResult } from 'express-validator/check'
-import gravatar from 'gravatar'
 import HttpStatusCodes from 'http-status-codes'
 import jwt from 'jsonwebtoken'
 
@@ -32,7 +31,7 @@ router.post(
 				.json({ errors: errors.array() })
 		}
 
-		const { email, password } = req.body
+		const { email, password, username, firstName, lastName, phone } = req.body
 		try {
 			let user: IUser = await User.findOne({ email })
 
@@ -53,6 +52,10 @@ router.post(
 			const userFields = {
 				email,
 				password: hashed,
+				username,
+				firstName,
+				lastName,
+				phone,
 			}
 
 			user = new User(userFields)

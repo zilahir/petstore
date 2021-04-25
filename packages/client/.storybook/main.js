@@ -19,9 +19,7 @@ module.exports = {
 			  },
 			},
 		},
-		// '@storybook/addon-actions/register',
-		// '@storybook/addon-notes/register',
-		// '@storybook/addon-backgrounds',
+		'@storybook/addon-notes/register',
 		{
       name: '@storybook/preset-scss',
       options: {

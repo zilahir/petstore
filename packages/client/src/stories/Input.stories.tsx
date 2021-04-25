@@ -2,10 +2,14 @@ import React, { useState } from 'react'
 import { Meta } from '@storybook/react'
 
 import CustomInput from '../components/common/Input'
+import InputDocs from './markdowns/Input.md'
 
 export default {
 	title: 'Input',
 	componen: CustomInput,
+	parameters: {
+		notes: { InputDocs },
+	},
 } as Meta
 
 export const Input = () => {

@@ -9,4 +9,5 @@ export const apiEndPoints = {
 	findByStatus: `${apiRoot}/pet/findByStatus`,
 	registerNewUser: `${apiRoot}/user`,
 	loginUser: `${apiRoot}/user/login`,
+	getPetsByUser: `${apiRoot}/pet/user`,
 }

@@ -1,4 +1,77 @@
+@import '../../styles/variables';
+@import '../../styles/mixins/typography';
+@import '../../styles/mixins/box-shadow';
+
 .dashboardRootContainer {
 	display: grid;
 	grid-template-columns: repeat(2, 50%);
+
+	div {
+		&.petContainer {
+			@include box-shadow(3px, 3px, 40px, rgba($color: #000000, $alpha: 0.5));
+			margin: 20px;
+			padding: 20px 30px;
+
+			h1 {
+				@include heading {
+					font-size: 36px;
+					font-weight: 400;
+					color: $purple;
+					margin-bottom: 30px;
+					margin-top: 20px;
+				}
+			}
+
+			ul {
+				margin: 0;
+				padding: 0;
+
+				li {
+					@include paragraph {
+						font-size: 26px;
+						color: $purple;
+						border-radius: 10px;
+						transition: all 0.2s ease-in;
+						display: flex;
+						align-items: center;
+
+						&:hover {
+							cursor: pointer;
+							background: rgba($color: $purple, $alpha: 1);
+							color: #ffffff;
+
+							svg {
+								fill: #ffffff;
+							}
+						}
+					}
+
+					border: 2px solid $purple;
+					padding: 10px;
+					margin-bottom: 10px;
+
+					div {
+						&:first-of-type {
+							display: flex;
+							flex: 1;
+						}
+
+						&:last-of-type {
+							svg {
+								margin-left: 10px;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		&.actionBtnContainer {
+			display: flex;
+
+			.actionBtn {
+				margin-left: 10px;
+			}
+		}
+	}
 }

@@ -41,7 +41,7 @@
 			}
 		],
 		"jsx-a11y/label-has-associated-control": 0,
-		"unicorn/no-null": 0,
+		"unicorn/no-null": "off",
 		"prettier/prettier": "error",
 		"indent": "off",
 		"@typescript-eslint/indent": ["error", "tab"],

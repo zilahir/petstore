@@ -5,6 +5,18 @@
 	display: flex;
 	align-items: center;
 
+	&.hasIcon {
+		button {
+			display: flex;
+			justify-content: space-between;
+
+			svg {
+				margin-right: 8px;
+				fill: #ffffff;
+			}
+		}
+	}
+
 	button {
 		@include paragraph {
 			font-size: 16px;

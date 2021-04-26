@@ -140,7 +140,6 @@ export function getPetByUser(
 	response: Response,
 ): void {
 	const { userId } = request.params
-	console.debug('userId', userId)
 	const thisPet = userId as string
 	findByUser(thisPet)
 		.then(pets => {

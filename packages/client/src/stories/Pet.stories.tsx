@@ -24,6 +24,7 @@ export const Pet = () => (
 		}}
 	>
 		<OnePet
+			userId="608660c99cfd2a48a19c4fb9"
 			status={Status.available}
 			name="demo"
 			category="demo"

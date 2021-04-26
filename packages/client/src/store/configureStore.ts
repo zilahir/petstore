@@ -13,6 +13,7 @@ import test from './reducers/test'
 import user from './reducers/user'
 
 export interface IUSer {
+	_id: string
 	email: string
 	password: string
 	username: string

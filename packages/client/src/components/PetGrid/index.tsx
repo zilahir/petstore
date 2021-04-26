@@ -51,7 +51,10 @@ const PetGrid = (): ReactElement | null => {
 			{isFetched && data && data.length > 0 ? (
 				<AnimatePresence key={data.length}>
 					{data.map(
-						({ name, photoUrls, status, category, tags }, petIndex: number) => (
+						(
+							{ name, photoUrls, status, category, tags, userId },
+							petIndex: number,
+						) => (
 							<motion.div
 								key={name}
 								variants={variants}
@@ -61,6 +64,7 @@ const PetGrid = (): ReactElement | null => {
 								exit="exit"
 							>
 								<OnePet
+									userId={userId}
 									status={status}
 									category={category}
 									tags={tags}

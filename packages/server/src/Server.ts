@@ -117,12 +117,12 @@ app.use('/pet', pet)
 app.use('/tag', tag)
 app.use('/user', [authorization, user])
 
-const port = app.get('port')
+/* const port = app.get('port')
 const server = app.listen(port, () =>
 	console.log(`Server started on port ${port}, diename: ${__dirname}`),
-)
+) */
 
-export default server
+// export default server
 module.exports = app
 
 // module.exports.handler = serverless(app)

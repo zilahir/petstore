@@ -90,19 +90,7 @@ export const findByStatus = (status: Status): Promise<Array<IPet>> => {
  * @returns {Promise} the Pet in a Promise
  */
 export function patchById(petId: string, payload: Pet): Promise<IPet | null> {
-	return new Promise((resolve, reject) => {
-		Pet.findOne({ _id: petId }, function (err: NativeError, pet: IPet) {
-			if (err) reject(err)
-			Object.keys(payload).map((key: keyof Pet) => {
-				pet[key] = payload[key]
-			})
-
-			pet.save(function (err, updatedPet) {
-				if (err) return reject(err)
-				resolve(updatedPet)
-			})
-		})
-	})
+	return Pet.findOneAndUpdate({ id: petId }, payload).exec()
 }
 
 /**

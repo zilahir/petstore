@@ -21,6 +21,10 @@
 			display: flex;
 			flex-direction: column;
 
+			.loaderContainer {
+				height: 100%;
+			}
+
 			h1 {
 				@include heading {
 					font-size: 36px;

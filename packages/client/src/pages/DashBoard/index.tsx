@@ -23,16 +23,22 @@ import DashboardContext from './dashboardContext'
 import Input from '../../components/common/Input'
 import { Category } from '../../../../server/src/models/category'
 import { Tag } from '../../../../server/src/models/tag'
+import Spinner from '../../components/common/Spinner'
+
+type UploadImages = {
+	url: string
+}
 
 const DashBoard = (): ReactElement => {
 	const { user } = useSelector((store: TopLevelState) => store)
 	const [selectedPet, setSelectedPet] = useState<Pet | any>({})
 	const [images, setImages] = useState<Array<File>>([])
 	const [petName, setPetName] = useState<string>('')
+	const [isLoading, toggleLoading] = useState<boolean>(false)
 
 	const onDrop = useCallback(acceptedFiles => {
+		toggleLoading(true)
 		const uploadPromises: Array<Promise<any>> = []
-
 		acceptedFiles.map((currentFile: File) => {
 			const formData = new FormData()
 			const file = new File([currentFile], `${shortid.generate()}.jpg`, {
@@ -48,9 +54,12 @@ const DashBoard = (): ReactElement => {
 			return true
 		})
 
-		Promise.all(uploadPromises).then(() => {
-			console.debug('upload is ready')
-		})
+		Promise.all(uploadPromises)
+			.then(() => {})
+			.catch((error: Error) => {
+				toggleLoading(false)
+				throw new Error(error.message)
+			})
 
 		setImages(
 			acceptedFiles.map((currentFile: File) =>
@@ -157,44 +166,48 @@ const DashBoard = (): ReactElement => {
 						className={classnames(styles.newPetContainer, styles.petContainer)}
 					>
 						<h1>Upload a new pet to the store</h1>
-						<div className={styles.inputContainer}>
-							<div className={styles.group}>
-								<div className={styles.oneInput}>
-									<Input
-										className={styles.input}
-										label="Pet's name"
-										onChange={event => setPetName(event.target.value)}
-										placeHolder="Musti"
-										value={petName}
-									/>
+						{!isLoading ? (
+							<div className={styles.inputContainer}>
+								<div className={styles.group}>
+									<div className={styles.oneInput}>
+										<Input
+											className={styles.input}
+											label="Pet's name"
+											onChange={event => setPetName(event.target.value)}
+											placeHolder="Musti"
+											value={petName}
+										/>
+									</div>
+									<div className={styles.oneInput}>
+										<Select
+											placeholder="Category"
+											options={categories?.map(({ name }: Category) => ({
+												value: name,
+												label: name,
+											}))}
+										/>
+									</div>
 								</div>
-								<div className={styles.oneInput}>
+								<div className={styles.inputContainer}>
 									<Select
-										placeholder="Category"
-										options={categories?.map(({ name }: Category) => ({
+										isMulti
+										placeholder="Tags"
+										options={tags?.map(({ name }: Category) => ({
 											value: name,
 											label: name,
 										}))}
 									/>
 								</div>
+								<div className={styles.dragNDropContainer} {...getRootProps()}>
+									<input {...getInputProps()} />
+									<p>drag and drop files here or:</p>
+									<Button onClick={open} label="Upoad files" />
+								</div>
+								<div className={styles.previewContainer}>{thumbs}</div>
 							</div>
-							<div className={styles.inputContainer}>
-								<Select
-									isMulti
-									placeholder="Tags"
-									options={tags?.map(({ name }: Category) => ({
-										value: name,
-										label: name,
-									}))}
-								/>
-							</div>
-							<div className={styles.dragNDropContainer} {...getRootProps()}>
-								<input {...getInputProps()} />
-								<p>drag and drop files here or:</p>
-								<Button onClick={open} label="Upoad files" />
-							</div>
-							<div className={styles.previewContainer}>{thumbs}</div>
-						</div>
+						) : (
+							<Spinner className={styles.loaderContainer} />
+						)}
 					</div>
 				</div>
 			</Layout>

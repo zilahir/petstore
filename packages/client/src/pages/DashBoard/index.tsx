@@ -1,3 +1,4 @@
+/* eslint-disable unicorn/consistent-function-scoping */
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-underscore-dangle */
 import React, { ReactElement, useState } from 'react'
@@ -7,28 +8,44 @@ import DeleteIcon from '@material-ui/icons/Delete'
 import CreateIcon from '@material-ui/icons/Create'
 
 import { apiEndPoints } from '../../api/apiEndpoints'
-import { get } from '../../api/cloudFunctions'
+import { deleteFunction, get } from '../../api/cloudFunctions'
 import Layout from '../../components/common/Layout'
 import { TopLevelState } from '../../store/configureStore'
 import styles from './DashBoard.module.scss'
 import Button from '../../components/common/Button'
 import Modal from '../../components/common/Modal'
+import { Pet } from '../../../../server/src/models/pet'
+import DashboardContext from './dashboardContext'
 
 const DashBoard = (): ReactElement => {
 	const { user } = useSelector((store: TopLevelState) => store)
+	const [selectedPet, setSelectedPet] = useState<Pet | any>({})
 	const [
 		isConfirmDeleteModalOpen,
 		toggleConfirmDeleteModal,
 	] = useState<boolean>(false)
-	const { data, isFetched } = useQuery(
-		'petsByUser',
-		() =>
-			(get({
-				url: `${apiEndPoints.getPetsByUser}/${user._id}`,
-			}) as unknown) as Array<any>,
-	)
+
+	const fetchPets = (): Array<Pet> =>
+		(get({
+			url: `${apiEndPoints.getPetsByUser}/${user._id}`,
+		}) as unknown) as Array<any>
+	const { data, isFetched, refetch } = useQuery('petsByUser', fetchPets)
+
+	function handleDelete(): void {
+		deleteFunction({
+			url: `${apiEndPoints.deletePet}/${selectedPet._id}`,
+		}).then(() => {
+			refetch()
+			toggleConfirmDeleteModal(false)
+		})
+	}
+
+	function toggleDeleteModalOpen(chosenPet: Pet): void {
+		toggleConfirmDeleteModal(true)
+		setSelectedPet(chosenPet)
+	}
 	return (
-		<>
+		<DashboardContext.Provider value={{ selectedPet, setSelectedPet }}>
 			<Layout>
 				<div className={styles.dashboardRootContainer}>
 					<div className={styles.petContainer}>
@@ -41,7 +58,7 @@ const DashBoard = (): ReactElement => {
 										<div className={styles.actionBtnContainer}>
 											<Button
 												label="Delete"
-												onClick={() => toggleConfirmDeleteModal(true)}
+												onClick={() => toggleDeleteModalOpen(pet)}
 												icon={<DeleteIcon htmlColor="#6c63ff" />}
 												className={styles.actionBtn}
 											/>
@@ -72,7 +89,7 @@ const DashBoard = (): ReactElement => {
 						<Button
 							className={styles.actionBtn}
 							label="Confirm"
-							onClick={() => console.debug('confirm')}
+							onClick={() => handleDelete()}
 							variant="danger"
 						/>
 						<Button
@@ -83,7 +100,7 @@ const DashBoard = (): ReactElement => {
 					</div>
 				</div>
 			</Modal>
-		</>
+		</DashboardContext.Provider>
 	)
 }
 

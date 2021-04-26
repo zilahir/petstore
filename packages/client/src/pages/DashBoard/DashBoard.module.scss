@@ -170,3 +170,23 @@
 		}
 	}
 }
+
+.modifyModalContainer {
+	width: 700px;
+	height: fit-content;
+	padding: 20px;
+
+	h1 {
+		@include heading {
+			font-size: 22px;
+			color: #ffffff;
+		}
+		margin: 20px 0;
+	}
+
+	.btnContainer {
+		margin: 20px 0;
+		display: flex;
+		justify-content: flex-end;
+	}
+}

@@ -35,4 +35,7 @@ export const post = (requestOptions: AxiosRequestConfig): any =>
 export const deleteFunction = (requestOptions: AxiosRequestConfig): any =>
 	cloudFunctionRequest({ ...requestOptions, method: 'delete' })
 
+export const patch = (requestOptions: AxiosRequestConfig): any =>
+	cloudFunctionRequest({ ...requestOptions, method: 'patch' })
+
 export default API

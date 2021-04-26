@@ -12,8 +12,9 @@ import Select from 'react-select'
 import shortid from 'shortid'
 
 import { useToasts } from 'react-toast-notifications'
+import { Option } from 'react-select/src/filters'
 import { apiEndPoints } from '../../api/apiEndpoints'
-import { deleteFunction, get, post } from '../../api/cloudFunctions'
+import { deleteFunction, get, post, patch } from '../../api/cloudFunctions'
 import Layout from '../../components/common/Layout'
 import { TopLevelState } from '../../store/configureStore'
 import styles from './DashBoard.module.scss'
@@ -21,10 +22,18 @@ import Button from '../../components/common/Button'
 import Modal from '../../components/common/Modal'
 import DashboardContext from './dashboardContext'
 import Input from '../../components/common/Input'
-import { Category } from '../../../../server/src/models/category'
-import { Tag } from '../../../../server/src/models/tag'
 import Spinner from '../../components/common/Spinner'
 import { Pet } from '../../../../server/src/models/pet'
+
+interface Category {
+	name: string
+	_id: string
+}
+
+interface Tag {
+	name: string
+	_id: string
+}
 
 const DashBoard = (): ReactElement => {
 	const { user } = useSelector((store: TopLevelState) => store)
@@ -98,20 +107,22 @@ const DashBoard = (): ReactElement => {
 		toggleConfirmDeleteModal,
 	] = useState<boolean>(false)
 
+	const [isModifyModalOpen, toggleModifyModalOpen] = useState<boolean>(false)
+
 	const fetchPets = (): Array<Pet> =>
 		(get({
 			url: `${apiEndPoints.getPetsByUser}/${user._id}`,
-		}) as unknown) as Array<any>
+		}) as unknown) as Array<Pet>
 
 	const fetchCategories = (): Array<Category> =>
 		(get({
 			url: `${apiEndPoints.getAllCategories}`,
-		}) as unknown) as Array<any>
+		}) as unknown) as Array<Category>
 
 	const fetchTags = (): Array<Tag> =>
 		(get({
 			url: `${apiEndPoints.getAllTags}`,
-		}) as unknown) as Array<any>
+		}) as unknown) as Array<Tag>
 	const {
 		data: pets,
 		isFetched: isPetsFetched,
@@ -169,6 +180,55 @@ const DashBoard = (): ReactElement => {
 		})
 	}
 
+	function handlePetModify(chosenPet: Pet): void {
+		setSelectedPet(chosenPet)
+		toggleModifyModalOpen(true)
+	}
+
+	function modifyPetValues(key: keyof Pet, value: string): void {
+		setSelectedPet({
+			...selectedPet,
+			[key]: value,
+		})
+	}
+
+	function findChosenCategory(): any | undefined {
+		const thisTag =
+			categories &&
+			categories.find(category => category._id === selectedPet.category._id)
+		return thisTag ? { label: thisTag.name, value: thisTag._id } : undefined
+	}
+
+	function findChosenTags(): Option[] | undefined {
+		const thisTag =
+			tags &&
+			tags
+				.filter((tag: Tag) =>
+					selectedPet.tags.some((petTag: Tag) => petTag._id === tag._id),
+				)
+				.map(({ _id, name }) => ({
+					label: name,
+					value: _id,
+					data: name,
+				}))
+		return thisTag
+	}
+
+	function modifyPet(): void {
+		const modifiedPet: Pet = {
+			...selectedPet,
+			tags: selectedPet.tags.map((tag: Tag) => tag._id),
+			category: selectedPet.category._id,
+		}
+		patch({
+			url: `${apiEndPoints.modifyPet}/${selectedPet._id}`,
+			data: modifiedPet,
+		}).then(() => {
+			refetchPets()
+			toggleModifyModalOpen(false)
+		})
+	}
+
 	return (
 		<DashboardContext.Provider value={{ selectedPet, setSelectedPet }}>
 			<Layout>
@@ -177,7 +237,7 @@ const DashBoard = (): ReactElement => {
 						<h1>My Pets</h1>
 						{pets && isPetsFetched && pets.length > 0 && (
 							<ul>
-								{pets.map((pet: any) => (
+								{pets.map((pet: Pet) => (
 									<li key={pet.name}>
 										<div>{pet.name}</div>
 										<div className={styles.actionBtnContainer}>
@@ -190,7 +250,7 @@ const DashBoard = (): ReactElement => {
 											/>
 											<Button
 												label="Edit"
-												onClick={() => console.debug('mod')}
+												onClick={() => handlePetModify(pet)}
 												icon={<CreateIcon htmlColor="#6c63ff" />}
 												className={styles.actionBtn}
 											/>
@@ -280,8 +340,66 @@ const DashBoard = (): ReactElement => {
 						<Button
 							className={styles.actionBtn}
 							label="Cancel"
-							onClick={() => console.debug('confirm')}
+							onClick={() => toggleConfirmDeleteModal(false)}
 						/>
+					</div>
+				</div>
+			</Modal>
+			<Modal
+				isVisible={isModifyModalOpen}
+				onClose={() => toggleModifyModalOpen(false)}
+			>
+				<div className={styles.modifyModalContainer}>
+					<h1>{`Modify pet: ${selectedPet.name}`}</h1>
+					<div className={styles.inputContainer}>
+						<div className={styles.group}>
+							<div className={styles.oneInput}>
+								<Input
+									className={styles.input}
+									label="Pet's name"
+									onChange={event =>
+										modifyPetValues('name', event.target.value)
+									}
+									placeHolder="Musti"
+									value={selectedPet.name}
+								/>
+							</div>
+							{isModifyModalOpen && (
+								<div className={styles.oneInput}>
+									<Select
+										placeholder="Category"
+										onChange={(selected: Option) =>
+											modifyPetValues('category', selected.value)
+										}
+										defaultValue={findChosenCategory()}
+										options={categories?.map(({ name, _id }: any) => ({
+											value: _id,
+											label: name,
+										}))}
+									/>
+								</div>
+							)}
+						</div>
+						{isModifyModalOpen && (
+							<div className={styles.inputContainer}>
+								<Select
+									isMulti
+									placeholder="Tags"
+									options={tags?.map(({ name, _id }: Tag): any => ({
+										value: _id,
+										label: name,
+										data: name,
+									}))}
+									defaultValue={findChosenTags()}
+									onChange={selected =>
+										setSelectedTags(selected.map(tag => tag.value))
+									}
+								/>
+							</div>
+						)}
+					</div>
+					<div className={styles.btnContainer}>
+						<Button label="Modify" onClick={() => modifyPet()} />
 					</div>
 				</div>
 			</Modal>

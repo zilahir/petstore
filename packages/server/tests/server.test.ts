@@ -9,7 +9,7 @@ dotenv.config()
 import Tag from '../src/models/tag'
 import Category from '../src/models/category'
 import Pet, { Pet as PetInterface, Status } from '../src/models/pet'
-// import app from '../src/server'
+import User, { UserInterface } from '../src/models/user'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 // TODO: fix this once DefinitelyTyped is updated
@@ -52,6 +52,21 @@ test('POST /api/tag', async () => {
 	)
 })
 
+test('/POST, /api/user', async done => {
+	const newUser: UserInterface = {
+		username: faker.internet.userName(),
+		firstName: faker.name.firstName(0),
+		lastName: faker.name.lastName(1),
+		email: faker.internet.email(),
+		password: 'demo123',
+		phone: '0406753038',
+		userStatus: 'active',
+	}
+	User.create(newUser).then(() => {
+		done()
+	})
+})
+
 test('/POST /api/pet', async done => {
 	const tags = await Tag.find({})
 	const categories = await Category.find({})
@@ -60,7 +75,19 @@ test('/POST /api/pet', async done => {
 	const tagsForThisPet = tags.slice(0, numOfTag)
 	const categoiesForThisPet = categories[numOfCategory]
 	const randomDogImage = faker.image.animals(500, 500)
+	const newUser: UserInterface = {
+		username: faker.internet.userName(),
+		firstName: faker.name.firstName(0),
+		lastName: faker.name.lastName(1),
+		email: faker.internet.email(),
+		password: 'demo123',
+		phone: '0406753038',
+		userStatus: 'active',
+	}
+
+	const user = await User.create(newUser)
 	const newPet: PetInterface = {
+		userId: user.id,
 		name: faker.lorem.word(5),
 		status: Status.available,
 		category: categoiesForThisPet,

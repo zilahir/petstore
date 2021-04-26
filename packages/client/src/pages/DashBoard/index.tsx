@@ -27,7 +27,7 @@ const DashBoard = (): ReactElement => {
 	const onDrop = useCallback(acceptedFiles => {
 		console.debug('acceptedFiles', acceptedFiles)
 	}, [])
-	const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop })
+	const { getRootProps, getInputProps, open } = useDropzone({ onDrop })
 	const { user } = useSelector((store: TopLevelState) => store)
 	const [selectedPet, setSelectedPet] = useState<Pet | any>({})
 	const [petName, setPetName] = useState<string>('')
@@ -107,9 +107,6 @@ const DashBoard = (): ReactElement => {
 						className={classnames(styles.newPetContainer, styles.petContainer)}
 					>
 						<h1>Upload a new pet to the store</h1>
-						<div className={styles.dragNDropContainer} {...getRootProps()}>
-							<input {...getInputProps()} />
-						</div>
 						<div className={styles.inputContainer}>
 							<div className={styles.group}>
 								<div className={styles.oneInput}>
@@ -134,12 +131,17 @@ const DashBoard = (): ReactElement => {
 							<div className={styles.inputContainer}>
 								<Select
 									isMulti
-									placeholder="Category"
+									placeholder="Tags"
 									options={tags?.map(({ name }: Category) => ({
 										value: name,
 										label: name,
 									}))}
 								/>
+							</div>
+							<div className={styles.dragNDropContainer} {...getRootProps()}>
+								<input {...getInputProps()} />
+								<p>drag and drop files here or:</p>
+								<Button onClick={open} label="Upoad files" />
 							</div>
 						</div>
 					</div>

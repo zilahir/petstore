@@ -18,6 +18,8 @@
 			height: 80%;
 			overflow: hidden;
 			overflow-y: auto;
+			display: flex;
+			flex-direction: column;
 
 			h1 {
 				@include heading {
@@ -123,6 +125,24 @@
 				position: relative;
 				top: -4px;
 			}
+		}
+	}
+}
+
+.dragNDropContainer {
+	margin: 30px 0;
+	height: 200px;
+	border: 2px dotted #cccccc;
+	padding: 20px;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+
+	p {
+		@include paragraph {
+			font-size: 18px;
+			margin: 10px 0;
 		}
 	}
 }

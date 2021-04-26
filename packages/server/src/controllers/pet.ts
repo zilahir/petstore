@@ -75,7 +75,6 @@ export function findPetsByStatus(
 	const chosenStatus = (status as unknown) as Status
 	findByStatus(chosenStatus)
 		.then(pets => {
-			console.debug('pets', pets)
 			response.status(HttpStatusCodes.OK).send(pets)
 			return
 		})

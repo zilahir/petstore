@@ -4,16 +4,13 @@ import faker from 'faker'
 import mongoose, { connection, Model, Query } from 'mongoose'
 import dotenv from 'dotenv'
 
-dotenv.config()
-
 import Tag from '../src/models/tag'
 import Category from '../src/models/category'
 import Pet, { Pet as PetInterface, Status } from '../src/models/pet'
 import User, { UserInterface } from '../src/models/user'
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-// TODO: fix this once DefinitelyTyped is updated
 const fakerApi: Faker.FakerStatic & any = faker
+dotenv.config()
 
 beforeEach(done => {
 	mongoose

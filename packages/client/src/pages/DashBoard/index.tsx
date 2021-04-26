@@ -11,6 +11,7 @@ import { useDropzone } from 'react-dropzone'
 import Select from 'react-select'
 import shortid from 'shortid'
 
+import { useToasts } from 'react-toast-notifications'
 import { apiEndPoints } from '../../api/apiEndpoints'
 import { deleteFunction, get, post } from '../../api/cloudFunctions'
 import Layout from '../../components/common/Layout'
@@ -25,16 +26,13 @@ import { Category } from '../../../../server/src/models/category'
 import { Tag } from '../../../../server/src/models/tag'
 import Spinner from '../../components/common/Spinner'
 
-type UploadImages = {
-	url: string
-}
-
 const DashBoard = (): ReactElement => {
 	const { user } = useSelector((store: TopLevelState) => store)
 	const [selectedPet, setSelectedPet] = useState<Pet | any>({})
 	const [images, setImages] = useState<Array<File>>([])
 	const [petName, setPetName] = useState<string>('')
 	const [isLoading, toggleLoading] = useState<boolean>(false)
+	const { addToast } = useToasts()
 
 	const onDrop = useCallback(acceptedFiles => {
 		toggleLoading(true)
@@ -55,10 +53,19 @@ const DashBoard = (): ReactElement => {
 		})
 
 		Promise.all(uploadPromises)
-			.then(() => {})
+			.then(() => {
+				addToast('Images had been uploaded successfully', {
+					appearance: 'success',
+				})
+			})
 			.catch((error: Error) => {
-				toggleLoading(false)
+				addToast('Image uploading has failed, please try again', {
+					appearance: 'error',
+				})
 				throw new Error(error.message)
+			})
+			.finally(() => {
+				toggleLoading(false)
 			})
 
 		setImages(
@@ -165,7 +172,11 @@ const DashBoard = (): ReactElement => {
 					<div
 						className={classnames(styles.newPetContainer, styles.petContainer)}
 					>
-						<h1>Upload a new pet to the store</h1>
+						{!isLoading ? (
+							<h1>Upload a new pet to the store</h1>
+						) : (
+							<h1>Uploading your images...</h1>
+						)}
 						{!isLoading ? (
 							<div className={styles.inputContainer}>
 								<div className={styles.group}>
@@ -198,12 +209,12 @@ const DashBoard = (): ReactElement => {
 										}))}
 									/>
 								</div>
+								<div className={styles.previewContainer}>{thumbs}</div>
 								<div className={styles.dragNDropContainer} {...getRootProps()}>
 									<input {...getInputProps()} />
 									<p>drag and drop files here or:</p>
 									<Button onClick={open} label="Upoad files" />
 								</div>
-								<div className={styles.previewContainer}>{thumbs}</div>
 							</div>
 						) : (
 							<Spinner className={styles.loaderContainer} />

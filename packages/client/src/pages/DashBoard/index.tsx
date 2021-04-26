@@ -54,8 +54,8 @@ const DashBoard = (): ReactElement => {
 		const uploadPromises: Array<Promise<any>> = []
 		acceptedFiles.map((currentFile: File) => {
 			const formData = new FormData()
-			const file = new File([currentFile], `${shortid.generate()}.jpg`, {
-				type: 'image/jpeg',
+			const file = new File([currentFile], `${shortid.generate()}.png`, {
+				type: 'image/png',
 			})
 			formData.append('image', file)
 			uploadPromises.push(

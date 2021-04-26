@@ -59,7 +59,6 @@ const OnePet = ({
 
 	function changePetImages(): void {
 		paginate(1)
-		console.debug('page', page)
 	}
 	const variants = {
 		enter: (direction: number) => ({

@@ -126,6 +126,6 @@ const server = app.listen(port, () =>
 
 export default server
 
-module.exports = app
+// module.exports = app
 
 module.exports.handler = serverless(app)

@@ -1,6 +1,8 @@
 import { Document, Model, model, NativeError, Schema } from 'mongoose'
 import AWS from 'aws-sdk'
 import dotenv from 'dotenv'
+import { ManagedUpload } from 'aws-sdk/clients/s3'
+import { Request } from 'express'
 
 dotenv.config()
 
@@ -29,12 +31,18 @@ const fileSchema: Schema = new Schema({
 
 const File: Model<IFile> = model('File', fileSchema)
 
-const insertFile = (fileData: File) => {
-	const file = new File(fileData)
-	return file.save()
+export interface Image {
+	image: {
+		[key: string]: string
+		name: string
+	}
 }
 
-export const uploadFile = (req: any) => {
+export interface FileInterface {
+	files: Image
+}
+
+export const uploadFile = (req: Request & FileInterface): Promise<string> => {
 	return new Promise(resolve => {
 		const s3 = new AWS.S3({
 			accessKeyId: process.env.AWS_ACCESS,
@@ -48,13 +56,11 @@ export const uploadFile = (req: any) => {
 			ACL: 'public-read',
 		}
 
-		console.debug('paras', params)
-
-		s3.upload(params, (err: any, data: any): void => {
-			if (err) {
-				throw new Error(err)
+		s3.upload(params, (error: Error, data: ManagedUpload.SendData): void => {
+			if (error) {
+				throw new Error(error.message)
 			}
-			resolve(data)
+			resolve(data.Location)
 		})
 	})
 }

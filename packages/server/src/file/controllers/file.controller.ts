@@ -1,8 +1,7 @@
-import { Response } from 'express'
+import { Response, Request } from 'express'
 import HttpStatusCodes from 'http-status-codes'
 
-import Request from '../../types/Request'
-import { uploadFile, getAll } from '../models/file.model'
+import { uploadFile, getAll, FileInterface } from '../models/file.model'
 
 /**
  *
@@ -11,10 +10,15 @@ import { uploadFile, getAll } from '../models/file.model'
  * @param {Request} request express request
  * @param {Response} response express response
  */
-export function uploadImage(request: Request, response: Response): void {
+export function uploadImage(
+	request: Request & FileInterface,
+	response: Response,
+): void {
 	uploadFile(request)
-		.then((serverResponse: any) => {
-			response.status(HttpStatusCodes.OK).send(serverResponse)
+		.then((serverResponse: string) => {
+			response.status(HttpStatusCodes.OK).send({
+				url: serverResponse,
+			})
 			return
 		})
 		.catch(error => {

@@ -15,9 +15,23 @@ const tagSchema: Schema = new Schema({
 
 const Tag: Model<ITag> = model('Tag', tagSchema)
 
-export const insert = (tag: Tag): Promise<ITag> => {
+/**
+ *
+ *
+ * @description creates a new tag
+ * @param {object} tag object representation of the new Tag
+ * @returns {Promise} Tag in a romise
+ */
+export function insert(tag: Tag): Promise<ITag> {
 	const newTag = new Tag(tag)
 	return newTag.save()
+}
+
+/**
+ * @returns {Promise} Categories in a Promise
+ */
+export function getAll(): Promise<Array<ITag>> {
+	return Tag.find({}).exec()
 }
 
 export default Tag

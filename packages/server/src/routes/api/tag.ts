@@ -1,6 +1,6 @@
 import { Router } from 'express'
 
-import { insertNewTag } from '../../controllers/tag'
+import { insertNewTag, getAllTags } from '../../controllers/tag'
 
 const router: Router = Router()
 
@@ -18,5 +18,7 @@ const router: Router = Router()
  *   }
  */
 router.post('/', [insertNewTag])
+
+router.get('/', [getAllTags])
 
 export default router

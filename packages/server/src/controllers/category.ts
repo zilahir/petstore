@@ -31,7 +31,7 @@ export function insertNewCategory(
 /**
  *
  *
- * @description creates a new category
+ * @description returns all categories
  * @param {Request} request express request
  * @param {Response} response express response
  */

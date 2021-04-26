@@ -124,6 +124,16 @@ const DashBoard = (): ReactElement => {
 									/>
 								</div>
 							</div>
+							<div className={styles.inputContainer}>
+								<Select
+									isMulti
+									placeholder="Category"
+									options={categories?.map(({ name }: Category) => ({
+										value: name,
+										label: name,
+									}))}
+								/>
+							</div>
 						</div>
 					</div>
 				</div>

@@ -75,3 +75,28 @@
 		}
 	}
 }
+
+.confirmContainer {
+	padding: 20px;
+	border-radius: 20px;
+	width: 600px;
+
+	.title {
+		@include heading {
+			font-size: 28px;
+			color: #ffffff;
+		}
+		margin: 20px 0;
+		margin-bottom: 40px;
+	}
+
+	.content {
+		display: flex;
+		justify-content: flex-end;
+		margin: 20px 0;
+	}
+
+	.actionBtn {
+		margin-left: 20px;
+	}
+}

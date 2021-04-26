@@ -36,5 +36,9 @@
 		&:focus {
 			outline: none;
 		}
+
+		&.danger {
+			background: rgba($color: $error-red, $alpha: 1);
+		}
 	}
 }

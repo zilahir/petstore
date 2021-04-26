@@ -11,6 +11,7 @@ interface IButton {
 	onClick?: React.MouseEventHandler<HTMLButtonElement>
 	type?: 'button' | 'submit'
 	icon?: ReactNode | ReactNode[]
+	variant?: 'danger' | 'normal'
 }
 
 const defaultProps = {
@@ -19,6 +20,7 @@ const defaultProps = {
 	onClick: undefined,
 	icon: null,
 	type: 'button',
+	variant: 'normal',
 }
 
 const Button = ({
@@ -28,6 +30,7 @@ const Button = ({
 	className,
 	type,
 	icon,
+	variant,
 }: IButton): ReactElement => (
 	<div
 		className={classnames(
@@ -41,6 +44,7 @@ const Button = ({
 			type={type}
 			onClick={onClick && onClick}
 			disabled={disabled}
+			className={variant && styles[variant]}
 		>
 			{icon && <div className={styles.iconContainer}>{icon}</div>}
 			{label}

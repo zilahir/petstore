@@ -15,7 +15,8 @@
 		"start:server": "yarn workspace server server:dev",
 		"storybook": "yarn workspace client storybook",
 		"build-storybook": "build-storybook",
-		"start:dev": "concurrently -k -n  CLIENT,SERVER,DOCKER,STORYBOOK -c red,yellow,black,green \"yarn start:client\" \"yarn start:server\" \"yarn start:docker\" \"yarn storybook\""
+		"start:dev": "concurrently -k -n  CLIENT,SERVER,DOCKER,STORYBOOK -c red,yellow,black,green \"yarn start:client\" \"yarn start:server\" \"yarn start:docker\" \"yarn storybook\"",
+		"build:client": "yarn workspace client build"
 	},
 	"dependencies": {
 		"concurrently": "^6.0.2"

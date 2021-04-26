@@ -146,3 +146,17 @@
 		}
 	}
 }
+
+.previewContainer {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+
+	.preview {
+		max-width: 150px;
+
+		img {
+			max-width: 100%;
+		}
+	}
+}

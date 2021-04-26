@@ -1,7 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable unicorn/consistent-function-scoping */
 /* eslint-disable no-unused-vars */
-import React, { ReactElement, useState, useCallback } from 'react'
+import React, { ReactElement, useState, useCallback, useEffect } from 'react'
 import classnames from 'classnames'
 import { useQuery } from 'react-query'
 import { useSelector } from 'react-redux'
@@ -24,13 +24,32 @@ import { Category } from '../../../../server/src/models/category'
 import { Tag } from '../../../../server/src/models/tag'
 
 const DashBoard = (): ReactElement => {
-	const onDrop = useCallback(acceptedFiles => {
-		console.debug('acceptedFiles', acceptedFiles)
-	}, [])
-	const { getRootProps, getInputProps, open } = useDropzone({ onDrop })
 	const { user } = useSelector((store: TopLevelState) => store)
 	const [selectedPet, setSelectedPet] = useState<Pet | any>({})
+	const [images, setImages] = useState<Array<File>>([])
 	const [petName, setPetName] = useState<string>('')
+
+	const onDrop = useCallback(acceptedFiles => {
+		setImages(
+			acceptedFiles.map((file: File) =>
+				Object.assign(file, {
+					preview: URL.createObjectURL(file),
+				}),
+			),
+		)
+	}, [])
+	const { getRootProps, getInputProps, open } = useDropzone({
+		onDrop,
+		accept: 'image/jpeg, image/png',
+	})
+
+	useEffect(
+		() => () => {
+			images.map((file: any) => URL.revokeObjectURL(file.preview))
+		},
+		[images],
+	)
+
 	const [
 		isConfirmDeleteModalOpen,
 		toggleConfirmDeleteModal,
@@ -71,6 +90,14 @@ const DashBoard = (): ReactElement => {
 		toggleConfirmDeleteModal(true)
 		setSelectedPet(chosenPet)
 	}
+
+	const thumbs = images.map((file: any) => (
+		<div className={styles.preview} key={file.name}>
+			<div>
+				<img alt="preview" src={file.preview} />
+			</div>
+		</div>
+	))
 
 	return (
 		<DashboardContext.Provider value={{ selectedPet, setSelectedPet }}>
@@ -143,6 +170,7 @@ const DashBoard = (): ReactElement => {
 								<p>drag and drop files here or:</p>
 								<Button onClick={open} label="Upoad files" />
 							</div>
+							<div className={styles.previewContainer}>{thumbs}</div>
 						</div>
 					</div>
 				</div>

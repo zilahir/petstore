@@ -5,7 +5,7 @@ import dotenv from 'dotenv'
 
 import oldSwagger from '../swagger.json'
 import connectDB from '../config/database'
-import authorization from './routes/api/auth'
+// import authorization from './routes/api/auth'
 import user from './routes/api/user'
 import profile from './routes/api/profile'
 import file from './routes/api/upload'

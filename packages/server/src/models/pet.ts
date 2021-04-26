@@ -96,7 +96,7 @@ export const findByStatus = (status: Status): Promise<Array<IPet>> => {
  * @returns {Promise} the Pet in a Promise
  */
 export function patchById(petId: string, payload: Pet): Promise<IPet | null> {
-	return Pet.findOneAndUpdate({ id: petId }, payload).exec()
+	return Pet.findByIdAndUpdate(petId, payload).exec()
 }
 
 /**

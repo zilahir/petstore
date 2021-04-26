@@ -6,7 +6,7 @@ import { motion } from 'framer-motion'
 import styles from './Pet.module.scss'
 import Ribbon from './components/Ribbon'
 import Button from '../../common/Button'
-import { post } from '../../../api/cloudFunctions'
+import { patch, post } from '../../../api/cloudFunctions'
 import { apiEndPoints } from '../../../api/apiEndpoints'
 import { Pet } from '../../../../../server/src/models/pet'
 
@@ -17,6 +17,15 @@ export interface Tag {
 
 interface IOnePet extends Pet {
 	petId: string
+}
+
+function setPetStatusToPending(petId: string): void {
+	patch({
+		url: `${apiEndPoints.modifyPet}/${petId}`,
+		data: {
+			status: 'pending',
+		},
+	})
 }
 
 const OnePet = ({
@@ -36,6 +45,8 @@ const OnePet = ({
 		post({
 			url: apiEndPoints.newOrder,
 			data: order,
+		}).then(() => {
+			setPetStatusToPending(petId)
 		})
 	}
 	return (

@@ -1,7 +1,8 @@
 import { Document, Model, model, Schema } from 'mongoose'
-import { ICategory } from './category'
+
 import { ITag } from './tag'
 import { IUser } from './user'
+import { ICategory } from './category'
 
 export enum Status {
 	avaliable = 'avaliable',

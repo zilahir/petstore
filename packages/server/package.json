@@ -10,6 +10,7 @@
 		"deploy": "node dist/src/server.js",
 		"watch-deploy": "nodemon dist/src/server.js",
 		"server:dev": "concurrently \"npm run watch-tsc\" \"npm run watch-deploy\"",
+		"deploy:serverless": "serverless deploy",
 		"start": "npm run deploy",
 		"test": "jest"
 	},

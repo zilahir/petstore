@@ -8,6 +8,7 @@ import {
 	patchPet,
 	getPetById,
 	deletePetById,
+	getPetByUser,
 } from '../../controllers/pet'
 
 const router: Router = Router()
@@ -27,6 +28,7 @@ const router: Router = Router()
     "category": [
         "6083edadde033eaa9c008569"
     ],
+    "userId": "608588ce3fde5761fa870ad5",
     "tags": [
         "6083f203874b78ae165ca457"
     ],
@@ -45,6 +47,8 @@ router.patch('/:petId', [patchPet])
 router.get('/findByStatus', [findPetsByStatus])
 
 router.delete('/:petId', [deletePetById])
+
+router.get('/user/:userId', [getPetByUser])
 
 router.get('/:id', [getPetById])
 

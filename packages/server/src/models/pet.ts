@@ -118,4 +118,12 @@ export function deletePet(petId: string): Promise<IPet | null> {
 	return Pet.findOneAndDelete({ _id: petId }).exec()
 }
 
+/**
+ * @param {string} userId the Id of the User
+ * @returns {Promise} the found Pet in a Promise
+ */
+export function findByUser(userId: string): Promise<IPet | null> {
+	return Pet.findOne({ userId }).populate('tags').populate('category').exec()
+}
+
 export default Pet

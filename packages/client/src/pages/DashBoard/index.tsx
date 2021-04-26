@@ -19,12 +19,12 @@ import { TopLevelState } from '../../store/configureStore'
 import styles from './DashBoard.module.scss'
 import Button from '../../components/common/Button'
 import Modal from '../../components/common/Modal'
-import { Pet } from '../../../../server/src/models/pet'
 import DashboardContext from './dashboardContext'
 import Input from '../../components/common/Input'
 import { Category } from '../../../../server/src/models/category'
 import { Tag } from '../../../../server/src/models/tag'
 import Spinner from '../../components/common/Spinner'
+import { Pet } from '../../../../server/src/models/pet'
 
 const DashBoard = (): ReactElement => {
 	const { user } = useSelector((store: TopLevelState) => store)
@@ -32,6 +32,9 @@ const DashBoard = (): ReactElement => {
 	const [images, setImages] = useState<Array<File>>([])
 	const [petName, setPetName] = useState<string>('')
 	const [isLoading, toggleLoading] = useState<boolean>(false)
+	const [selectedTag, setSelectedTags] = useState<string[]>([])
+	const [selectedCategory, setSelectedCategory] = useState<string>('')
+	const [savedImages, setSavedImages] = useState<Array<any>>([])
 	const { addToast } = useToasts()
 
 	const onDrop = useCallback(acceptedFiles => {
@@ -53,7 +56,8 @@ const DashBoard = (): ReactElement => {
 		})
 
 		Promise.all(uploadPromises)
-			.then(() => {
+			.then(serverImages => {
+				setSavedImages(serverImages.map(({ url }) => url))
 				addToast('Images had been uploaded successfully', {
 					appearance: 'success',
 				})
@@ -138,6 +142,33 @@ const DashBoard = (): ReactElement => {
 		</div>
 	))
 
+	function clearInput(): void {
+		setImages([])
+		setSelectedTags([])
+		setSelectedCategory('')
+		setSavedImages([])
+	}
+
+	function addNewPet(): void {
+		const newPet = {
+			name: petName,
+			userId: user._id,
+			photoUrls: savedImages,
+			category: selectedCategory,
+			tags: selectedTag,
+		}
+		post({
+			url: apiEndPoints.addNewPet,
+			data: newPet,
+		}).then(() => {
+			refetchPets()
+			clearInput()
+			addToast(`Your pet ${newPet.name} has been added to the store`, {
+				appearance: 'success',
+			})
+		})
+	}
+
 	return (
 		<DashboardContext.Provider value={{ selectedPet, setSelectedPet }}>
 			<Layout>
@@ -159,7 +190,7 @@ const DashBoard = (): ReactElement => {
 											/>
 											<Button
 												label="Edit"
-												onClick={() => console.debug('delete')}
+												onClick={() => console.debug('mod')}
 												icon={<CreateIcon htmlColor="#6c63ff" />}
 												className={styles.actionBtn}
 											/>
@@ -192,8 +223,11 @@ const DashBoard = (): ReactElement => {
 									<div className={styles.oneInput}>
 										<Select
 											placeholder="Category"
-											options={categories?.map(({ name }: Category) => ({
-												value: name,
+											onChange={selected =>
+												setSelectedCategory(selected?.value)
+											}
+											options={categories?.map(({ name, _id }: any) => ({
+												value: _id,
 												label: name,
 											}))}
 										/>
@@ -203,10 +237,13 @@ const DashBoard = (): ReactElement => {
 									<Select
 										isMulti
 										placeholder="Tags"
-										options={tags?.map(({ name }: Category) => ({
-											value: name,
+										options={tags?.map(({ name, _id }: any) => ({
+											value: _id,
 											label: name,
 										}))}
+										onChange={selected =>
+											setSelectedTags(selected.map(tag => tag.value))
+										}
 									/>
 								</div>
 								<div className={styles.previewContainer}>{thumbs}</div>
@@ -214,6 +251,9 @@ const DashBoard = (): ReactElement => {
 									<input {...getInputProps()} />
 									<p>drag and drop files here or:</p>
 									<Button onClick={open} label="Upoad files" />
+								</div>
+								<div className={styles.submitContainer}>
+									<Button label="Add pet" onClick={() => addNewPet()} />
 								</div>
 							</div>
 						) : (

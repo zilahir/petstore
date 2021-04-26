@@ -15,4 +15,5 @@ export const apiEndPoints = {
 	getAllCategories: `${apiRoot}/category`,
 	getAllTags: `${apiRoot}/tag`,
 	uploadImage: `${apiRoot}/file/upload`,
+	addNewPet: `${apiRoot}/pet`,
 }

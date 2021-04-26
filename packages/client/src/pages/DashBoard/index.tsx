@@ -35,6 +35,8 @@ export interface Tag {
 	_id: string
 }
 
+type Status = 'avalible' | 'pending'
+
 const DashBoard = (): ReactElement => {
 	const { user } = useSelector((store: TopLevelState) => store)
 	const [selectedPet, setSelectedPet] = useState<Pet | any>({})
@@ -239,7 +241,14 @@ const DashBoard = (): ReactElement => {
 							<ul>
 								{pets.map((pet: Pet) => (
 									<li key={pet.name}>
-										<div>{pet.name}</div>
+										<div>
+											<p>
+												{pet.name}
+												<span className={styles.pending}>
+													{pet.status === 'pending' ? 'pending' : ''}
+												</span>
+											</p>
+										</div>
 										<div className={styles.actionBtnContainer}>
 											<Button
 												label="Delete"

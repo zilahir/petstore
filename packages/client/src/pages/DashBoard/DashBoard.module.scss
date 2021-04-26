@@ -43,25 +43,35 @@
 					@include paragraph {
 						font-size: 26px;
 						color: $purple;
-						border-radius: 10px;
-						transition: all 0.2s ease-in;
 						display: flex;
 						align-items: center;
-
-						&:hover {
-							cursor: pointer;
-							background: rgba($color: $purple, $alpha: 1);
-							color: #ffffff;
-
-							svg {
-								fill: #ffffff;
-							}
-						}
 					}
 
+					border-radius: 10px;
+					transition: all 0.2s ease-in;
+					display: flex;
+					align-items: center;
 					border: 2px solid $purple;
 					padding: 10px;
 					margin-bottom: 10px;
+
+					&:hover {
+						cursor: pointer;
+
+						svg {
+							fill: #ffffff;
+						}
+					}
+
+					p {
+						span {
+							font-size: 14px;
+							padding: 4px 8px;
+							border-radius: 5px;
+							background: rgba($color: $blue, $alpha: 0.15);
+							margin-left: 20px;
+						}
+					}
 
 					div {
 						&:first-of-type {

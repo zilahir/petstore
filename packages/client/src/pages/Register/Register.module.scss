@@ -16,6 +16,29 @@
 		border-radius: 20px;
 		position: relative;
 
+		.navContainer {
+			display: flex;
+			align-items: center;
+
+			a {
+				@include paragraph {
+					font-size: 22px;
+				}
+				position: relative;
+				top: -10px;
+				margin: 10px 20px;
+				text-decoration: none;
+
+				&:focus {
+					outline: none;
+				}
+
+				&:hover {
+					text-decoration: underline;
+				}
+			}
+		}
+
 		.errorContainer {
 			.oneError {
 				padding: 14px 10px;
@@ -88,6 +111,18 @@
 	.graphicContainer {
 		img {
 			max-width: 100%;
+		}
+	}
+
+	.successContainer {
+		h1 {
+			@include heading {
+				font-size: 28px;
+			}
+		}
+
+		.loginBtnContainer {
+			margin: 30px 0;
 		}
 	}
 }

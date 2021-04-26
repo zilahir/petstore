@@ -24,7 +24,6 @@ This is a _monorepo_ that sovles the coding task I was given by Varjo.
 - [ ] Setup Semantic Release
 - [x] Setup Database(s)
 - [ ] Setup Production Environment
-- [ ] Implement the controllers / models for Backend
 - [ ] Implement the frontend
 - [ ] Create testcases for frontend components
 - [ ] Setup CI/CD Pipelines
@@ -43,10 +42,9 @@ This is a _monorepo_ that sovles the coding task I was given by Varjo.
 
 ### Backend
 
-- [X] implement models
-
+- [x] implement models
 - [x] implement POST function for models
 - [x] imnplement auth roues
-- [] implement PATCH functions for models
-- [] implement DELETE functions for models
-- [] implement store
+- [x] implement PATCH functions for models
+- [x] implement DELETE functions for models
+- [x] implement store

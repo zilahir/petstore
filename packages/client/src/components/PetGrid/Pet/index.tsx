@@ -1,7 +1,8 @@
-import React, { ReactElement } from 'react'
-import random from 'random'
+/* eslint-disable no-shadow */
+import React, { ReactElement, useState } from 'react'
 import LocalOfferIcon from '@material-ui/icons/LocalOffer'
-import { motion } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
+import { wrap } from '@popmotion/popcorn'
 
 import styles from './Pet.module.scss'
 import Ribbon from './components/Ribbon'
@@ -49,21 +50,55 @@ const OnePet = ({
 			setPetStatusToPending(petId)
 		})
 	}
+
+	const [[page, direction], setPage] = useState([0, 0])
+	const petImageIndex = wrap(0, photoUrls.length, page)
+	const paginate = (newDirection: number): void => {
+		setPage([page + newDirection, newDirection])
+	}
+
+	function changePetImages(): void {
+		paginate(1)
+		console.debug('page', page)
+	}
+	const variants = {
+		enter: (direction: number) => ({
+			x: direction > 0 ? 300 : -300,
+			opacity: 0,
+		}),
+		center: {
+			zIndex: 1,
+			x: 0,
+			opacity: 1,
+		},
+		exit: (direction: number) => ({
+			zIndex: 0,
+			x: direction < 0 ? 300 : -300,
+			opacity: 0,
+		}),
+	}
 	return (
 		<div className={styles.onePet}>
 			<Ribbon label={(status as unknown) as string} />
 			<div className={styles.petImages}>
-				{photoUrls.map((photo: string, index: number) => (
+				<AnimatePresence exitBeforeEnter initial={false} custom={direction}>
 					<motion.img
+						key={page}
+						custom={direction}
 						whileHover={{ scale: 1.05 }}
-						key={photo}
-						alt={`${photo}-${index + 1}`}
-						src={`https://picsum.photos/${random.int(300, 600)}/${random.int(
-							300,
-							500,
-						)}`}
+						alt={name}
+						variants={variants}
+						src={photoUrls[petImageIndex]}
+						onClick={() => changePetImages()}
+						animate="center"
+						exit="exit"
 					/>
-				))}
+				</AnimatePresence>
+				<ul className={styles.dots}>
+					{photoUrls.map((_, index: number) => (
+						<li className={petImageIndex === index ? styles.active : ''} />
+					))}
+				</ul>
 			</div>
 			<div className={styles.metaContainer}>
 				<div>

@@ -6,7 +6,7 @@ import WarningIcon from '@material-ui/icons/Warning'
 import { useDispatch } from 'react-redux'
 
 import { AnimatePresence, motion } from 'framer-motion'
-import { useHistory } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import Input from '../../components/common/Input'
 import Layout from '../../components/common/Layout'
 import doggy from '../../assets/images/doggy.svg'
@@ -85,7 +85,10 @@ const Login = (): ReactElement => {
 							</motion.div>
 						)}
 					</AnimatePresence>
-					<h1>Sign in</h1>
+					<div className={styles.navContainer}>
+						<h1>Sign in</h1>
+						<Link to="/">Go back</Link>
+					</div>
 					<motion.div
 						className={styles.loginInner}
 						variants={loadingVariants}

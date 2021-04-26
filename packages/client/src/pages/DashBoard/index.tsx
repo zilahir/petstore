@@ -244,9 +244,9 @@ const DashBoard = (): ReactElement => {
 										<div>
 											<p>
 												{pet.name}
-												<span className={styles.pending}>
-													{pet.status === 'pending' ? 'pending' : ''}
-												</span>
+												{pet.status && pet.status === 'pending' && (
+													<span className={styles.pending}>pending</span>
+												)}
 											</p>
 										</div>
 										<div className={styles.actionBtnContainer}>

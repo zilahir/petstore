@@ -5,7 +5,7 @@ import dotenv from 'dotenv'
 
 import oldSwagger from '../swagger.json'
 import connectDB from '../config/database'
-// import authorization from './routes/api/auth'
+import authorization from './routes/api/auth'
 import user from './routes/api/user'
 import profile from './routes/api/profile'
 import file from './routes/api/upload'
@@ -116,15 +116,16 @@ app.use('/file', file)
 app.use('/category', category)
 app.use('/pet', pet)
 app.use('/tag', tag)
-app.use('/user', [user])
+app.use('/user', [authorization, user])
 app.use('/store', [store])
 
-/* const port = app.get('port')
+const port = app.get('port')
 const server = app.listen(port, () =>
 	console.log(`Server started on port ${port}, diename: ${__dirname}`),
 )
 
 export default server
-module.exports = app */
+
+module.exports = app
 
 module.exports.handler = serverless(app)

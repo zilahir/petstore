@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import WarningIcon from '@material-ui/icons/Warning'
+import { Link, useHistory } from 'react-router-dom'
 
 import { AnimatePresence, motion } from 'framer-motion'
 import Layout from '../../components/common/Layout'
@@ -14,6 +15,7 @@ import { apiEndPoints } from '../../api/apiEndpoints'
 import { AuthError } from '../../types/types'
 import { loadingVariants } from '../../utils/animations'
 import Spinner from '../../components/common/Spinner'
+import Button from '../../components/common/Button'
 
 const schema = yup.object().shape({
 	userName: yup.string().required().min(5),
@@ -38,6 +40,7 @@ const Register = (): ReactElement => {
 	const [isRegSuccess, toggleIsRegSuccess] = useState<boolean>(false)
 	const [requestErrors, setRequestErrors] = useState([])
 	const [isLoading, toggleLoading] = useState<boolean>(false)
+	const history = useHistory()
 
 	const {
 		register,
@@ -86,7 +89,10 @@ const Register = (): ReactElement => {
 									</div>
 								)}
 							</AnimatePresence>
-							<h1>Sign Up</h1>
+							<div className={styles.navContainer}>
+								<h1>Sign Up</h1>
+								<Link to="/">Go back</Link>
+							</div>
 							<motion.div
 								className={styles.loginInner}
 								variants={loadingVariants}
@@ -202,7 +208,14 @@ const Register = (): ReactElement => {
 						</div>
 					)}
 					{isRegSuccess && (
-						<div className={styles.successContainer}>Yay! 👋 Welcome!</div>
+						<div className={styles.successContainer}>
+							<h1>Yay! 👋 Welcome!</h1>
+							<Button
+								className={styles.loginBtnContainer}
+								label="Login"
+								onClick={() => history.push('/login')}
+							/>
+						</div>
 					)}
 				</AnimatePresence>
 				<div className={styles.graphicContainer}>

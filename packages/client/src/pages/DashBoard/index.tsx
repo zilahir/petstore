@@ -8,7 +8,8 @@ import { useSelector } from 'react-redux'
 import DeleteIcon from '@material-ui/icons/Delete'
 import CreateIcon from '@material-ui/icons/Create'
 import { useDropzone } from 'react-dropzone'
-import Select from 'react-select'
+import Select, { OptionsType, OptionTypeBase } from 'react-select'
+import CreatableSelect from 'react-select/creatable'
 import shortid from 'shortid'
 
 import { useToasts } from 'react-toast-notifications'
@@ -231,6 +232,23 @@ const DashBoard = (): ReactElement => {
 		})
 	}
 
+	function handleCategoryChange(option: OptionTypeBase | null): void {
+		if (option && option.__isNew__) {
+			post({
+				url: apiEndPoints.createCategory,
+				data: {
+					name: option.label,
+				},
+			}).then(() => {
+				addToast('Category had been uploaded successfully', {
+					appearance: 'success',
+				})
+			})
+		} else {
+			setSelectedCategory(option?.value)
+		}
+	}
+
 	return (
 		<DashboardContext.Provider value={{ selectedPet, setSelectedPet }}>
 			<Layout>
@@ -290,11 +308,11 @@ const DashBoard = (): ReactElement => {
 										/>
 									</div>
 									<div className={styles.oneInput}>
-										<Select
+										<CreatableSelect
+											isClearable
+											hande
 											placeholder="Category"
-											onChange={selected =>
-												setSelectedCategory(selected?.value)
-											}
+											onChange={selected => handleCategoryChange(selected)}
 											options={categories?.map(({ name, _id }: any) => ({
 												value: _id,
 												label: name,

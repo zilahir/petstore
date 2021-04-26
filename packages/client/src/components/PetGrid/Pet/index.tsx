@@ -109,16 +109,18 @@ const OnePet = ({
 						<p>{category.name}</p>
 					</div>
 				</div>
-				<div className={styles.tags}>
-					<ul>
-						{tags.map((tag: Tag) => (
-							<li className={styles.oneTag} key={tag.name}>
-								<LocalOfferIcon htmlColor="#fff" />
-								{tag.name}
-							</li>
-						))}
-					</ul>
-				</div>
+				{tags.length > 0 && (
+					<div className={styles.tags}>
+						<ul>
+							{tags.map((tag: Tag) => (
+								<li className={styles.oneTag} key={tag.name}>
+									<LocalOfferIcon htmlColor="#fff" />
+									{tag.name}
+								</li>
+							))}
+						</ul>
+					</div>
+				)}
 			</div>
 			<div className={styles.buyBtn}>
 				<Button label="Place order" onClick={() => placeOrder()} />

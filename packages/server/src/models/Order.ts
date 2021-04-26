@@ -2,10 +2,9 @@ import { Document, Model, model, Schema } from 'mongoose'
 import { IPet } from './pet'
 import { IUser } from './user'
 
-enum OrderStatus {
+export enum OrderStatus {
 	sold,
 	pending,
-	avaluable,
 }
 
 export interface Order {

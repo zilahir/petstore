@@ -1,42 +1,37 @@
-
-import { Document, Model, model, Schema } from "mongoose";
+import { Document, Model, model, NativeError, Schema } from 'mongoose'
 import AWS from 'aws-sdk'
 import dotenv from 'dotenv'
 
 dotenv.config()
 
 export interface IFile extends Document {
-  isbn: string,
-  url: string,
-  createdAt: string | Date,
+	isbn: string
+	url: string
+	createdAt: string | Date
 }
 
 export interface File {
-  url: string,
-  isbn: string,
-  createdAt: string | Date,
+	url: string
+	isbn: string
+	createdAt: string | Date
 }
 
 const fileSchema: Schema = new Schema({
-  isbn: {
-    type: String,
-    required: true,
-  },
-  url: {
-    type: String,
-    required: true,
-  },
-  createdAt: {
-    type: String,
-    required: true,
-  }
+	url: {
+		type: String,
+		required: true,
+	},
+	createdAt: {
+		type: String,
+		required: true,
+	},
 })
 
-const File: Model<IFile> = model("File", fileSchema)
+const File: Model<IFile> = model('File', fileSchema)
 
 const insertFile = (fileData: File) => {
-  const file = new File(fileData)
-  return file.save()
+	const file = new File(fileData)
+	return file.save()
 }
 
 export const uploadFile = (req: any) => {
@@ -50,31 +45,22 @@ export const uploadFile = (req: any) => {
 			Bucket: process.env.AWS_BUCKET,
 			Key: `${req.files.image.name}`,
 			Body: req.files.image.data,
-			ACL: 'public-read'
+			ACL: 'public-read',
 		}
-		
-		s3.upload(params, (err: any, data: any) => {
-			if(err) {
-				throw err;
-			} else {
-        const isbn = req.files.image.name.split('__')[0]
-        insertFile({
-          url: data.Location,
-          isbn,
-          createdAt: new Date(),
-        }).then(() => {
-          resolve({
-            url: data.Location,
-          })
-        })
+
+		console.debug('paras', params)
+
+		s3.upload(params, (err: any, data: any): void => {
+			if (err) {
+				throw new Error(err)
 			}
+			resolve(data)
 		})
-	
 	})
 }
 
-export const getAll = () => {
-  return File.find({})
+export const getAll = (): Promise<IFile[]> => {
+	return File.find({}).exec()
 }
 
 export default File

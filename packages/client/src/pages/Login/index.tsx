@@ -6,6 +6,7 @@ import WarningIcon from '@material-ui/icons/Warning'
 import { useDispatch } from 'react-redux'
 
 import { AnimatePresence, motion } from 'framer-motion'
+import { useHistory } from 'react-router-dom'
 import Input from '../../components/common/Input'
 import Layout from '../../components/common/Layout'
 import doggy from '../../assets/images/doggy.svg'
@@ -24,6 +25,7 @@ const Login = (): ReactElement => {
 	const [isLoading, toggleLoading] = useState<boolean>(false)
 	const [requestErrors, setRequestErrors] = useState([])
 	const dispatch = useDispatch()
+	const history = useHistory()
 
 	interface ILogin {
 		username: string
@@ -51,6 +53,7 @@ const Login = (): ReactElement => {
 		})
 			.then((result: IUSer) => {
 				dispatch(authUser(result))
+				history.push('/')
 			})
 			.catch((error: any) => {
 				setRequestErrors(error.errors)

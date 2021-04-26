@@ -111,7 +111,7 @@ app.get('/profile', requiresAuth(), (req: OpenidRequest, res) => {
 
 // app.use('/user', authorization)
 app.use('/api/profile', profile)
-app.use('/api/file', file)
+app.use('/file', file)
 app.use('/category', category)
 app.use('/pet', pet)
 app.use('/tag', tag)

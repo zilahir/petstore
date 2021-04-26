@@ -9,9 +9,10 @@ import DeleteIcon from '@material-ui/icons/Delete'
 import CreateIcon from '@material-ui/icons/Create'
 import { useDropzone } from 'react-dropzone'
 import Select from 'react-select'
+import shortid from 'shortid'
 
 import { apiEndPoints } from '../../api/apiEndpoints'
-import { deleteFunction, get } from '../../api/cloudFunctions'
+import { deleteFunction, get, post } from '../../api/cloudFunctions'
 import Layout from '../../components/common/Layout'
 import { TopLevelState } from '../../store/configureStore'
 import styles from './DashBoard.module.scss'
@@ -30,16 +31,38 @@ const DashBoard = (): ReactElement => {
 	const [petName, setPetName] = useState<string>('')
 
 	const onDrop = useCallback(acceptedFiles => {
+		const uploadPromises: Array<Promise<any>> = []
+
+		acceptedFiles.map((currentFile: File) => {
+			const formData = new FormData()
+			const file = new File([currentFile], `${shortid.generate()}.jpg`, {
+				type: 'image/jpeg',
+			})
+			formData.append('image', file)
+			uploadPromises.push(
+				post({
+					url: apiEndPoints.uploadImage,
+					data: formData,
+				}),
+			)
+			return true
+		})
+
+		Promise.all(uploadPromises).then(() => {
+			console.debug('upload is ready')
+		})
+
 		setImages(
-			acceptedFiles.map((file: File) =>
-				Object.assign(file, {
-					preview: URL.createObjectURL(file),
+			acceptedFiles.map((currentFile: File) =>
+				Object.assign(currentFile, {
+					preview: URL.createObjectURL(currentFile),
 				}),
 			),
 		)
 	}, [])
 	const { getRootProps, getInputProps, open } = useDropzone({
 		onDrop,
+		noClick: true,
 		accept: 'image/jpeg, image/png',
 	})
 

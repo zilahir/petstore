@@ -17,4 +17,5 @@ export const apiEndPoints = {
 	uploadImage: `${apiRoot}/file/upload`,
 	addNewPet: `${apiRoot}/pet`,
 	modifyPet: `${apiRoot}/pet`,
+	newOrder: `${apiRoot}/store/order`,
 }

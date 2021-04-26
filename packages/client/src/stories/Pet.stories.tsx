@@ -25,11 +25,12 @@ export const Pet = () => (
 	>
 		<OnePet
 			userId="608660c99cfd2a48a19c4fb9"
-			status={Status.available}
+			status={Status.avaliable}
 			name="demo"
 			category="demo"
 			tags={[1, 2]}
 			photoUrls={['1']}
+			petId="608703307b65cdbecf671154"
 		/>
 	</div>
 )

@@ -8,7 +8,8 @@
 	break-inside: avoid;
 	position: relative;
 	overflow: hidden;
-	border-radius: 20px;
+	border-top-left-radius: 20px;
+	border-top-right-radius: 20px;
 
 	p,
 	span {
@@ -17,11 +18,6 @@
 	}
 
 	.metaContainer {
-		position: absolute;
-		bottom: 0;
-		left: 0;
-		width: calc(100% - 20px);
-		background: rgba($color: #ffffff, $alpha: 0.55);
 		padding: 10px;
 		display: flex;
 		justify-content: space-between;
@@ -61,7 +57,7 @@
 					border-radius: 4px;
 					display: flex;
 					align-items: center;
-					background: rgba($color: $purple, $alpha: 1);
+					background: rgba($color: $blue, $alpha: 1);
 					color: #ffffff;
 
 					svg {
@@ -84,5 +80,10 @@
 		width: 100%;
 		grid-row: 1 / -1;
 		grid-column: 1;
+	}
+
+	.buyBtn {
+		display: flex;
+		justify-content: flex-end;
 	}
 }

@@ -4,9 +4,9 @@ import { ITag } from './tag'
 import { IUser } from './user'
 
 export enum Status {
-	available,
-	pending,
-	sold,
+	avaliable = 'avaliable',
+	pennding = 'pending',
+	sold = 'sold',
 }
 
 export interface Pet {
@@ -38,7 +38,7 @@ const petSchema: Schema = new Schema({
 	status: {
 		type: String,
 		enum: Object.values(Status),
-		default: Status.available,
+		default: Status.avaliable,
 		required: true,
 	},
 	category: {

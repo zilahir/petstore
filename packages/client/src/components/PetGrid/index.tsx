@@ -9,6 +9,10 @@ import styles from './PetGrid.module.scss'
 import { Pet } from '../../../../server/src/models/pet'
 import OnePet from './Pet'
 
+export interface IPet extends Pet {
+	_id: string
+}
+
 const variants = {
 	hidden: {
 		opacity: 0,
@@ -41,9 +45,9 @@ const PetGrid = (): ReactElement | null => {
 			(get({
 				url: apiEndPoints.findByStatus,
 				params: {
-					status: 'available',
+					status: 'avaliable',
 				},
-			}) as unknown) as Array<Pet>,
+			}) as unknown) as Array<IPet>,
 	)
 
 	return (
@@ -52,7 +56,7 @@ const PetGrid = (): ReactElement | null => {
 				<AnimatePresence key={data.length}>
 					{data.map(
 						(
-							{ name, photoUrls, status, category, tags, userId },
+							{ name, photoUrls, status, category, tags, userId, _id },
 							petIndex: number,
 						) => (
 							<motion.div
@@ -64,6 +68,7 @@ const PetGrid = (): ReactElement | null => {
 								exit="exit"
 							>
 								<OnePet
+									petId={_id}
 									userId={userId}
 									status={status}
 									category={category}

@@ -25,12 +25,12 @@ import Input from '../../components/common/Input'
 import Spinner from '../../components/common/Spinner'
 import { Pet } from '../../../../server/src/models/pet'
 
-interface Category {
+export interface Category {
 	name: string
 	_id: string
 }
 
-interface Tag {
+export interface Tag {
 	name: string
 	_id: string
 }

@@ -21,6 +21,7 @@ import { Pet } from '../../../../server/src/models/pet'
 import DashboardContext from './dashboardContext'
 import Input from '../../components/common/Input'
 import { Category } from '../../../../server/src/models/category'
+import { Tag } from '../../../../server/src/models/tag'
 
 const DashBoard = (): ReactElement => {
 	const onDrop = useCallback(acceptedFiles => {
@@ -44,12 +45,18 @@ const DashBoard = (): ReactElement => {
 		(get({
 			url: `${apiEndPoints.getAllCategories}`,
 		}) as unknown) as Array<any>
+
+	const fetchTags = (): Array<Tag> =>
+		(get({
+			url: `${apiEndPoints.getAllTags}`,
+		}) as unknown) as Array<any>
 	const {
 		data: pets,
 		isFetched: isPetsFetched,
 		refetch: refetchPets,
 	} = useQuery('petsByUser', fetchPets)
 	const { data: categories } = useQuery('caategories', fetchCategories)
+	const { data: tags } = useQuery('tags', fetchTags)
 
 	function handleDelete(): void {
 		deleteFunction({
@@ -128,7 +135,7 @@ const DashBoard = (): ReactElement => {
 								<Select
 									isMulti
 									placeholder="Category"
-									options={categories?.map(({ name }: Category) => ({
+									options={tags?.map(({ name }: Category) => ({
 										value: name,
 										label: name,
 									}))}

@@ -13,4 +13,5 @@ export const apiEndPoints = {
 	getPetsByUser: `${apiRoot}/pet/user`,
 	createNewPet: `${apiRoot}/pet`,
 	getAllCategories: `${apiRoot}/category`,
+	getAllTags: `${apiRoot}/tag`,
 }

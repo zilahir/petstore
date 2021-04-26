@@ -58,7 +58,7 @@ const Pet: Model<IPet> = model('Pet', petSchema)
 /**
  *
  *
- * @description finds pet by petId
+ * @description creaates a new Pet
  * @param {object} pet an object representtion of the new Pet
  * @returns {Pet} the new Pet
  */

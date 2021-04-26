@@ -11,4 +11,6 @@ export const apiEndPoints = {
 	registerNewUser: `${apiRoot}/user`,
 	loginUser: `${apiRoot}/user/login`,
 	getPetsByUser: `${apiRoot}/pet/user`,
+	createNewPet: `${apiRoot}/pet`,
+	getAllCategories: `${apiRoot}/category`,
 }

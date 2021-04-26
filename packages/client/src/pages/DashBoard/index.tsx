@@ -1,11 +1,14 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable unicorn/consistent-function-scoping */
 /* eslint-disable no-unused-vars */
-/* eslint-disable no-underscore-dangle */
-import React, { ReactElement, useState } from 'react'
+import React, { ReactElement, useState, useCallback } from 'react'
+import classnames from 'classnames'
 import { useQuery } from 'react-query'
 import { useSelector } from 'react-redux'
 import DeleteIcon from '@material-ui/icons/Delete'
 import CreateIcon from '@material-ui/icons/Create'
+import { useDropzone } from 'react-dropzone'
+import Select from 'react-select'
 
 import { apiEndPoints } from '../../api/apiEndpoints'
 import { deleteFunction, get } from '../../api/cloudFunctions'
@@ -16,10 +19,16 @@ import Button from '../../components/common/Button'
 import Modal from '../../components/common/Modal'
 import { Pet } from '../../../../server/src/models/pet'
 import DashboardContext from './dashboardContext'
+import Input from '../../components/common/Input'
 
 const DashBoard = (): ReactElement => {
+	const onDrop = useCallback(acceptedFiles => {
+		console.debug('acceptedFiles', acceptedFiles)
+	}, [])
+	const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop })
 	const { user } = useSelector((store: TopLevelState) => store)
 	const [selectedPet, setSelectedPet] = useState<Pet | any>({})
+	const [petName, setPetName] = useState<string>('')
 	const [
 		isConfirmDeleteModalOpen,
 		toggleConfirmDeleteModal,
@@ -75,7 +84,26 @@ const DashBoard = (): ReactElement => {
 							</ul>
 						)}
 					</div>
-					<div>right</div>
+					<div
+						className={classnames(styles.newPetContainer, styles.petContainer)}
+					>
+						<h1>Upload a new pet to the store</h1>
+						<div className={styles.dragNDropContainer} {...getRootProps()}>
+							<input {...getInputProps()} />
+						</div>
+						<div className={styles.inputContainer}>
+							<div className={styles.group}>
+								<Input
+									className={styles.input}
+									label="Pet's name"
+									onChange={event => setPetName(event.target.value)}
+									placeHolder="Musti"
+									value={petName}
+								/>
+								<Select />
+							</div>
+						</div>
+					</div>
 				</div>
 			</Layout>
 			<Modal

@@ -25,8 +25,9 @@ type FindPetByStausRequest = Request & Status
  * @param {Response} response express response
  */
 export function insertNewPet(request: NewPetRequest, response: Response): void {
-	const { name, photoUrls, status, category, tags } = request.body
+	const { name, photoUrls, status, category, tags, userId } = request.body
 	insert({
+		userId,
 		name,
 		photoUrls,
 		status,

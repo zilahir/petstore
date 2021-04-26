@@ -1,6 +1,7 @@
-import { Document, Model, model, NativeError, Schema } from 'mongoose'
+import { Document, Model, model, Schema } from 'mongoose'
 import { ICategory } from './category'
 import { ITag } from './tag'
+import { IUser } from './user'
 
 export enum Status {
 	available,
@@ -9,6 +10,7 @@ export enum Status {
 }
 
 export interface Pet {
+	userId: IUser['_id']
 	name: string
 	photoUrls: Array<string>
 	status: Status
@@ -19,6 +21,10 @@ export interface Pet {
 export interface IPet extends Document, Pet {}
 
 const petSchema: Schema = new Schema({
+	userId: {
+		type: Schema.Types.ObjectId,
+		ref: 'User',
+	},
 	name: {
 		type: String,
 		required: true,

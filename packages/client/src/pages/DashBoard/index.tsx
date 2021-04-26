@@ -61,6 +61,7 @@ const DashBoard = (): ReactElement => {
 												onClick={() => toggleDeleteModalOpen(pet)}
 												icon={<DeleteIcon htmlColor="#6c63ff" />}
 												className={styles.actionBtn}
+												variant="danger"
 											/>
 											<Button
 												label="Edit"

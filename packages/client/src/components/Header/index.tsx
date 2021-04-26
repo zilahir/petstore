@@ -21,11 +21,16 @@ const Header = (): ReactElement => {
 			<div className={styles.navContainer}>
 				<nav>
 					{!user.token ? (
-						<NavLink isActive={false} target="/login" label="Login" />
+						<>
+							<NavLink isActive={false} target="/login" label="Login" />
+							<NavLink isActive={false} target="/register" label="Register" />
+						</>
 					) : (
-						<NavLink isActive={false} target="/logout" label="logout" />
+						<>
+							<NavLink isActive={false} target="/dashboard" label="dashboard" />
+							<NavLink isActive={false} target="/logout" label="logout" />
+						</>
 					)}
-					<NavLink isActive={false} target="/register" label="Register" />
 				</nav>
 			</div>
 		</header>

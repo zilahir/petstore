@@ -5,12 +5,19 @@
 .dashboardRootContainer {
 	display: grid;
 	grid-template-columns: repeat(2, 50%);
+	height: calc(100vh - 70px);
+	overflow: hidden;
+	align-items: center;
+	justify-content: center;
 
 	div {
 		&.petContainer {
 			@include box-shadow(3px, 3px, 40px, rgba($color: #000000, $alpha: 0.5));
 			margin: 20px;
 			padding: 20px 30px;
+			height: 80%;
+			overflow: hidden;
+			overflow-y: auto;
 
 			h1 {
 				@include heading {

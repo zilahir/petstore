@@ -4,7 +4,6 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import WarningIcon from '@material-ui/icons/Warning'
 import { useDispatch } from 'react-redux'
-import { useHistory } from 'react-router-dom'
 
 import { AnimatePresence, motion } from 'framer-motion'
 import Input from '../../components/common/Input'
@@ -25,7 +24,6 @@ const Login = (): ReactElement => {
 	const [isLoading, toggleLoading] = useState<boolean>(false)
 	const [requestErrors, setRequestErrors] = useState([])
 	const dispatch = useDispatch()
-	const history = useHistory()
 
 	interface ILogin {
 		username: string
@@ -53,7 +51,6 @@ const Login = (): ReactElement => {
 		})
 			.then((result: IUSer) => {
 				dispatch(authUser(result))
-				history.push('/dashboard')
 			})
 			.catch((error: any) => {
 				setRequestErrors(error.errors)

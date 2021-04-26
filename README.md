@@ -33,10 +33,10 @@ This is a _monorepo_ that sovles the coding task I was given by Varjo.
 
 - [x] fix initial ESLint errors
 - [x] setup project structure
-- [ ] setup redux store
-- [ ] implement routing
+- [x] setup redux store
+- [x] implement routing
 - [x] implement registration form
-- [ ] implement login form
+- [x] implement login form
 - [x] implement Home Paage
 - [x] implement protected routes
 - [ ] add interceptors to axios instance

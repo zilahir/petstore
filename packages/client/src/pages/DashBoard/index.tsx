@@ -20,6 +20,7 @@ import Modal from '../../components/common/Modal'
 import { Pet } from '../../../../server/src/models/pet'
 import DashboardContext from './dashboardContext'
 import Input from '../../components/common/Input'
+import { Category } from '../../../../server/src/models/category'
 
 const DashBoard = (): ReactElement => {
 	const onDrop = useCallback(acceptedFiles => {
@@ -38,13 +39,23 @@ const DashBoard = (): ReactElement => {
 		(get({
 			url: `${apiEndPoints.getPetsByUser}/${user._id}`,
 		}) as unknown) as Array<any>
-	const { data, isFetched, refetch } = useQuery('petsByUser', fetchPets)
+
+	const fetchCategories = (): Array<Category> =>
+		(get({
+			url: `${apiEndPoints.getAllCategories}`,
+		}) as unknown) as Array<any>
+	const {
+		data: pets,
+		isFetched: isPetsFetched,
+		refetch: refetchPets,
+	} = useQuery('petsByUser', fetchPets)
+	const { data: categories } = useQuery('caategories', fetchCategories)
 
 	function handleDelete(): void {
 		deleteFunction({
 			url: `${apiEndPoints.deletePet}/${selectedPet._id}`,
 		}).then(() => {
-			refetch()
+			refetchPets()
 			toggleConfirmDeleteModal(false)
 		})
 	}
@@ -53,15 +64,16 @@ const DashBoard = (): ReactElement => {
 		toggleConfirmDeleteModal(true)
 		setSelectedPet(chosenPet)
 	}
+
 	return (
 		<DashboardContext.Provider value={{ selectedPet, setSelectedPet }}>
 			<Layout>
 				<div className={styles.dashboardRootContainer}>
 					<div className={styles.petContainer}>
 						<h1>My Pets</h1>
-						{data && isFetched && data.length > 0 && (
+						{pets && isPetsFetched && pets.length > 0 && (
 							<ul>
-								{data.map((pet: any) => (
+								{pets.map((pet: any) => (
 									<li key={pet.name}>
 										<div>{pet.name}</div>
 										<div className={styles.actionBtnContainer}>
@@ -93,14 +105,24 @@ const DashBoard = (): ReactElement => {
 						</div>
 						<div className={styles.inputContainer}>
 							<div className={styles.group}>
-								<Input
-									className={styles.input}
-									label="Pet's name"
-									onChange={event => setPetName(event.target.value)}
-									placeHolder="Musti"
-									value={petName}
-								/>
-								<Select />
+								<div className={styles.oneInput}>
+									<Input
+										className={styles.input}
+										label="Pet's name"
+										onChange={event => setPetName(event.target.value)}
+										placeHolder="Musti"
+										value={petName}
+									/>
+								</div>
+								<div className={styles.oneInput}>
+									<Select
+										placeholder="Category"
+										options={categories?.map(({ name }: Category) => ({
+											value: name,
+											label: name,
+										}))}
+									/>
+								</div>
 							</div>
 						</div>
 					</div>

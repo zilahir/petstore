@@ -1,6 +1,6 @@
 # Petstore
 
-This is a [monorepo](https://classic.yarnpkg.com/blog/2017/08/02/introducing-workspaces/) that sovles the coding task I was given by Varjo.
+This is a [monorepo](https://classic.yarnpkg.com/blog/2017/08/02/introducing-workspaces/) that solves the coding task I was given by Varjo.
 
 ##  Local development
 

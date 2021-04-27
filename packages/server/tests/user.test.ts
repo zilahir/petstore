@@ -1,4 +1,3 @@
-import faker from 'faker'
 import supertest from 'supertest'
 
 import app from '../src/server'

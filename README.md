@@ -2,6 +2,112 @@
 
 This is a _monorepo_ that sovles the coding task I was given by Varjo.
 
+Project structure
+
+```text
+petstore
+└── packages
+    ├── client
+    │   ├── public
+    │   └── src
+    │       ├── api
+    │       ├── assets
+    │       │   └── images
+    │       ├── components
+    │       │   ├── Header
+    │       │   ├── PetGrid
+    │       │   └── common
+    │       ├── pages
+    │       │   ├── DashBoard
+    │       │   ├── Home
+    │       │   ├── Inventory
+    │       │   ├── LogOut
+    │       │   ├── Login
+    │       │   └── Register
+    │       ├── store
+    │       │   ├── actions
+    │       │   └── reducers
+    │       ├── stories
+    │       │   ├── assets
+    │       │   └── markdowns
+    │       ├── styles
+    │       │   ├── misc
+    │       │   └── mixins
+    │       ├── tests
+    │       ├── types
+    │       └── utils
+    └── server
+        ├── REST
+        ├── config
+        ├── dist
+        │   ├── books
+        │   │   ├── controllers
+        │   │   └── models
+        │   ├── config
+        │   ├── packages
+        │   │   └── server
+        │   └── src
+        │       ├── borrow
+        │       ├── controllers
+        │       ├── file
+        │       ├── middleware
+        │       ├── models
+        │       ├── routes
+        │       ├── types
+        │       └── utils
+        ├── src
+        │   ├── controllers
+        │   ├── file
+        │   │   ├── controllers
+        │   │   └── models
+        │   ├── middleware
+        │   ├── models
+        │   ├── routes
+        │   │   └── api
+        │   ├── types
+        │   └── utils
+        └── tests
+            └── utils
+```
+
+So the project is defined to 2 different `yarn` workspaces:
+
+- client
+- server
+
+## Client
+
+The client is bootsrapped with `create-react-app`. The clinet is using the following project structure:
+
+### Structure
+
+```text
+    ├── api
+    ├── assets
+    ├── components
+    ├── pages
+    ├── store
+    ├── stories
+    ├── styles
+    ├── tests
+    ├── types
+    └── utils
+```
+
+The components are devided into `common` and generic. The `common` contains the reusable components, sch as `Button`, and `Modal`.
+
+### Implementation
+
+Some thoughts of the implementation of the frontned;
+
+The following tools, and ututilites has been introduced:
+
+- [`redux`]
+- [`redux-persist`] (to demonstrate how to handle JWT on the frontends side for request, alongside with the authorized user object)
+- [`storybook`] with readme's (to demostrate how to write documentation for generic, HOC, reusable components)
+- [`ESLint`] (to avoid writing bad code, and enforce coding style within a _team_ (aks: myself))
+- [`JSDOC`] (to enforce documentation on functions, and closures (React Hooks))
+
 ## TODOs
 
 ### Global

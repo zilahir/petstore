@@ -93,6 +93,7 @@
 		"eslint-plugin-tsdoc": "^0.2.14",
 		"eslint-plugin-unicorn": "^30.0.0",
 		"prettier": "^2.2.1",
+		"sass-loader": "^11.0.1",
 		"storybook-css-modules-preset": "^1.0.8",
 		"stylelint": "^13.12.0",
 		"ts-loader": "^9.1.1"

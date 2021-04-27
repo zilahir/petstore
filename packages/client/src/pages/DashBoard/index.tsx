@@ -62,6 +62,10 @@ const DashBoard = (): ReactElement => {
 				post({
 					url: apiEndPoints.uploadImage,
 					data: formData,
+					headers: {
+						Accept: 'multipart/form-data',
+						'content-type': 'multipart/form-data',
+					},
 				}),
 			)
 			return true

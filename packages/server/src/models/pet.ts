@@ -113,7 +113,7 @@ export function findPetById(petId: string): Promise<IPet | null> {
 
 /**
  * @param {string} petId the Id of the Pet
- * @returns {Promise} the found Pet in a Promise
+ * @returns {Promise} the removed Pet in a Promise
  */
 export function deletePet(petId: string): Promise<IPet | null> {
 	return Pet.findOneAndDelete({ _id: petId }).exec()

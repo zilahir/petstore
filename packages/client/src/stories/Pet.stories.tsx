@@ -26,10 +26,12 @@ export const Pet = () => (
 		<OnePet
 			userId="608660c99cfd2a48a19c4fb9"
 			status={Status.avaliable}
-			name="demo"
-			category="demo"
+			name="Pablo"
+			category="Pug"
 			tags={[1, 2]}
-			photoUrls={['1']}
+			photoUrls={[
+				'https://petstorepets.s3.eu-west-1.amazonaws.com/vEU8W7cwE.png',
+			]}
 			petId="608703307b65cdbecf671154"
 		/>
 	</div>

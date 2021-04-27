@@ -165,7 +165,6 @@ export function deletePetById(
 ): void {
 	const { petId } = request.params
 	const thisPet = petId as string
-	console.debug('thisPet', thisPet)
 	deletePet(thisPet)
 		.then(pets => {
 			response.status(HttpStatusCodes.OK).send(pets)

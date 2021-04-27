@@ -60,7 +60,7 @@ export function insert(order: Order): Promise<IOrder> {
 }
 
 /**
- * @description retrusn the inventory by status
+ * @description returns the inventory by status
  * @returns {Array} aggregated result of the inventory
  * grouped by status
  */
@@ -73,4 +73,20 @@ export function inventory(): Promise<Array<IOrder>> {
 			},
 		},
 	]).exec()
+}
+
+/**
+ * @description returns the list of orders
+ * @returns {Array} the Orders
+ */
+export function get(): Promise<Array<IOrder>> {
+	return Order.find({}).populate('petId').exec()
+}
+
+/**
+ * @param {string} orderId the Id of the Order
+ * @returns {Promise} the removed Order in a Promise
+ */
+export function deleteOrderById(orderId: string): Promise<IOrder | null> {
+	return Order.findOneAndDelete({ _id: orderId }).exec()
 }

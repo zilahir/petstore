@@ -20,4 +20,6 @@ export const apiEndPoints = {
 	newOrder: `${apiRoot}/store/order`,
 	createCategory: `${apiRoot}/category`,
 	getInventoryy: `${apiRoot}/store/inventory`,
+	getAllOrders: `${apiRoot}/store/order`,
+	deleteOrder: `${apiRoot}/store/order`,
 }

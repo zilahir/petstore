@@ -1,13 +1,15 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-shadow */
 import React, { ReactElement, useState } from 'react'
 import LocalOfferIcon from '@material-ui/icons/LocalOffer'
 import { AnimatePresence, motion } from 'framer-motion'
 import { wrap } from '@popmotion/popcorn'
 
+import { useToasts } from 'react-toast-notifications'
 import styles from './Pet.module.scss'
 import Ribbon from './components/Ribbon'
 import Button from '../../common/Button'
-import { patch, post } from '../../../api/cloudFunctions'
+import { post } from '../../../api/cloudFunctions'
 import { apiEndPoints } from '../../../api/apiEndpoints'
 import { Pet } from '../../../../../server/src/models/pet'
 
@@ -18,15 +20,11 @@ export interface Tag {
 
 interface IOnePet extends Pet {
 	petId: string
+	setPetStatusToPending?: (id: string) => void
 }
 
-function setPetStatusToPending(petId: string): void {
-	patch({
-		url: `${apiEndPoints.modifyPet}/${petId}`,
-		data: {
-			status: 'pending',
-		},
-	})
+const defaultProps = {
+	setPetStatusToPending: undefined,
 }
 
 const OnePet = ({
@@ -37,7 +35,16 @@ const OnePet = ({
 	status,
 	userId,
 	petId,
+	setPetStatusToPending,
 }: IOnePet): ReactElement => {
+	const [[page, direction], setPage] = useState([0, 0])
+	const petImageIndex = wrap(0, photoUrls.length, page)
+	const { addToast } = useToasts()
+
+	const paginate = (newDirection: number): void => {
+		setPage([page + newDirection, newDirection])
+	}
+
 	function placeOrder(): void {
 		const order = {
 			userId,
@@ -47,14 +54,13 @@ const OnePet = ({
 			url: apiEndPoints.newOrder,
 			data: order,
 		}).then(() => {
-			setPetStatusToPending(petId)
+			addToast('Images had been uploaded successfully', {
+				appearance: 'success',
+			})
+			if (setPetStatusToPending) {
+				setPetStatusToPending(petId)
+			}
 		})
-	}
-
-	const [[page, direction], setPage] = useState([0, 0])
-	const petImageIndex = wrap(0, photoUrls.length, page)
-	const paginate = (newDirection: number): void => {
-		setPage([page + newDirection, newDirection])
 	}
 
 	function changePetImages(): void {
@@ -99,7 +105,10 @@ const OnePet = ({
 				{photoUrls.length > 1 && (
 					<ul className={styles.dots}>
 						{photoUrls.map((_, index: number) => (
-							<li className={petImageIndex === index ? styles.active : ''} />
+							<li
+								key={photoUrls[index]}
+								className={petImageIndex === index ? styles.active : ''}
+							/>
 						))}
 					</ul>
 				)}
@@ -132,5 +141,7 @@ const OnePet = ({
 		</div>
 	)
 }
+
+OnePet.defaultProps = defaultProps
 
 export default OnePet

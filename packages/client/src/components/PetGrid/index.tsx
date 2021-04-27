@@ -3,7 +3,7 @@ import { useQuery } from 'react-query'
 import { AnimatePresence, motion } from 'framer-motion'
 
 import { apiEndPoints } from '../../api/apiEndpoints'
-import { get } from '../../api/cloudFunctions'
+import { get, patch } from '../../api/cloudFunctions'
 import styles from './PetGrid.module.scss'
 
 import { Pet } from '../../../../server/src/models/pet'
@@ -39,6 +39,15 @@ const variants = {
 	}),
 }
 
+function setPetStatusToPending(petId: string): void {
+	patch({
+		url: `${apiEndPoints.modifyPet}/${petId}`,
+		data: {
+			status: 'pending',
+		},
+	})
+}
+
 const PetGrid = (): ReactElement | null => {
 	const { data, isFetched } = useQuery(
 		'pets',
@@ -61,7 +70,7 @@ const PetGrid = (): ReactElement | null => {
 							petIndex: number,
 						) => (
 							<motion.div
-								key={name}
+								key={_id}
 								variants={variants}
 								custom={petIndex}
 								initial="hidden"
@@ -69,6 +78,7 @@ const PetGrid = (): ReactElement | null => {
 								exit="exit"
 							>
 								<OnePet
+									setPetStatusToPending={setPetStatusToPending}
 									petId={_id}
 									userId={userId}
 									status={status}

@@ -22,6 +22,13 @@
 		li {
 			@include paragraph {
 				font-size: 28px;
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				margin-bottom: 20px;
+				border: 2px solid #cccccc;
+				padding: 10px;
+				border-radius: 15px;
 			}
 
 			span {
@@ -30,6 +37,16 @@
 				border-radius: 20px;
 				margin-left: 10px;
 			}
+		}
+	}
+}
+
+.empty {
+	margin-bottom: 20px;
+
+	p {
+		@include paragraph {
+			font-size: 18px;
 		}
 	}
 }

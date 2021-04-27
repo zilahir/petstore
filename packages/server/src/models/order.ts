@@ -1,5 +1,5 @@
 import { Document, Model, model, Schema } from 'mongoose'
-import { IPet } from './pet'
+import Pet, { IPet } from './pet'
 import { IUser } from './user'
 
 export enum OrderStatus {
@@ -65,7 +65,7 @@ export function insert(order: Order): Promise<IOrder> {
  * grouped by status
  */
 export function inventory(): Promise<Array<IOrder>> {
-	return Order.aggregate([
+	return Pet.aggregate([
 		{
 			$group: {
 				_id: { status: '$status' },

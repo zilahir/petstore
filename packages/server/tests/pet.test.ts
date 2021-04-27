@@ -3,18 +3,13 @@ import dotenv from 'dotenv'
 
 import app from '../src/server'
 import Pet, { IPet, Pet as PetInterface, Status } from '../src/models/pet'
-import {
-	disConnectFromDb,
-	connectToDb,
-	createUser,
-	createPet,
-} from './utils/setup'
+import { disConnectFromDb, connectToDb, createPet } from './utils/setup'
 
 /* test 
 
-	pet CREATE
-	pet MODIFY
-	pet DELETE
+	pet CREATE (POST)
+	pet MODIFY (PATCH)
+	pet DELETE (DELETE)
 
 */
 
@@ -28,12 +23,6 @@ beforeEach(done => {
 
 afterEach(done => {
 	disConnectFromDb().then(() => {
-		done()
-	})
-})
-
-test('/POST, /api/user', async done => {
-	createUser().then(() => {
 		done()
 	})
 })

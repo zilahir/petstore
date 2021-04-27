@@ -1,6 +1,8 @@
 import faker from 'faker'
-import User, { UserInterface } from '../src/models/user'
-import { disConnectFromDb, connectToDb } from './utils/setup'
+import supertest from 'supertest'
+
+import app from '../src/server'
+import { disConnectFromDb, connectToDb, createUser } from './utils/setup'
 
 beforeEach(done => {
 	connectToDb().then(() => {
@@ -14,17 +16,24 @@ afterEach(done => {
 	})
 })
 
-test('/POST, /api/user', async done => {
-	const newUser: UserInterface = {
-		username: faker.internet.userName(),
-		firstName: faker.name.firstName(0),
-		lastName: faker.name.lastName(1),
-		email: faker.internet.email(),
-		password: 'demo123',
-		phone: '0406753038',
-		userStatus: 'active',
-	}
-	User.create(newUser).then(() => {
-		done()
-	})
+test('/GET, /api/user', async done => {
+	const user = await createUser()
+	await supertest(app)
+		.get(`/user/${user.username}`)
+		.expect(200)
+		.then(response => {
+			expect(response.body.username).toStrictEqual(user.toObject().username)
+			done()
+		})
+})
+
+test('/DELETE, /api/user', async done => {
+	const user = await createUser()
+	await supertest(app)
+		.delete(`/user/${user.username}`)
+		.expect(200)
+		.then(response => {
+			expect(response.body.username).toStrictEqual(user.toObject().username)
+			done()
+		})
 })

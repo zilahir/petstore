@@ -108,7 +108,6 @@ app.get('/profile', requiresAuth(), (req: OpenidRequest, res) => {
 	res.send(JSON.stringify(req.oidc.user))
 })
 
-// app.use('/user', authorization)
 app.use('/api/profile', profile)
 app.use('/file', file)
 app.use('/category', category)
@@ -120,7 +119,7 @@ app.use('/store', [store])
 /* const port = app.get('port')
 const server = app.listen(port, () =>
 	console.log(`Server started on port ${port}, diename: ${__dirname}`),
-)*/
+) */
 
 export default app
 

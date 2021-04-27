@@ -52,4 +52,23 @@ const userSchema: Schema = new Schema({
 
 const User: Model<IUser> = model('User', userSchema)
 
+/**
+ * @description finds a user by a given username
+ * @param {string} username the username we are looking for
+ * @returns {Promise} a User in a Promise
+ */
+export function findByUserName(username: string): Promise<IUser> {
+	return User.findOne({
+		username,
+	}).exec()
+}
+
+/**
+ * @param {string} username the username of the User
+ * @returns {Promise} the removed User in a Promise
+ */
+export function deleteUser(username: string): Promise<IUser | null> {
+	return User.findOneAndDelete({ username }).exec()
+}
+
 export default User

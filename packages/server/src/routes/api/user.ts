@@ -7,6 +7,7 @@ import jwt from 'jsonwebtoken'
 import Payload from '../../types/Payload'
 import Request from '../../types/Request'
 import User, { IUser } from '../../models/user'
+import { getUserByUserName, deleteUserByUserName } from '../../controllers/user'
 
 const router: Router = Router()
 
@@ -80,5 +81,9 @@ router.post(
 		}
 	},
 )
+
+router.get('/:username', [getUserByUserName])
+
+router.delete('/:username', [deleteUserByUserName])
 
 export default router

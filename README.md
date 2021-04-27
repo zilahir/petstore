@@ -25,9 +25,9 @@ The `docker-compose` command will pull a docker mongodb image, and it will be ex
 
 ### Environment variables
 
-The backend requires some envrinment variables.
+The backend requires some environment variables.
 
-#### Bakend .env
+#### Backend .env
 
 | key        | value example                                                                           | purpose                                    |
 | ---------- | --------------------------------------------------------------------------------------- | ------------------------------------------ |
@@ -120,7 +120,7 @@ So the project is defined to 2 different `yarn` workspaces:
 
 ## Client
 
-The client is bootsrapped with `create-react-app`. The clinet is using the following project structure:
+The client is bootsrapped with `create-react-app`. The client is using the following project structure:
 
 ### Structure
 
@@ -137,21 +137,21 @@ The client is bootsrapped with `create-react-app`. The clinet is using the follo
     └── utils
 ```
 
-The components are devided into `common` and generic. The `common` contains the reusable components, sch as `Button`, and `Modal`.
+The components are devided into `common` and generic. The `common` contains the reusable components, such as `Button`, and `Modal`.
 
 ### Implementation
 
-Some thoughts of the implementation of the frontned;
+Some thoughts of the implementation of the frontend;
 
-The following tools, and ututilites has been introduced:
+The following tools, and utilities has been introduced:
 
 - [`redux`]
 - [`redux-persist`] (to demonstrate how to handle JWT on the frontends side for request, alongside with the authorized user object)
-- [`storybook`] with readme's (to demostrate how to write documentation for generic, HOC, reusable components). In an ideal worlds, Storybook has decorators, to provide mock API's, datasheet, etc, for the stories, and their tests.
+- [`storybook`] with readme's (to demonstrate how to write documentation for generic, HOC, reusable components). In an ideal worlds, Storybook has decorators, to provide mock API's, datasheet, etc, for the stories, and their tests.
 
 Example of a basic decorator in storybook [here](https://github.com/zilahir/petstore/blob/master/packages/client/.storybook/decorator.js).
 
-#### Styleing
+#### Styling
 
 Currently I am favoruing `SCSS Modules` and `styled-components`. I live styled-components, becasue I can avoid inline-styles, that depends on some UI logic, a variable. If i want to help myself in the future, and keep in mind the evolving the UI, the inline styles are the first to avoid.
 
@@ -165,14 +165,14 @@ const PreviewImage = styled.img`
 
 ### Storybook
 
-[`Storybook`](https://github.com/storybookjs/storybook) helps keeping the components, and their documentation up to date. It's not just a fancy showoff of components, it also includes their documentatoin, plus it can (and should!) utilizied to do testing on the components. It's perfect for Unit tests, and Snapshot tests.
+[`Storybook`](https://github.com/storybookjs/storybook) helps keeping the components, and their documentation up to date. It's not just a fancy showoff of components, it also includes their documentation, plus it can (and should!) utilizied to do testing on the components. It's perfect for Unit tests, and Snapshot tests.
 
 - [`ESLint`] (to avoid writing bad code, and enforce coding style within a _team_ (aks: myself))
 - [`JSDOC`] (to enforce documentation on functions, and closures (React Hooks))
 - [`husky`] husky makes the usage of git hooks easy
 - [`lint-staged`] combined with `husky`, it lints the git staged files, and fails, if the linting failes. This prevents badly formatted code to the git repo. It can also executes tests, and any scripts.
 
-> NOTE: I did not utilze this for the bacekend. I did it for demonstrating purposes on the frontend. :)
+> NOTE: I did not utilze this for the backend. I did it for demonstrating purposes on the frontend. :)
 
 For example:
 
@@ -196,11 +196,11 @@ Let's take a look how is this application deployed;
 
 ###  Frontend
 
-The [client](https://zilahirpetstore.netlify.app/) and the relaated [storybook](https://petstore-storybook.netlify.app/) are static website (SPA), deployed using [Netfliy](netlify.com).
+The [client](https://zilahirpetstore.netlify.app/) and the related [storybook](https://petstore-storybook.netlify.app/) are static website (SPA), deployed using [Netfliy](netlify.com).
 
 ###  Backend
 
-The backend is deploy via [serverless](https://www.serverless.com/), and it's deployed into an [`AWS Lambda`](https://aws.amazon.com/lambda/) function.
+The backend is deployed via [serverless](https://www.serverless.com/), and it's deployed into an [`AWS Lambda`](https://aws.amazon.com/lambda/) function.
 
 ##  CI / CD
 
@@ -238,7 +238,7 @@ Writing CSS can be messy real quick. Some StyleLinting can help with this. What 
 | eslint-plugin-unicorn     | brings the best out of us! 🤘                         |
 | eslint-plugin-react-hooks | helps keeping the rules of react hooks                |
 
-I was specifically asked to keep on eye on the maintainableity maintainability of the UI. I am using a various amount of StyleLint plugins, to do the best I can. It helps.
+I was specifically asked to keep on eye on the maintainability of the UI. I am using a various amount of StyleLint plugins, to do the best I can. It helps.
 
 > NOTE: i have my own Stylelint config. You can take a look [here](https://github.com/zilahir/stylelint-config)
 
@@ -255,7 +255,7 @@ The backend is written in `NodeJS` using `express.
 
 ### Test
 
-To demonstraate testing in nodejs world, I have been using `Jest`.
+To demonstrate testing in nodejs world, I have been using `Jest`.
 
 The testcases can be found at `packages/server/tests`
 

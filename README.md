@@ -2,6 +2,40 @@
 
 This is a [monorepo](https://classic.yarnpkg.com/blog/2017/08/02/introducing-workspaces/) that sovles the coding task I was given by Varjo.
 
+##  Local development
+
+To start this project locally:
+
+- prerequsities:
+  - docker
+  - node >=14.x.x
+  - yarn
+  - docker
+
+1. checkout this repo
+2. hit `yarn start:dev`
+
+`yarn start:dev` will start every process:
+
+1. frontend
+2. backend
+3. a docker container, with MongoDB.
+
+The `docker-compose` command will pull a docker mongodb image, and it will be exposed on the port of `27017`. Change it, in the `docker-compose.yml` if you need to.
+
+### Environment variables
+
+The backend requires some envrinment variables.
+
+#### Bakend .env
+
+| key        | value example                                                                           | purpose                                    |
+| ---------- | --------------------------------------------------------------------------------------- | ------------------------------------------ |
+| MONGOURL   | mongodb://localhost: 27025 /? readPreference = primary& appname = petstore& ssl = false | to access the mongodb from the server      |
+| JWT_SECRET | 34E2AA21DE4DB0GIRIFGIRIKDKDFEE35DC56034A6E5B989704685B38CB90AD4D7B11C                   | JWT auth secret for JWT token signing      |
+| JWT_EXP    | 360000                                                                                  | to determine how long a JWT token is valid |
+| STAGE      | dev                                                                                     | this should be dev to help ourselves. :)   |
+
 ##  URLs
 
 | name      | url                                                          | desc                            | status |
@@ -117,6 +151,18 @@ The following tools, and ututilites has been introduced:
 
 Example of a basic decorator in storybook [here](https://github.com/zilahir/petstore/blob/master/packages/client/.storybook/decorator.js).
 
+#### Styleing
+
+Currently I am favoruing `SCSS Modules` and `styled-components`. I live styled-components, becasue I can avoid inline-styles, that depends on some UI logic, a variable. If i want to help myself in the future, and keep in mind the evolving the UI, the inline styles are the first to avoid.
+
+Example:
+
+```javascript
+const PreviewImage = styled.img`
+    backgrond-image: `${props => props.bgImage}`
+`
+```
+
 ### Storybook
 
 [`Storybook`](https://github.com/storybookjs/storybook) helps keeping the components, and their documentation up to date. It's not just a fancy showoff of components, it also includes their documentatoin, plus it can (and should!) utilizied to do testing on the components. It's perfect for Unit tests, and Snapshot tests.
@@ -146,21 +192,11 @@ For example:
 
 ##  Deployment
 
+Let's take a look how is this application deployed;
+
 ###  Frontend
 
 The [client](https://zilahirpetstore.netlify.app/) and the relaated [storybook](https://petstore-storybook.netlify.app/) are static website (SPA), deployed using [Netfliy](netlify.com).
-
-#### Styleing
-
-Currently I am favoruing `SCSS Modules` and `styled-components`. I live styled-components, becasue I can avoid inline-styles, that depends on some UI logic, a variable. If i want to help myself in the future, and keep in mind the evolving the UI, the inline styles are the first to avoid.
-
-Example:
-
-```javascript
-const PreviewImage = styled.img`
-    backgrond-image: `${props => props.bgImage}`
-`
-```
 
 ###  Backend
 
@@ -170,13 +206,52 @@ The backend is deploy via [serverless](https://www.serverless.com/), and it's de
 
 Due to simplicity for this project, both 3 subprojects are deployed in the same time, if a commit is pushed to the `master` branch, using [Github actions](https://docs.github.com/en/actions).
 
-## Dataase
+## Database
 
 The database is a [MongoDB] instance, hosted on [`MongoDB Atlas`](https://cloud.mongodb.com/).
+
+## Linting
+
+I am in love with the following plugins:
+
+### ESLint
+
+| name                      | purpose                                               |
+| ------------------------- | ----------------------------------------------------- |
+| eslint-plugin-import      | enforces import orders                                |
+| eslint-plugin-jsdoc       | enforces writing jsdoc comments                       |
+| eslint-plugin-jsx-a11y    | helps maintaining accessibility rules on JSX elements |
+| eslint-plugin-unicorn     | brings the best out of us! 🤘                         |
+| eslint-plugin-react-hooks | helps keeping the rules of react hooks                |
+
+> NOTE: i have my own ESLint config. You can take a look [here](https://github.com/zilahir/eslint-config)
+
+####  StyleLint
+
+Writing CSS can be messy real quick. Some StyleLinting can help with this. What I am preferring:
+
+| name                      | purpose                                               |
+| ------------------------- | ----------------------------------------------------- |
+| eslint-plugin-import      | enforces import orders                                |
+| eslint-plugin-jsdoc       | enforces writing jsdoc comments                       |
+| eslint-plugin-jsx-a11y    | helps maintaining accessibility rules on JSX elements |
+| eslint-plugin-unicorn     | brings the best out of us! 🤘                         |
+| eslint-plugin-react-hooks | helps keeping the rules of react hooks                |
+
+I was specifically asked to keep on eye on the maintainableity maintainability of the UI. I am using a various amount of StyleLint plugins, to do the best I can. It helps.
+
+> NOTE: i have my own Stylelint config. You can take a look [here](https://github.com/zilahir/stylelint-config)
 
 ## Backend
 
 The backend is written in `NodeJS` using `express.
+
+| key        | value example                                                                           | purpose                                    |
+| ---------- | --------------------------------------------------------------------------------------- | ------------------------------------------ |
+| MONGOURL   | mongodb://localhost: 27025 /? readPreference = primary& appname = petstore& ssl = false | to access the mongodb from the server      |
+| JWT_SECRET | 34E2AA21DE4DB0GIRIFGIRIKDKDFEE35DC56034A6E5B989704685B38CB90AD4D7B11C                   | JWT auth secret for JWT token signing      |
+| JWT_EXP    | 360000                                                                                  | to determine how long a JWT token is valid |
+| STAGE      | dev                                                                                     | this should be dev to help ourselves. :)   |
 
 ### Test
 

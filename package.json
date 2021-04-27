@@ -18,7 +18,11 @@
 		"start:dev": "concurrently -k -n  CLIENT,SERVER,DOCKER,STORYBOOK -c red,yellow,black,green \"yarn start:client\" \"yarn start:server\" \"yarn start:docker\" \"yarn storybook\"",
 		"build:client": "yarn workspace client build",
 		"deploy:server": "yarn workspace server deploy:serverless",
-		"deploy:storybook": "yarn workspace client build-storybook"
+		"deploy:storybook": "yarn workspace client build-storybook",
+		"lint:js": "eslint --ext .js,.jsx .",
+		"lint:ts": "eslint --ext .ts,.tsx --ignore-path ./.gitignore --max-warnings 0 \"**/*.{ts,tsx}\"",
+		"lint:scss": "stylelint --syntax scss",
+		"prepare": "husky install"
 	},
 	"dependencies": {
 		"concurrently": "^6.0.2"
@@ -29,7 +33,8 @@
 		"@storybook/addon-links": "^6.2.9",
 		"@storybook/node-logger": "^6.2.9",
 		"@storybook/preset-create-react-app": "^3.1.7",
-		"@storybook/react": "^6.2.9"
+		"@storybook/react": "^6.2.9",
+		"husky": "^6.0.0"
 	},
 	"eslintConfig": {
 		"overrides": [

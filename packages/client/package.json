@@ -42,6 +42,23 @@
 		"yarn": "^1.22.10",
 		"yup": "^0.32.9"
 	},
+	"lint-staged": {
+		"*.{js,jsx}": [
+			"yarn lint:js",
+			"git add"
+		],
+		"*.{ts,tsx}": [
+			"yarn lint:ts",
+			"git add"
+		],
+		"*.scss": [
+			"yarn lint:scss",
+			"git add"
+		],
+		"*.{json,md,yml}": [
+			"git add"
+		]
+	},
 	"scripts": {
 		"start": "react-scripts start",
 		"build": "CI=false && SKIP_PREFLIGHT_CHECK=true && react-scripts build",
@@ -92,6 +109,7 @@
 		"eslint-plugin-react-hooks": "^4.2.0",
 		"eslint-plugin-tsdoc": "^0.2.14",
 		"eslint-plugin-unicorn": "^30.0.0",
+		"lint-staged": "^10.5.4",
 		"prettier": "^2.2.1",
 		"sass-loader": "^11.0.1",
 		"storybook-css-modules-preset": "^1.0.8",

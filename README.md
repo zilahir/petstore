@@ -2,7 +2,16 @@
 
 This is a _monorepo_ that sovles the coding task I was given by Varjo.
 
-Project structure
+##  URLs
+
+| name      | url                                                          | desc                            | status |
+| --------- | ------------------------------------------------------------ | ------------------------------- | ------ |
+| prod app  | <https://zilahirpetstore.netlify.app/>                       | the main application            | ✅     |
+| storybook | <https://petstore-storybook.netlify.app/>                    | storybook of the React frontent | ✅     |
+| API dev   | <https://iotpg5dv56.execute-api.eu-west-1.amazonaws.com/dev> | root API endpoint on DEV        | ✅     |
+| API prod  | <https://iotpg5dv56.execute-api.eu-west-1.amazonaws.com/dev> | root API endpoint for PROD      | ⛔     |
+
+## Project structure
 
 ```text
 petstore
@@ -106,9 +115,11 @@ The following tools, and ututilites has been introduced:
 - [`redux-persist`] (to demonstrate how to handle JWT on the frontends side for request, alongside with the authorized user object)
 - [`storybook`] with readme's (to demostrate how to write documentation for generic, HOC, reusable components). In an ideal worlds, Storybook has decorators, to provide mock API's, datasheet, etc, for the stories, and their tests.
 
+Example of a basic decorator in storybook [here](https://github.com/zilahir/petstore/blob/master/packages/client/.storybook/decorator.js).
+
 ### Storybook
 
-Storybook helps keeping the components, and their documentation up to date. It's not just a fancy showoff of components, it also includes their documentatoin, plus it can (and should!) utilizied to do testing on the components. It's perfect for Unit tests, and Snapshot tests.
+[`Storybook`](https://github.com/storybookjs/storybook) helps keeping the components, and their documentation up to date. It's not just a fancy showoff of components, it also includes their documentatoin, plus it can (and should!) utilizied to do testing on the components. It's perfect for Unit tests, and Snapshot tests.
 
 - [`ESLint`] (to avoid writing bad code, and enforce coding style within a _team_ (aks: myself))
 - [`JSDOC`] (to enforce documentation on functions, and closures (React Hooks))
@@ -133,6 +144,24 @@ For example:
 ➜  petstore git:(master) git push
 ```
 
+##  Deployment
+
+###  Frontend
+
+The [client](https://zilahirpetstore.netlify.app/) and the relaated [storybook](https://petstore-storybook.netlify.app/) are static website (SPA), deployed using [Netfliy](netlify.com).
+
+###  Backend
+
+The backend is deploy via [serverless](https://www.serverless.com/), and it's deployed into an [`AWS Lambda`](https://aws.amazon.com/lambda/) function.
+
+##  CI / CD
+
+Due to simplicity for this project, both 3 subprojects are deployed in the same time, if a commit is pushed to the `master` branch, using [Github actions](https://docs.github.com/en/actions).
+
+## Dataase
+
+The database is a [MongoDB] instance, hosted on [`MongoDB Atlas`](https://cloud.mongodb.com/).
+
 ## TODOs
 
 ### Global
@@ -154,9 +183,8 @@ For example:
 - [x] Setup GIT
 - [ ] Setup Semantic Release
 - [x] Setup Database(s)
-- [ ] Setup Production Environment
-- [ ] Create testcases for frontend components
-- [ ] Setup CI/CD Pipelines
+- [x] Setup Production Environment
+- [x] Setup CI/CD Pipelines
 
 ### Frontend
 

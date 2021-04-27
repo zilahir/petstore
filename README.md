@@ -107,6 +107,26 @@ The following tools, and ututilites has been introduced:
 - [`storybook`] with readme's (to demostrate how to write documentation for generic, HOC, reusable components)
 - [`ESLint`] (to avoid writing bad code, and enforce coding style within a _team_ (aks: myself))
 - [`JSDOC`] (to enforce documentation on functions, and closures (React Hooks))
+- [`husky`] husky makes the usage of git hooks easy
+- [`lint-staged`] combined with `husky`, it lints the git staged files, and fails, if the linting failes. This prevents badly formatted code to the git repo. It can also executes tests, and any scripts.
+
+> NOTE: I did not utilze this for the bacekend. I did it for demonstrating purposes on the frontend. :)
+
+For example:
+
+```
+ Preparing...
+✔ Running tasks...
+✔ Applying modifications...
+✔ Cleaning up...
+✨  Done in 0.74s.
+✨  Done in 1.14s.
+[master b1fa557] added git husky for client
+ 6 files changed, 2886 insertions(+), 130 deletions(-)
+ create mode 100644 .husky/.gitignore
+ create mode 100755 .husky/pre-commit
+➜  petstore git:(master) git push
+```
 
 ## TODOs
 

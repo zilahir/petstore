@@ -63,3 +63,15 @@ test('/PATCH /api/pet', async done => {
 		done()
 	})
 })
+
+test('/POST /api/pet/findByStatus', async done => {
+	const pet = await createPet()
+	const desiredStatus = 'avaliable'
+	await supertest(app)
+		.get(`/pet/findByStatus?status=${desiredStatus}`)
+		.expect(200)
+		.then(response => {
+			expect(response.body.length).toBeGreaterThan(0)
+			done()
+		})
+})

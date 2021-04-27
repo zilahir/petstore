@@ -1,5 +1,6 @@
 import React from 'react'
 import { Meta } from '@storybook/react'
+import { ToastProvider } from 'react-toast-notifications'
 
 import OnePet from '../components/PetGrid/Pet'
 import { Status } from '../../../server/src/models/pet'
@@ -8,6 +9,13 @@ import PetDocs from './markdowns/Pet.md'
 export default {
 	title: 'Pet',
 	component: OnePet,
+	decorators: [
+		Story => (
+			<ToastProvider autoDismiss placement="bottom-right">
+				<Story />
+			</ToastProvider>
+		),
+	],
 	parameters: {
 		notes: [PetDocs],
 	},

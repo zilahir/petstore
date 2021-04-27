@@ -58,7 +58,7 @@
 		"storybook": "start-storybook -p 6006 -s public",
 		"build-storybook": "build-storybook -s public -o ./storbook",
 		"lint:js": "eslint --ext .js,.jsx \"**/*.{js,jsx}\" ",
-		"lint:ts": "eslint --ext .ts,.tsx --ignore-path ./.gitignore --max-warnings 0 \"**/*.{ts,tsx}\""
+		"lint:ts": "eslint --ext .ts,.tsx --ignore-path ./.gitignore \"**/*.{ts,tsx}\""
 	},
 	"browserslist": {
 		"production": [

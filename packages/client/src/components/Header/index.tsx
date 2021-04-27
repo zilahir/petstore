@@ -27,6 +27,7 @@ const Header = (): ReactElement => {
 						</>
 					) : (
 						<>
+							<NavLink isActive={false} target="/inventory" label="inventory" />
 							<NavLink isActive={false} target="/dashboard" label="dashboard" />
 							<NavLink isActive={false} target="/logout" label="logout" />
 						</>

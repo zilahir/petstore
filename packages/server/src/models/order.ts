@@ -3,8 +3,9 @@ import { IPet } from './pet'
 import { IUser } from './user'
 
 export enum OrderStatus {
-	sold,
-	pending,
+	placed = 'placed',
+	approved = 'approved',
+	delivered = 'delivered',
 }
 
 export interface Order {
@@ -29,7 +30,7 @@ const orederSchema: Schema = new Schema({
 	status: {
 		type: String,
 		enum: Object.values(OrderStatus),
-		default: OrderStatus.pending,
+		default: OrderStatus.placed,
 		required: true,
 	},
 	quantity: {
@@ -56,4 +57,20 @@ const Order: Model<IOrder> = model('Order', orederSchema)
 export function insert(order: Order): Promise<IOrder> {
 	const newPet = new Order(order)
 	return newPet.save()
+}
+
+/**
+ * @description retrusn the inventory by status
+ * @returns {Array} aggregated result of the inventory
+ * grouped by status
+ */
+export function inventory(): Promise<Array<IOrder>> {
+	return Order.aggregate([
+		{
+			$group: {
+				_id: { status: '$status' },
+				count: { $sum: 1 },
+			},
+		},
+	]).exec()
 }

@@ -19,4 +19,5 @@ export const apiEndPoints = {
 	modifyPet: `${apiRoot}/pet`,
 	newOrder: `${apiRoot}/store/order`,
 	createCategory: `${apiRoot}/category`,
+	getInventoryy: `${apiRoot}/store/inventory`,
 }

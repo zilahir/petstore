@@ -58,7 +58,10 @@ const OnePet = ({
 	}
 
 	function changePetImages(): void {
-		paginate(1)
+		// we are not navigating if there's only one image
+		if (photoUrls.length > 1) {
+			paginate(1)
+		}
 	}
 	const variants = {
 		enter: (direction: number) => ({
@@ -93,11 +96,13 @@ const OnePet = ({
 						exit="exit"
 					/>
 				</AnimatePresence>
-				<ul className={styles.dots}>
-					{photoUrls.map((_, index: number) => (
-						<li className={petImageIndex === index ? styles.active : ''} />
-					))}
-				</ul>
+				{photoUrls.length > 1 && (
+					<ul className={styles.dots}>
+						{photoUrls.map((_, index: number) => (
+							<li className={petImageIndex === index ? styles.active : ''} />
+						))}
+					</ul>
+				)}
 			</div>
 			<div className={styles.metaContainer}>
 				<div>

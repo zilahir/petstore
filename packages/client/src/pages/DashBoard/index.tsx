@@ -430,7 +430,16 @@ const DashBoard = (): ReactElement => {
 						)}
 					</div>
 					<div className={styles.btnContainer}>
-						<Button label="Modify" onClick={() => modifyPet()} />
+						<Button
+							label="Cancel"
+							onClick={() => toggleModifyModalOpen(false)}
+							className={styles.actionBtn}
+						/>
+						<Button
+							label="Modify"
+							onClick={() => modifyPet()}
+							className={styles.actionBtn}
+						/>
 					</div>
 				</div>
 			</Modal>

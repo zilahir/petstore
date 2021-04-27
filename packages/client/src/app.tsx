@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux'
 import { Switch, Route, Redirect, RouteProps } from 'react-router-dom'
 import DashBoard from './pages/DashBoard'
 import Home from './pages/Home'
+import Inventory from './pages/Inventory'
 import Login from './pages/Login'
 import LogOut from './pages/LogOut'
 import Register from './pages/Register'
@@ -30,6 +31,7 @@ const App = (): ReactElement => (
 		<Route exact path="/login" component={Login} />
 		<Route exact path="/logout" component={LogOut} />
 		<PrivateRoute exact path="/dashboard" component={DashBoard} />
+		<PrivateRoute exact path="/inventory" component={Inventory} />
 	</Switch>
 )
 

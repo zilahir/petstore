@@ -1,9 +1,10 @@
-// import supertest from 'supertest'
+import supertest from 'supertest'
 import random from 'random'
 import faker from 'faker'
 import mongoose, { connection, Model, Query } from 'mongoose'
 import dotenv from 'dotenv'
 
+import app from '../src/server'
 import Tag from '../src/models/tag'
 import Category from '../src/models/category'
 import Pet, { IPet, Pet as PetInterface, Status } from '../src/models/pet'
@@ -86,14 +87,22 @@ test('/POST /api/pet', async done => {
 	const newPet: PetInterface = {
 		userId: user.id,
 		name: faker.lorem.word(5),
-		status: Status.available,
+		status: Status.avaliable,
 		category: categoiesForThisPet,
 		tags: tagsForThisPet,
 		photoUrls: [randomDogImage],
 	}
-	Pet.create(newPet).then(() => {
-		done()
-	})
+	const pet = await Pet.create(newPet)
+
+	console.debug('pet', pet.id)
+
+	await supertest(app)
+		.get(`/pet/${pet.id}`)
+		.expect(200)
+		.then(response => {
+			expect(response.body._id).toBe(pet.id)
+			done()
+		})
 })
 
 test('/DELETE /api/pet', async done => {
@@ -118,7 +127,7 @@ test('/DELETE /api/pet', async done => {
 	const newPet: PetInterface = {
 		userId: user.id,
 		name: faker.lorem.word(5),
-		status: Status.available,
+		status: Status.avaliable,
 		category: categoiesForThisPet,
 		tags: tagsForThisPet,
 		photoUrls: [randomDogImage],
@@ -151,7 +160,7 @@ test('/PATCH /api/pet', async done => {
 	const newPet: PetInterface = {
 		userId: user.id,
 		name: faker.lorem.word(5),
-		status: Status.available,
+		status: Status.avaliable,
 		category: categoiesForThisPet,
 		tags: tagsForThisPet,
 		photoUrls: [randomDogImage],

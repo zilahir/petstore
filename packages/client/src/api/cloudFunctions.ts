@@ -1,5 +1,10 @@
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios'
 
+const DEFAULT_OPTIONS = {
+	Accept: 'application/json',
+	'Content-Type': 'application/json',
+}
+
 const API = axios.create()
 
 const cloudFunctionRequest = ({
@@ -7,12 +12,18 @@ const cloudFunctionRequest = ({
 	method,
 	params,
 	data,
-}: AxiosRequestConfig): Promise<AxiosResponse> =>
-	Promise.resolve({
+	headers,
+}: AxiosRequestConfig): Promise<AxiosResponse> => {
+	const opt = {
+		...DEFAULT_OPTIONS,
+		...headers,
+	}
+	return Promise.resolve({
 		url,
 		method,
 		params,
 		data,
+		headers: opt,
 	}).then(
 		requestData =>
 			new Promise((resolve, reject) => {
@@ -25,6 +36,7 @@ const cloudFunctionRequest = ({
 					})
 			}),
 	)
+}
 
 export const get = (requestOptions: AxiosRequestConfig): any =>
 	cloudFunctionRequest({ ...requestOptions, method: 'get' })

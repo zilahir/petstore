@@ -9,6 +9,7 @@ import styles from './PetGrid.module.scss'
 import { Pet } from '../../../../server/src/models/pet'
 import OnePet from './Pet'
 import NoPets from './Pet/components/NoPets'
+import Spinner from '../common/Spinner'
 
 export interface IPet extends Pet {
 	_id: string
@@ -100,6 +101,7 @@ const PetGrid = (): ReactElement | null => {
 			) : (
 				<NoPets />
 			)}
+			{!isFetched && <Spinner className={styles.loading} />}
 		</div>
 	)
 }

@@ -1,6 +1,6 @@
 # Petstore
 
-This is a _monorepo_ that sovles the coding task I was given by Varjo.
+This is a [monorepo](https://classic.yarnpkg.com/blog/2017/08/02/introducing-workspaces/) that sovles the coding task I was given by Varjo.
 
 ##  URLs
 
@@ -150,6 +150,18 @@ For example:
 
 The [client](https://zilahirpetstore.netlify.app/) and the relaated [storybook](https://petstore-storybook.netlify.app/) are static website (SPA), deployed using [Netfliy](netlify.com).
 
+#### Styleing
+
+Currently I am favoruing `SCSS Modules` and `styled-components`. I live styled-components, becasue I can avoid inline-styles, that depends on some UI logic, a variable. If i want to help myself in the future, and keep in mind the evolving the UI, the inline styles are the first to avoid.
+
+Example:
+
+```javascript
+const PreviewImage = styled.img`
+    backgrond-image: `${props => props.bgImage}`
+`
+```
+
 ###  Backend
 
 The backend is deploy via [serverless](https://www.serverless.com/), and it's deployed into an [`AWS Lambda`](https://aws.amazon.com/lambda/) function.
@@ -161,6 +173,30 @@ Due to simplicity for this project, both 3 subprojects are deployed in the same 
 ## Dataase
 
 The database is a [MongoDB] instance, hosted on [`MongoDB Atlas`](https://cloud.mongodb.com/).
+
+## Backend
+
+The backend is written in `NodeJS` using `express.
+
+### Test
+
+To demonstraate testing in nodejs world, I have been using `Jest`.
+
+The testcases can be found at `packages/server/tests`
+
+All the tests are passing:
+
+```text
+➜  server git:(master) ✗ yarn test
+yarn run v1.22.10
+$ jest
+ PASS  tests/dummy.test.ts (18.623 s)
+ PASS  tests/tag.test.ts (43.384 s)
+ PASS  tests/category.test.ts (52.91 s)
+ PASS  tests/user.test.ts (66.229 s)
+ PASS  tests/pet.test.ts (70.902 s)
+ PASS  tests/store.test.ts (71.414 s)
+```
 
 ## TODOs
 

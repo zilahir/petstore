@@ -8,7 +8,7 @@ import { useSelector } from 'react-redux'
 import DeleteIcon from '@material-ui/icons/Delete'
 import CreateIcon from '@material-ui/icons/Create'
 import { useDropzone } from 'react-dropzone'
-import Select, { OptionsType, OptionTypeBase } from 'react-select'
+import Select, { OptionTypeBase } from 'react-select'
 import CreatableSelect from 'react-select/creatable'
 import shortid from 'shortid'
 
@@ -35,8 +35,6 @@ export interface Tag {
 	name: string
 	_id: string
 }
-
-type Status = 'avalible' | 'pending'
 
 const DashBoard = (): ReactElement => {
 	const { user } = useSelector((store: TopLevelState) => store)
@@ -138,6 +136,12 @@ const DashBoard = (): ReactElement => {
 	const { data: categories } = useQuery('caategories', fetchCategories)
 	const { data: tags } = useQuery('tags', fetchTags)
 
+	/**
+	 *
+	 * @description calls the Pet DELETE function
+	 * after the request, refetching the pets
+	 * and closiing the confirmation modal
+	 */
 	function handleDelete(): void {
 		deleteFunction({
 			url: `${apiEndPoints.deletePet}/${selectedPet._id}`,
@@ -147,6 +151,11 @@ const DashBoard = (): ReactElement => {
 		})
 	}
 
+	/**
+	 * @param {object} chosenPet the object representation of the PET
+	 * @description opens the confirmation modal
+	 * sets the clicked Pet using Context API
+	 */
 	function toggleDeleteModalOpen(chosenPet: Pet): void {
 		toggleConfirmDeleteModal(true)
 		setSelectedPet(chosenPet)
@@ -160,6 +169,9 @@ const DashBoard = (): ReactElement => {
 		</div>
 	))
 
+	/**
+	 * @description sets every input back to its default value
+	 */
 	function clearInput(): void {
 		setImages([])
 		setSelectedTags([])
@@ -167,6 +179,13 @@ const DashBoard = (): ReactElement => {
 		setSavedImages([])
 	}
 
+	/**
+	 * @description calls the new pet API
+	 * with the given parameters
+	 * after the request, it refetches the pets
+	 * clears the input
+	 * toggles a notification
+	 */
 	function addNewPet(): void {
 		const newPet = {
 			name: petName,
@@ -187,11 +206,21 @@ const DashBoard = (): ReactElement => {
 		})
 	}
 
+	/**
+	 * @param {object} chosenPet the object representation of the PET
+	 * @description sets the Pet into context API
+	 * opens the modify modal
+	 */
 	function handlePetModify(chosenPet: Pet): void {
 		setSelectedPet(chosenPet)
 		toggleModifyModalOpen(true)
 	}
 
+	/**
+	 * @param {string} key key of Pet
+	 * @param {string} value  the modified value
+	 * @description updats the Pet object in the contect API
+	 */
 	function modifyPetValues(key: keyof Pet, value: string): void {
 		setSelectedPet({
 			...selectedPet,
@@ -199,6 +228,11 @@ const DashBoard = (): ReactElement => {
 		})
 	}
 
+	/**
+	 * @description finds the category assigned to the Pet
+	 * in the array of Categories, by id
+	 * @returns {object} the Option type object for react-select
+	 */
 	function findChosenCategory(): any | undefined {
 		const thisTag =
 			categories &&
@@ -206,6 +240,11 @@ const DashBoard = (): ReactElement => {
 		return thisTag ? { label: thisTag.name, value: thisTag._id } : undefined
 	}
 
+	/**
+	 * @description finds the selecteg Tags assigned to the Pet
+	 * in the array of tags
+	 * @returns {Array | undefined} returns either the list of Tags, or undefined if nothign was found
+	 */
 	function findChosenTags(): Option[] | undefined {
 		const thisTag =
 			tags &&
@@ -221,6 +260,12 @@ const DashBoard = (): ReactElement => {
 		return thisTag
 	}
 
+	/**
+	 * @description calls the Pet PATCH api, with the modifier object
+	 * representatino of the Pet
+	 * then refetches the Pets,
+	 * and closes the modify modal
+	 */
 	function modifyPet(): void {
 		const modifiedPet: Pet = {
 			...selectedPet,
@@ -236,6 +281,13 @@ const DashBoard = (): ReactElement => {
 		})
 	}
 
+	/**
+	 * @param {object} option object representation of a Category
+	 * @description if the value is not curently in the array of Categories
+	 * calls the new category POST request, and creates a new category with the
+	 * given value
+	 * Sets the category state with the Option
+	 */
 	function handleCategoryChange(option: OptionTypeBase | null): void {
 		if (option && option.__isNew__) {
 			post({

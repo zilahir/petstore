@@ -45,6 +45,13 @@ const OnePet = ({
 		setPage([page + newDirection, newDirection])
 	}
 
+	/**
+	 *
+	 * @description calls the new order POST api
+	 * with the given order object
+	 * toggles a notificatino after
+	 * and calls the functino which will set this pet's status to pending
+	 */
 	function placeOrder(): void {
 		const order = {
 			userId,
@@ -63,6 +70,9 @@ const OnePet = ({
 		})
 	}
 
+	/**
+	 *
+	 */
 	function changePetImages(): void {
 		// we are not navigating if there's only one image
 		if (photoUrls.length > 1) {

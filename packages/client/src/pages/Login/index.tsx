@@ -41,6 +41,10 @@ const Login = (): ReactElement => {
 		resolver: yupResolver(schema),
 	})
 
+	/**
+	 *
+	 * @description logs the user in
+	 */
 	function onSubmit(): void {
 		toggleLoading(true)
 		setRequestErrors([])

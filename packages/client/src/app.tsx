@@ -11,6 +11,14 @@ import { IUSer, TopLevelState } from './store/configureStore'
 
 const useAuth = (): IUSer => useSelector((store: TopLevelState) => store.user)
 
+/**
+ *
+ *
+ * @param {RouteProps} children ReactElements the children should be rendered
+ * @returns {ReactElement} Returns a ReactElement represents either a Route
+ * with it's children
+ * Redirects to login otherwise
+ */
 function PrivateRoute({ children, ...rest }: RouteProps): ReactElement {
 	const auth = useAuth().token || false
 	return auth ? (

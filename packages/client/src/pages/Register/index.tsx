@@ -50,6 +50,13 @@ const Register = (): ReactElement => {
 		resolver: yupResolver(schema),
 	})
 
+	/**
+	 *
+	 *
+	 * @param {*} data object of the form provided by react-hook-form
+	 * calls the user creation API with is
+	 *
+	 */
 	function onSubmit(data: any): void {
 		setRequestErrors([])
 		toggleLoading(true)

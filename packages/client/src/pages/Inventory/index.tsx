@@ -48,6 +48,13 @@ const Inventory = (): ReactElement => {
 			}) as unknown) as Array<IOrder>,
 	)
 
+	/**
+	 *
+	 *
+	 * @param {string} orderId the id of the Order
+	 * @description calls the DELETE API on the Order
+	 * then, refetches the orders, and toggles a notification
+	 */
 	function handleOrderDelete(orderId: string): void {
 		deleteFunction({
 			url: `${apiEndPoints.deleteOrder}/${orderId}`,

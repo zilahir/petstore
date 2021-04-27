@@ -11,6 +11,7 @@
 		"plugin:react-hooks/recommended",
 		"plugin:unicorn/recommended",
 		"plugin:markdown/recommended",
+		"plugin:jsdoc/recommended",
 		"prettier"
 	],
 	"settings": {
@@ -26,13 +27,7 @@
 		"ecmaVersion": 12,
 		"sourceType": "module"
 	},
-	"plugins": [
-		"react",
-		"jest",
-		"@typescript-eslint",
-		"eslint-plugin-tsdoc",
-		"prettier"
-	],
+	"plugins": ["react", "jest", "@typescript-eslint", "prettier"],
 	"rules": {
 		"no-empty-function": "off",
 		"@typescript-eslint/no-empty-function": 0,
@@ -60,7 +55,6 @@
 		"react/jsx-indent": ["error", "tab"],
 		"react/jsx-indent-props": ["error", "tab"],
 		"react/jsx-filename-extension": [1, { "extensions": [".tsx", ".ts"] }],
-		"tsdoc/syntax": "warn",
 		"semi": [2, "never"],
 		"arrow-parens": [1, "as-needed"],
 		"unicorn/filename-case": [

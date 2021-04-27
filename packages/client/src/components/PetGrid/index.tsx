@@ -39,6 +39,12 @@ const variants = {
 	}),
 }
 
+/**
+ *
+ * @description set's a Pet's staus to Pending after purchase
+ * TODO: this should be done in  middleware on the server side
+ * @param {string} petId the id of the Pet
+ */
 function setPetStatusToPending(petId: string): void {
 	patch({
 		url: `${apiEndPoints.modifyPet}/${petId}`,

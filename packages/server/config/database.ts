@@ -10,7 +10,6 @@ const connectDB = async (): Promise<void> => {
 			useUnifiedTopology: true,
 		}
 		await connect(mongoURI, options)
-		console.log('MongoDB Connected...')
 	} catch (err) {
 		throw new Error(`Something bad happened! ${err.message}`)
 	}

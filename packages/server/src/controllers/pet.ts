@@ -95,7 +95,6 @@ export function findPetsByStatus(
 export function patchPet(request: FindPetByIdReuest, response: Response): void {
 	const { petId } = request.params
 	const thisPet = petId as string
-	console.debug('petId', petId)
 	patchById(thisPet, request.body)
 		.then(pets => {
 			response.status(HttpStatusCodes.OK).send(pets)

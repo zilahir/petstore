@@ -15,7 +15,7 @@ This is a _monorepo_ that sovles the coding task I was given by Varjo.
 - [x] Setup Prettier for Frontend
 - [x] Setup StyleLint for Frontend
 - [x] Setup JSDoc for Backend
-- [ ] Setup JSDoc for Frontend
+- [x] Setup JSDoc for Frontend
 - [x] Setup testing for Backend
 - [ ] Setup testing for Frontend
 - [x] Setup OAuth
@@ -24,7 +24,6 @@ This is a _monorepo_ that sovles the coding task I was given by Varjo.
 - [ ] Setup Semantic Release
 - [x] Setup Database(s)
 - [ ] Setup Production Environment
-- [ ] Implement the frontend
 - [ ] Create testcases for frontend components
 - [ ] Setup CI/CD Pipelines
 

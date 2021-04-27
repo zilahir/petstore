@@ -3,7 +3,6 @@ import serverless from 'serverless-http'
 import { auth, requiresAuth, OpenidRequest } from 'express-openid-connect'
 import dotenv from 'dotenv'
 
-import oldSwagger from '../swagger.json'
 import connectDB from '../config/database'
 import authorization from './routes/api/auth'
 import user from './routes/api/user'
@@ -13,9 +12,8 @@ import category from './routes/api/category'
 import tag from './routes/api/tag'
 import pet from './routes/api/pet'
 import store from './routes/api/store'
-import expressJSDocSwagger, { Options } from 'express-jsdoc-swagger'
 
-const swaggerSettings: Options = {
+const swaggerSettings = {
 	info: {
 		version: '2.0.0',
 		title: 'PetStore',
@@ -51,8 +49,8 @@ const config = {
 }
 
 const app = express()
-expressJSDocSwagger(app)(swaggerSettings, oldSwagger)
-app.use(auth(config))
+// expressJSDocSwagger(app)(swaggerSettings, oldSwagger)
+// app.use(auth(config))
 
 app.use(function (req, res, next) {
 	res.header('Access-Control-Allow-Origin', '*')
@@ -122,8 +120,8 @@ app.use('/store', [store])
 /* const port = app.get('port')
 const server = app.listen(port, () =>
 	console.log(`Server started on port ${port}, diename: ${__dirname}`),
-)
+)*/
 
-export default server */
+export default app
 
 module.exports.handler = serverless(app)

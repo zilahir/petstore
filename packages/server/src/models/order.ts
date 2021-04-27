@@ -90,3 +90,5 @@ export function get(): Promise<Array<IOrder>> {
 export function deleteOrderById(orderId: string): Promise<IOrder | null> {
 	return Order.findOneAndDelete({ _id: orderId }).exec()
 }
+
+export default Order

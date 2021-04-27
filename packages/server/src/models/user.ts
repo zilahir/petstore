@@ -57,7 +57,7 @@ const User: Model<IUser> = model('User', userSchema)
  * @param {string} username the username we are looking for
  * @returns {Promise} a User in a Promise
  */
-export function findByUserName(username: string): Promise<IUser> {
+export function findByUserName(username: string): Promise<IUser | null> {
 	return User.findOne({
 		username,
 	}).exec()

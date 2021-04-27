@@ -116,10 +116,12 @@ app.use('/tag', tag)
 app.use('/user', [authorization, user])
 app.use('/store', [store])
 
-/* const port = app.get('port')
-const server = app.listen(port, () =>
-	console.log(`Server started on port ${port}, diename: ${__dirname}`),
-) */
+if (process.env.STAGE === 'dev') {
+	const port = app.get('port')
+	app.listen(port, () =>
+		console.log(`Server started on port ${port}, diename: ${__dirname}`),
+	)
+}
 
 export default app
 

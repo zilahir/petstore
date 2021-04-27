@@ -43,9 +43,6 @@
 		"yup": "^0.32.9"
 	},
 	"lint-staged": {
-		"*.{js,jsx}": [
-			"yarn lint:js"
-		],
 		"*.{ts,tsx}": [
 			"yarn lint:ts"
 		],
@@ -59,7 +56,9 @@
 		"test": "react-scripts test",
 		"eject": "react-scripts eject",
 		"storybook": "start-storybook -p 6006 -s public",
-		"build-storybook": "build-storybook -s public -o ./storbook"
+		"build-storybook": "build-storybook -s public -o ./storbook",
+		"lint:js": "eslint --ext .js,.jsx \"**/*.{js,jsx}\" ",
+		"lint:ts": "eslint --ext .ts,.tsx --ignore-path ./.gitignore --max-warnings 0 \"**/*.{ts,tsx}\""
 	},
 	"browserslist": {
 		"production": [

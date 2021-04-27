@@ -104,7 +104,12 @@ The following tools, and ututilites has been introduced:
 
 - [`redux`]
 - [`redux-persist`] (to demonstrate how to handle JWT on the frontends side for request, alongside with the authorized user object)
-- [`storybook`] with readme's (to demostrate how to write documentation for generic, HOC, reusable components)
+- [`storybook`] with readme's (to demostrate how to write documentation for generic, HOC, reusable components). In an ideal worlds, Storybook has decorators, to provide mock API's, datasheet, etc, for the stories, and their tests.
+
+### Storybook
+
+Storybook helps keeping the components, and their documentation up to date. It's not just a fancy showoff of components, it also includes their documentatoin, plus it can (and should!) utilizied to do testing on the components. It's perfect for Unit tests, and Snapshot tests.
+
 - [`ESLint`] (to avoid writing bad code, and enforce coding style within a _team_ (aks: myself))
 - [`JSDOC`] (to enforce documentation on functions, and closures (React Hooks))
 - [`husky`] husky makes the usage of git hooks easy
@@ -114,7 +119,7 @@ The following tools, and ututilites has been introduced:
 
 For example:
 
-```
+```text
  Preparing...
 ✔ Running tasks...
 ✔ Applying modifications...

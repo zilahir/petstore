@@ -19,8 +19,6 @@
 		"build:client": "yarn workspace client build",
 		"deploy:server": "yarn workspace server deploy:serverless",
 		"deploy:storybook": "yarn workspace client build-storybook",
-		"lint:js": "eslint --ext .js,.jsx .",
-		"lint:ts": "eslint --ext .ts,.tsx --ignore-path ./.gitignore --max-warnings 0 \"**/*.{ts,tsx}\"",
 		"lint:scss": "stylelint --syntax scss",
 		"prepare": "husky install"
 	},

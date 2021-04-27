@@ -3,7 +3,13 @@
 		"browser": true,
 		"es2021": true
 	},
-	"ignorePatterns": ["*test*", "*env*", "*report*", "*storie*"],
+	"ignorePatterns": [
+		"*test*",
+		"*env*",
+		"*report*",
+		"*storie*",
+		"./.storybook/**"
+	],
 	"extends": [
 		"plugin:@typescript-eslint/recommended",
 		"plugin:react/recommended",

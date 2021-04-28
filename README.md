@@ -203,6 +203,10 @@ The [client](https://zilahirpetstore.netlify.app/) and the related [storybook](h
 
 The backend is deployed via [serverless](https://www.serverless.com/), and it's deployed into an [`AWS Lambda`](https://aws.amazon.com/lambda/) function.
 
+#### File Upload
+
+The files are uploaded into an AWS-S3 bucket, using [`aws-sdk`](npmjs.com/package/aws-sdk).
+
 ##  CI / CD
 
 Due to simplicity for this project, both 3 subprojects are deployed in the same time, if a commit is pushed to the `master` branch, using [Github actions](https://docs.github.com/en/actions).
@@ -245,7 +249,7 @@ I was specifically asked to keep on eye on the maintainability of the UI. I am u
 
 ## Backend
 
-The backend is written in `NodeJS` using `express.
+The backend is written in `NodeJS` using `express`.
 
 | key        | value example                                                                           | purpose                                    |
 | ---------- | --------------------------------------------------------------------------------------- | ------------------------------------------ |

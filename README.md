@@ -13,7 +13,8 @@ To start this project locally:
   - docker
 
 1. checkout this repo
-2. hit `yarn start:dev`
+2. hit `yarn i`
+3. hit `yarn start:dev`
 
 `yarn start:dev` will start every process:
 
@@ -21,7 +22,7 @@ To start this project locally:
 2. backend
 3. a docker container, with MongoDB.
 
-The `docker-compose` command will pull a docker mongodb image, and it will be exposed on the port of `27017`. Change it, in the `docker-compose.yml` if you need to.
+The `docker-compose` command will pull a docker mongodb image, and it will be exposed on the port of `27025`. Change it, in the `docker-compose.yml` if you need to.
 
 ### Environment variables
 

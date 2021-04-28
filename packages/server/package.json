@@ -1,8 +1,11 @@
 {
 	"name": "server",
 	"version": "1.0.0",
-	"description": "Mongoose Node.js Express TypeScript application boilerplate with best practices for API development.",
-	"author": "Paul Cham",
+	"description": "petstore backend",
+	"author": {
+		"email": "zilahi@gmail.com",
+		"name": "Richard Zilahi"
+	},
 	"license": "MIT",
 	"scripts": {
 		"tsc": "tsc",
